@@ -10,7 +10,7 @@ const achieversData = [
     score: '8.5 Band',
     type: 'Academic',
     rating: '5.0 ⭐',
-    image: '/assets/images/img_p18_2.png'
+    image: './assets/images/img_p18_2.png'
   },
   {
     id: 'wof-2',
@@ -21,7 +21,7 @@ const achieversData = [
     score: '88/90',
     type: 'PTE Master',
     rating: '5.0 ⭐',
-    image: '/assets/images/img_p10_0.jpeg'
+    image: './assets/images/img_p10_0.jpeg'
   },
   {
     id: 'wof-3',
@@ -32,7 +32,7 @@ const achieversData = [
     score: '8.5 Band',
     type: 'Top Achiever',
     rating: '5.0 ⭐',
-    image: '/assets/images/img_p18_0.png'
+    image: './assets/images/img_p18_0.png'
   },
   {
     id: 'wof-4',
@@ -43,7 +43,7 @@ const achieversData = [
     score: 'Distinction',
     type: 'TEFL 220h',
     rating: '5.0 ⭐',
-    image: '/assets/images/img_p19_0.png'
+    image: './assets/images/img_p19_0.png'
   },
   {
     id: 'wof-5',
@@ -54,7 +54,7 @@ const achieversData = [
     score: '8.0 Band',
     type: 'General',
     rating: '5.0 ⭐',
-    image: '/assets/images/img_p21_0.png'
+    image: './assets/images/img_p21_0.png'
   }
 ];
 

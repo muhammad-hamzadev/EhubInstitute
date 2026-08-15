@@ -74,7 +74,7 @@ const Hero = () => {
         <div className="hero-arc-wrapper">
           <div className="hero-arc-outer">
             <div className="hero-arc-image-container">
-              <img src="/assets/images/img_p21_0.png" alt="E-Hub Institute Students Peshawar" />
+              <img src="./assets/images/img_p21_0.png" alt="E-Hub Institute Students Peshawar" />
             </div>
           </div>
         </div>
