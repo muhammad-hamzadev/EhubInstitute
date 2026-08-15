@@ -26,7 +26,7 @@ const Leader = () => {
                 {/* Oval Arch Photo Container */}
                 <div className="leader-oval-arch-frame">
                   <img 
-                    src="./assets/images/maroof_ceo.png" 
+                    src="/EhubInstitute/assets/images/maroof_ceo.png" 
                     alt="Maroof Mehmood - CEO E-Hub Institute" 
                     className="leader-portrait-img"
                   />
