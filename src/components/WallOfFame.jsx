@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const achieversData = [
   {
@@ -58,138 +58,87 @@ const achieversData = [
   }
 ];
 
+// Duplicate items for seamless continuous infinite marquee loop
+const infiniteItems = [...achieversData, ...achieversData];
+
 const WallOfFame = () => {
-  const [activeIndex, setActiveIndex] = useState(2); // Default center card (Index 2)
-  const [isHovered, setIsHovered] = useState(false);
-
-  const total = achieversData.length;
-
-  const handlePrev = () => {
-    setActiveIndex((prev) => (prev === 0 ? total - 1 : prev - 1));
-  };
-
-  const handleNext = () => {
-    setActiveIndex((prev) => (prev === total - 1 ? 0 : prev + 1));
-  };
-
-  // Auto-play infinite rotation loop (pauses when hovered)
-  useEffect(() => {
-    if (isHovered) return;
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev === total - 1 ? 0 : prev + 1));
-    }, 4000);
-    return () => clearInterval(interval);
-  }, [isHovered, total]);
+  const [zoomedCard, setZoomedCard] = useState(null);
 
   return (
-    <section className="wof-section" id="wall-of-fame">
-      <div className="container">
-        <div className="section-header text-center">
-          <span className="section-tag">Wall of Fame</span>
-          <h2 className="section-title">
-            Our Students. <span className="text-accent">Their Success Stories.</span>
-          </h2>
-          <p className="section-desc center-desc">
-            Celebrating high IELTS band scores, PTE triumphs, and career milestones of proud E-Hubians.
-          </p>
+    <>
+      <section className="wof-section achievements-section" id="wall-of-fame">
+        <div className="container">
+          <div className="section-header text-center">
+            <span className="section-tag">Wall of Fame</span>
+            <h2 className="section-title">
+              Our Students. <span className="text-accent">Their Success Stories.</span>
+            </h2>
+            <p className="section-desc center-desc">
+              Hover over any card to spotlight & zoom forward
+            </p>
+          </div>
         </div>
-      </div>
 
-      {/* 3D Cover Flow Carousel Stage */}
-      <div 
-        className="coverflow-stage"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        {/* Prev Arrow Button */}
-        <button className="coverflow-nav nav-prev" onClick={handlePrev} aria-label="Previous Student">
-          <i className="ph-bold ph-caret-left"></i>
-        </button>
-
-        <div className="coverflow-container">
-          {achieversData.map((item, index) => {
-            let offset = index - activeIndex;
-
-            // Circular modular wrap-around (infinite 360 rotation)
-            if (offset > Math.floor(total / 2)) {
-              offset -= total;
-            } else if (offset < -Math.floor(total / 2)) {
-              offset += total;
-            }
-
-            let cardClass = 'coverflow-card';
-            if (offset === 0) cardClass += ' is-center';
-            else if (offset === -1) cardClass += ' is-prev-1';
-            else if (offset === 1) cardClass += ' is-next-1';
-            else if (offset === -2) cardClass += ' is-prev-2';
-            else if (offset === 2) cardClass += ' is-next-2';
-            else if (offset < -2) cardClass += ' is-prev-2';
-            else if (offset > 2) cardClass += ' is-next-2';
-
-            return (
+        {/* Continuous Horizontal Infinite Marquee Track */}
+        <div className="infinite-marquee-viewport">
+          <div className="infinite-marquee-track">
+            {infiniteItems.map((item, index) => (
               <div
-                key={item.id}
-                className={cardClass}
-                onClick={() => setActiveIndex(index)}
+                key={`inf-wof-${index}`}
+                className="single-pic-spotlight-card"
+                onClick={() => setZoomedCard(item)}
               >
-                {/* Image Header */}
-                <div className="wof-img-wrapper">
-                  <img src={item.image} alt={item.name} />
-                  <span className="wof-badge-top">{item.type}</span>
+                {/* Single Full Cover Image */}
+                <div className="spotlight-single-banner">
+                  <img src={item.image} alt={item.name} className="single-banner-img" />
                 </div>
 
-                {/* Card Content (Matching Screenshot Mockup 1:1) */}
-                <div className="wof-card-body">
-                  <h3 className="wof-name">{item.name}</h3>
-                  <span className="wof-location">
-                    <i className="ph-fill ph-map-pin"></i> {item.location}
-                  </span>
-                  <p className="wof-desc">{item.desc}</p>
+                {/* Card Main Body */}
+                <div className="spotlight-body">
+                  <h4 className="spotlight-name">{item.name}</h4>
+                  <span className="spotlight-role">{item.achievement}</span>
+                  <span className="spotlight-tag">{item.type}</span>
+                  <p className="spotlight-desc">{item.desc}</p>
 
-                  {/* 3 Metric Pills Row */}
-                  <div className="wof-metrics">
-                    <div className="wof-metric-col">
-                      <span className="metric-label">Score</span>
-                      <strong className="metric-val">{item.score}</strong>
-                    </div>
-                    <div className="wof-metric-col">
-                      <span className="metric-label">Status</span>
-                      <strong className="metric-val">Verified</strong>
-                    </div>
-                    <div className="wof-metric-col">
-                      <span className="metric-label">Rating</span>
-                      <strong className="metric-val text-gold">{item.rating}</strong>
-                    </div>
-                  </div>
-
-                  {/* Floating Action Icon Button */}
-                  <div className="wof-floating-btn">
-                    <i className="ph-fill ph-paper-plane-tilt"></i>
+                  {/* Bottom Metadata Bar */}
+                  <div className="spotlight-meta-bar">
+                    <span className="meta-left">{item.location}</span>
+                    <span className="meta-right-pill">{item.score}</span>
                   </div>
                 </div>
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
+      </section>
 
-        {/* Next Arrow Button */}
-        <button className="coverflow-nav nav-next" onClick={handleNext} aria-label="Next Student">
-          <i className="ph-bold ph-caret-right"></i>
-        </button>
-      </div>
-
-      {/* Pagination Dots */}
-      <div className="coverflow-dots text-center">
-        {achieversData.map((_, idx) => (
-          <button
-            key={`dot-${idx}`}
-            className={`coverflow-dot ${idx === activeIndex ? 'active' : ''}`}
-            onClick={() => setActiveIndex(idx)}
-            aria-label={`Go to slide ${idx + 1}`}
-          />
-        ))}
-      </div>
-    </section>
+      {/* Click Zoom Spotlight Modal View */}
+      {zoomedCard && (
+        <div className="achieve-zoom-modal-backdrop" onClick={() => setZoomedCard(null)}>
+          <div className="achieve-zoom-modal-card" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close-btn" onClick={() => setZoomedCard(null)}>
+              <i className="ph-bold ph-x"></i>
+            </button>
+            <div className="modal-content-grid">
+              <div className="modal-img-col">
+                <img src={zoomedCard.image} alt={zoomedCard.name} className="modal-large-img" />
+              </div>
+              <div className="modal-info-col">
+                <span className="modal-badge">{zoomedCard.score}</span>
+                <h3 className="modal-title">{zoomedCard.name}</h3>
+                <span className="modal-sub">{zoomedCard.achievement} • {zoomedCard.location}</span>
+                <p className="modal-desc">{zoomedCard.desc} Rating: {zoomedCard.rating}</p>
+                <div className="modal-footer-action">
+                  <a href="#contact" className="btn btn-primary" onClick={() => setZoomedCard(null)}>
+                    Enquire Now
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
