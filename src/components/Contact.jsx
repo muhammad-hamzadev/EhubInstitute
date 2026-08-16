@@ -93,15 +93,7 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Quick WhatsApp Action */}
-            <a 
-              href="https://wa.me/923320565525?text=Hello%20E-Hub%20Institute!%20I%20want%20to%20inquire%20about%20admissions."
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="btn-contact-whatsapp"
-            >
-              <i className="ph-fill ph-whatsapp-logo"></i> Instant WhatsApp Chat
-            </a>
+
           </div>
 
           {/* Right Column: Admission & Inquiry Form */}

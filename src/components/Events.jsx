@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const journalPages = [
   {
@@ -66,129 +66,189 @@ const journalPages = [
     bubble: 'From Oxford to Australia, E-Hubians are shaping the world!',
     cursiveNote: 'August 30 — Celebrating 5,000+ alumni success stories. Join E-Hub today and write your own story of success!',
     tag: '🏆 5000+ Alumni'
+  },
+  {
+    id: 'page-7',
+    chapter: 'Wall of Fame • IELTS',
+    title: 'Muhammad Ali',
+    mainImg: '/EhubInstitute/assets/images/img_p18_2.png',
+    polaroid1: '/EhubInstitute/assets/images/img_p18_2.png',
+    polaroid2: '/EhubInstitute/assets/images/img_p10_0.jpeg',
+    bubble: 'Secured 8.5 Band in first attempt!',
+    cursiveNote: 'Peshawar • Oxford Admit. Through E-Hub master classes and intensive speaking practice.',
+    tag: '⭐ 8.5 Band'
+  },
+  {
+    id: 'page-8',
+    chapter: 'Wall of Fame • PTE',
+    title: 'Fatima Zahra',
+    mainImg: '/EhubInstitute/assets/images/img_p10_0.jpeg',
+    polaroid1: '/EhubInstitute/assets/images/img_p19_0.png',
+    polaroid2: '/EhubInstitute/assets/images/img_p21_0.png',
+    bubble: 'Transformed English speaking fluency!',
+    cursiveNote: 'Peshawar • Australia Visa. Achieved top scores within 6 weeks at E-Hub.',
+    tag: '⭐ 88/90'
+  },
+  {
+    id: 'page-9',
+    chapter: 'Recognition • British Council',
+    title: 'British Council Award',
+    mainImg: '/EhubInstitute/assets/images/img_p16_0.png',
+    polaroid1: '/EhubInstitute/assets/images/img_p22_0.jpeg',
+    polaroid2: '/EhubInstitute/assets/images/img_p18_0.png',
+    bubble: 'Excellence Partner for IELTS training!',
+    cursiveNote: 'Recognized by the British Council for outstanding pedagogy and student success rates.',
+    tag: '🏆 Excellence'
+  },
+  {
+    id: 'page-10',
+    chapter: 'Recognition • iTTi-USA',
+    title: 'iTTi-USA Accreditation',
+    mainImg: '/EhubInstitute/assets/images/img_p17_0.jpeg',
+    polaroid1: '/EhubInstitute/assets/images/img_p20_0.png',
+    polaroid2: '/EhubInstitute/assets/images/img_p21_0.png',
+    bubble: 'Global TEFL Partner in Pakistan!',
+    cursiveNote: 'Official partner for delivering internationally recognized TEFL/TESOL certifications.',
+    tag: '🎓 Accredited'
   }
 ];
 
 const Events = () => {
+  const [bookState, setBookState] = useState('closed-front'); // 'closed-front', 'open', 'closed-back'
   const [pageIndex, setPageIndex] = useState(0);
-  const [flipDirection, setFlipDirection] = useState(null); // 'next' or 'prev'
-  const [isFlipping, setIsFlipping] = useState(false);
+  const [hasAutoOpened, setHasAutoOpened] = useState(false);
+  const sectionRef = useRef(null);
   const totalPages = journalPages.length;
 
   const currentData = journalPages[pageIndex];
-  const nextData = journalPages[(pageIndex + 1) % totalPages];
+
+  const handleOpen = () => setBookState('open');
+  const handleCloseFront = () => { setBookState('closed-front'); setPageIndex(0); };
+  const handleCloseBack = () => setBookState('closed-back');
+
+  // Auto-open book when user scrolls to it
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !hasAutoOpened) {
+          setTimeout(() => {
+            setBookState('open');
+            setHasAutoOpened(true);
+          }, 800); // slight delay after scrolling into view for a better effect
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, [hasAutoOpened]);
+
+  // Auto-close on the last page after 5 seconds
+  useEffect(() => {
+    let timeoutId;
+    if (pageIndex === totalPages - 1 && bookState === 'open') {
+      timeoutId = setTimeout(() => {
+        handleCloseBack();
+      }, 5000);
+    }
+    return () => clearTimeout(timeoutId);
+  }, [pageIndex, bookState, totalPages]);
 
   const handleNext = () => {
-    if (isFlipping) return;
-    setFlipDirection('next');
-    setIsFlipping(true);
-    setTimeout(() => {
-      setPageIndex((prev) => (prev + 1) % totalPages);
-      setIsFlipping(false);
-      setFlipDirection(null);
-    }, 650);
+    if (pageIndex === totalPages - 1) {
+      handleCloseBack();
+    } else {
+      setPageIndex(pageIndex + 1);
+    }
   };
 
   const handlePrev = () => {
-    if (isFlipping) return;
-    setFlipDirection('prev');
-    setIsFlipping(true);
-    setTimeout(() => {
-      setPageIndex((prev) => (prev === 0 ? totalPages - 1 : prev - 1));
-      setIsFlipping(false);
-      setFlipDirection(null);
-    }, 650);
+    if (pageIndex === 0) {
+      handleCloseFront();
+    } else {
+      setPageIndex(pageIndex - 1);
+    }
   };
 
   return (
-    <section className="single-book-section maroon-bg" id="events">
+    <section className="events-book-section maroon-bg" id="events" ref={sectionRef}>
       <div className="container">
-        <div className="section-header text-center light-header">
-          <span className="section-tag-gold">📸 Events Photo Book</span>
-          <h2 className="diary-title yellow-heading">Events <span className="yellow-highlight">Photo Album</span></h2>
-          <p className="section-desc center-desc yellow-subtext">
-            Memory {pageIndex + 1} of {totalPages} • Click or drag corners to flip!
-          </p>
-        </div>
 
-        {/* ONE SINGLE 3D OPEN JOURNAL BINDER */}
-        <div className="single-book-container">
-          {/* Controls Header Bar */}
-          <div className="single-book-controls">
-            <button className="book-arrow-btn" onClick={handlePrev} aria-label="Previous Page">
-              <i className="ph-bold ph-caret-left"></i> Previous Page
-            </button>
-            <span className="single-book-page-num yellow-subtext">
-              📖 Open 2-Page Spread • Memory {pageIndex + 1}
-            </span>
-            <button className="book-arrow-btn" onClick={handleNext} aria-label="Next Page">
-              Next Page <i className="ph-bold ph-caret-right"></i>
-            </button>
-          </div>
 
-          {/* Master 3D Journal Leather Binder */}
-          <div className="master-journal-binder">
-            {/* Multi-Layer Stacked Paper Edges */}
-            <div className="stacked-pages-edge left-edge"></div>
-            <div className="stacked-pages-edge right-edge"></div>
+        <div className="book-stage">
+          <div className={`the-3d-book state-${bookState}`}>
+            {/* Book Pages (Left and Right Spreads) - Rendered behind covers */}
+            <div className="book-pages-container">
+               {/* Left Page (Photos) */}
+               <div className="book-page page-left">
+                  <div className="book-page-content page-fade-anim" key={`left-${pageIndex}`}>
+                    <button className="book-nav-btn prev-btn" onClick={handlePrev}>
+                       <i className="ph-bold ph-caret-left"></i> Previous
+                    </button>
+                    <div className="main-photo-frame">
+                      <img src={currentData.mainImg} alt={currentData.title} className="slide-photo" />
+                      <span className="photo-badge">{currentData.tag}</span>
+                    </div>
+                    <div className="speech-bubble-box">
+                      "{currentData.bubble}"
+                    </div>
+                  </div>
+               </div>
 
-            {/* Inner Paper Pages Stage */}
-            <div className="journal-inner-paper-stage">
-              {/* Left Page Spread */}
-              <div className="journal-page-col page-left-spread" onClick={handlePrev} title="Click to flip back">
-                <div className="main-photo-frame">
-                  <img src={currentData.mainImg} alt={currentData.title} className="slide-photo" />
-                  <span className="photo-badge">{currentData.tag}</span>
-                </div>
-                <div className="speech-bubble-box">
-                  "{currentData.bubble}"
-                </div>
-              </div>
+               {/* Center Spine Crease */}
+               <div className="page-spine-crease"></div>
 
-              {/* Center Ring Binder Spine */}
-              <div className="journal-ring-spine">
-                <div className="spine-ring"></div>
-                <div className="spine-ring"></div>
-                <div className="spine-ring"></div>
-                <div className="spine-ring"></div>
-                <div className="spine-ring"></div>
-              </div>
-
-              {/* Right Page Spread */}
-              <div className="journal-page-col page-right-spread" onClick={handleNext} title="Click to flip forward">
-                <div className="polaroid-wrapper p-tilted-1">
-                  <img src={currentData.polaroid1} alt="Polaroid Memory 1" />
-                </div>
-                <div className="polaroid-wrapper p-tilted-2">
-                  <img src={currentData.polaroid2} alt="Polaroid Memory 2" />
-                </div>
-
-                <div className="journal-text-content">
-                  <span className="chapter-label">{currentData.chapter}</span>
-                  <h3 className="slide-heading">{currentData.title}</h3>
-                  <p className="cursive-handwriting">
-                    "{currentData.cursiveNote}"
-                  </p>
-                </div>
-                <div className="flip-hint-corner">Click corner to flip ➔</div>
-              </div>
-
-              {/* 3D Page Flipping Leaf Overlay */}
-              {isFlipping && (
-                <div className={`flipping-page-leaf ${flipDirection === 'next' ? 'flip-anim-next' : 'flip-anim-prev'}`}>
-                  <div className="leaf-face leaf-front">
+               {/* Right Page (Details) */}
+               <div className="book-page page-right">
+                  <div className="book-page-content page-fade-anim" key={`right-${pageIndex}`}>
+                    <div className="polaroids-container">
+                      <div className="polaroid-wrapper p-tilted-1">
+                        <img src={currentData.polaroid1} alt="Polaroid 1" />
+                      </div>
+                      <div className="polaroid-wrapper p-tilted-2">
+                        <img src={currentData.polaroid2} alt="Polaroid 2" />
+                      </div>
+                    </div>
                     <div className="journal-text-content">
                       <span className="chapter-label">{currentData.chapter}</span>
                       <h3 className="slide-heading">{currentData.title}</h3>
+                      <p className="cursive-handwriting">
+                        "{currentData.cursiveNote}"
+                      </p>
                     </div>
+                    <button className="book-nav-btn next-btn" onClick={handleNext}>
+                       {pageIndex === totalPages - 1 ? "Close Book" : "Next Page"} <i className="ph-bold ph-caret-right"></i>
+                    </button>
                   </div>
-                  <div className="leaf-face leaf-back">
-                    <div className="main-photo-frame">
-                      <img src={nextData.mainImg} alt={nextData.title} className="slide-photo" />
-                    </div>
-                  </div>
+               </div>
+            </div>
+
+            {/* Front Cover */}
+            <div className="book-cover book-front" onClick={bookState === 'closed-front' ? handleOpen : undefined}>
+              <div className="cover-inner-content">
+                <div className="cover-border">
+                  <h1 className="cover-title">Event Photos</h1>
+                  <p className="cover-subtitle">E-Hub Institute</p>
                 </div>
-              )}
+              </div>
+            </div>
+
+            {/* Back Cover */}
+            <div className="book-cover book-back" onClick={bookState === 'closed-back' ? () => {setBookState('open'); setPageIndex(totalPages-1);} : undefined}>
+              <div className="cover-inner-content">
+                <div className="cover-border">
+                  <h1 className="cover-title">The End</h1>
+                  <p className="cover-subtitle">Thank you for exploring!</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

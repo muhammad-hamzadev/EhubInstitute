@@ -9,7 +9,7 @@ const Footer = () => {
         {/* Column 1: Brand & Socials */}
         <div className="footer-v2-brand-col">
           <a href="#home" className="footer-logo-link">
-            <EHubOfficialLogoSVG height={56} className="footer-logo-svg" />
+            <EHubOfficialLogoSVG height={56} className="footer-logo-svg" textColor="#FFD700" />
           </a>
           <p className="footer-brand-bio">
             Peshawar’s premier English Language, IELTS Mastery, and TEFL/TESOL teacher training center. Empowering students, professionals, and educators since 2019.

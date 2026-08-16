@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 const Programs = () => {
-  const [openCard, setOpenCard] = useState(0);
+  const [openCard, setOpenCard] = useState(null);
 
   const toggleCard = (index) => {
     setOpenCard(openCard === index ? null : index);

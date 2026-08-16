@@ -27,7 +27,7 @@ const Navbar = () => {
       <div className="container nav-container">
         {/* Official E-Hub Vector SVG Logo */}
         <a href="#hero" className="logo-svg-anchor" onClick={closeMobileMenu}>
-          <EHubOfficialLogoSVG height={58} className="official-ehub-logo-svg" />
+          <EHubOfficialLogoSVG height={44} className="official-ehub-logo-svg" />
         </a>
 
         <ul className={`nav-links ${isMobileMenuOpen ? 'mobile-active' : ''}`}>

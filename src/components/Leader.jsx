@@ -20,8 +20,6 @@ const Leader = () => {
                 {/* Deep Maroon Corner Wave Backdrop */}
                 <div className="maroon-corner-shape"></div>
                 
-                {/* Gold Outer Glow Arc */}
-                <div className="gold-arch-ring-decor"></div>
 
                 {/* Oval Arch Photo Container */}
                 <div className="leader-oval-arch-frame">

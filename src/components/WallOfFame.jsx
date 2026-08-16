@@ -1,72 +1,67 @@
 import React, { useState } from 'react';
 
-const achieversData = [
+const achievementItems = [
   {
     id: 'wof-1',
     name: 'Muhammad Ali',
-    achievement: 'IELTS Academic 8.5 Band',
-    location: 'Peshawar • Oxford Admit',
-    desc: 'Secured 8.5 Band in first attempt through E-Hub master classes and intensive speaking practice.',
-    score: '8.5 Band',
-    type: 'Academic',
-    rating: '5.0 ⭐',
-    image: '/EhubInstitute/assets/images/img_p18_2.png'
+    tag: 'IELTS Academic 8.5 Band',
+    banner: '/EhubInstitute/assets/images/img_p18_2.png',
+    role: 'Academic',
+    metaLeft: 'Peshawar • Oxford Admit',
+    metaRight: '8.5 Band',
+    fullDesc: 'Secured 8.5 Band in first attempt through E-Hub master classes and intensive speaking practice.'
   },
   {
     id: 'wof-2',
     name: 'Fatima Zahra',
-    achievement: 'PTE Academic 88 Score',
-    location: 'Peshawar • Australia Visa',
-    desc: 'Transformed my English speaking fluency and achieved top scores within 6 weeks at E-Hub.',
-    score: '88/90',
-    type: 'PTE Master',
-    rating: '5.0 ⭐',
-    image: '/EhubInstitute/assets/images/img_p10_0.jpeg'
+    tag: 'PTE Academic 88 Score',
+    banner: '/EhubInstitute/assets/images/img_p10_0.jpeg',
+    role: 'PTE Master',
+    metaLeft: 'Peshawar • Australia Visa',
+    metaRight: '88/90',
+    fullDesc: 'Transformed my English speaking fluency and achieved top scores within 6 weeks at E-Hub.'
   },
   {
     id: 'wof-3',
     name: 'Azure Achiever',
-    achievement: 'IELTS 8.5 Band Score',
-    location: 'Peshawar • Global Scholar',
-    desc: 'Outstanding performance in IELTS Academic with 9.0 in Speaking & Listening modules.',
-    score: '8.5 Band',
-    type: 'Top Achiever',
-    rating: '5.0 ⭐',
-    image: '/EhubInstitute/assets/images/img_p18_0.png'
+    tag: 'IELTS 8.5 Band Score',
+    banner: '/EhubInstitute/assets/images/img_p18_0.png',
+    role: 'Top Achiever',
+    metaLeft: 'Peshawar • Global Scholar',
+    metaRight: '8.5 Band',
+    fullDesc: 'Outstanding performance in IELTS Academic with 9.0 in Speaking & Listening modules.'
   },
   {
     id: 'wof-4',
     name: 'Usman Khan',
-    achievement: 'iTTi TEFL Certified',
-    location: 'Peshawar • ESL Educator',
-    desc: 'Completed 220-hour iTTi-USA certification. Now teaching English professionally abroad.',
-    score: 'Distinction',
-    type: 'TEFL 220h',
-    rating: '5.0 ⭐',
-    image: '/EhubInstitute/assets/images/img_p19_0.png'
+    tag: 'iTTi TEFL Certified',
+    banner: '/EhubInstitute/assets/images/img_p19_0.png',
+    role: 'TEFL 220h',
+    metaLeft: 'Peshawar • ESL Educator',
+    metaRight: 'Distinction',
+    fullDesc: 'Completed 220-hour iTTi-USA certification. Now teaching English professionally abroad.'
   },
   {
     id: 'wof-5',
     name: 'Sana Ahmed',
-    achievement: 'IELTS General 8.0 Band',
-    location: 'Peshawar • Canada PR',
-    desc: 'E-Hub faculty provided unbeatable strategies for IELTS Writing and Speaking modules.',
-    score: '8.0 Band',
-    type: 'General',
-    rating: '5.0 ⭐',
-    image: '/EhubInstitute/assets/images/img_p21_0.png'
+    tag: 'IELTS General 8.0 Band',
+    banner: '/EhubInstitute/assets/images/img_p21_0.png',
+    role: 'General',
+    metaLeft: 'Peshawar • Canada PR',
+    metaRight: '8.0 Band',
+    fullDesc: 'E-Hub faculty provided unbeatable strategies for IELTS Writing and Speaking modules.'
   }
 ];
 
 // Duplicate items for seamless continuous infinite marquee loop
-const infiniteItems = [...achieversData, ...achieversData];
+const infiniteItems = [...achievementItems, ...achievementItems];
 
 const WallOfFame = () => {
   const [zoomedCard, setZoomedCard] = useState(null);
 
   return (
     <>
-      <section className="wof-section achievements-section" id="wall-of-fame">
+      <section className="wof-section" id="wall-of-fame">
         <div className="container">
           <div className="section-header text-center">
             <span className="section-tag">Wall of Fame</span>
@@ -79,32 +74,24 @@ const WallOfFame = () => {
           </div>
         </div>
 
-        {/* Continuous Horizontal Infinite Marquee Track */}
+        {/* Continuous Horizontal Infinite Marquee Track (Single Picture per Card 1:1 Match) */}
         <div className="infinite-marquee-viewport">
           <div className="infinite-marquee-track">
             {infiniteItems.map((item, index) => (
               <div
-                key={`inf-wof-${index}`}
+                key={`inf-ach-${index}`}
                 className="single-pic-spotlight-card"
                 onClick={() => setZoomedCard(item)}
               >
                 {/* Single Full Cover Image */}
                 <div className="spotlight-single-banner">
-                  <img src={item.image} alt={item.name} className="single-banner-img" />
+                  <img src={item.banner} alt={item.name} className="single-banner-img" />
                 </div>
 
                 {/* Card Main Body */}
                 <div className="spotlight-body">
                   <h4 className="spotlight-name">{item.name}</h4>
-                  <span className="spotlight-role">{item.achievement}</span>
-                  <span className="spotlight-tag">{item.type}</span>
-                  <p className="spotlight-desc">{item.desc}</p>
-
-                  {/* Bottom Metadata Bar */}
-                  <div className="spotlight-meta-bar">
-                    <span className="meta-left">{item.location}</span>
-                    <span className="meta-right-pill">{item.score}</span>
-                  </div>
+                  <p className="spotlight-desc text-accent" style={{ marginTop: '10px', fontWeight: '500' }}>{item.tag}</p>
                 </div>
               </div>
             ))}
@@ -121,16 +108,16 @@ const WallOfFame = () => {
             </button>
             <div className="modal-content-grid">
               <div className="modal-img-col">
-                <img src={zoomedCard.image} alt={zoomedCard.name} className="modal-large-img" />
+                <img src={zoomedCard.banner} alt={zoomedCard.name} className="modal-large-img" />
               </div>
               <div className="modal-info-col">
-                <span className="modal-badge">{zoomedCard.score}</span>
+                <span className="modal-badge">{zoomedCard.metaRight}</span>
                 <h3 className="modal-title">{zoomedCard.name}</h3>
-                <span className="modal-sub">{zoomedCard.achievement} • {zoomedCard.location}</span>
-                <p className="modal-desc">{zoomedCard.desc} Rating: {zoomedCard.rating}</p>
+                <span className="modal-sub">{zoomedCard.role} • {zoomedCard.metaLeft}</span>
+                <p className="modal-desc">{zoomedCard.fullDesc}</p>
                 <div className="modal-footer-action">
                   <a href="#contact" className="btn btn-primary" onClick={() => setZoomedCard(null)}>
-                    Enquire Now
+                    Enquire About Courses
                   </a>
                 </div>
               </div>
