@@ -3935,7 +3935,7 @@ select.form-input option {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 2.25rem;
+    gap: 1.5rem;
     margin-top: 2.75rem;
 }
 
@@ -3944,13 +3944,13 @@ select.form-input option {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    width: 215px;
+    width: 175px;
 }
 
 .flip-card {
     background-color: transparent;
-    width: 215px;
-    height: 305px;
+    width: 175px;
+    height: 250px;
     perspective: 1000px;
     font-family: var(--font-body);
     cursor: pointer;
@@ -4021,7 +4021,7 @@ select.form-input option {
 }
 
 .book-item-title {
-    font-size: 1.05rem;
+    font-size: 0.9rem;
     font-weight: 700;
     color: var(--color-primary);
     margin-bottom: 0.25rem;
@@ -4030,7 +4030,7 @@ select.form-input option {
 }
 
 .book-item-author {
-    font-size: 0.82rem;
+    font-size: 0.75rem;
     font-weight: 600;
     color: #666666;
     display: block;
