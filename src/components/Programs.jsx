@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 
 const Programs = () => {
   const [openCard, setOpenCard] = useState(0);
@@ -96,7 +97,14 @@ const Programs = () => {
         
         <div className="accordion-list">
           {programsData.map((program, index) => (
-            <div className={`accordion-card ${openCard === index ? 'active' : ''}`} key={index}>
+            <motion.div 
+              className={`accordion-card ${openCard === index ? 'active' : ''}`} 
+              key={index}
+              initial={{ opacity: 0, x: index % 2 === 0 ? -60 : 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }}
+            >
               <div className="accordion-header" onClick={() => toggleCard(index)}>
                 <div className="accordion-header-left">
                   <div className="card-icon"><i className={`ph ${program.icon}`}></i></div>
@@ -123,7 +131,7 @@ const Programs = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
