@@ -611,7 +611,7 @@ section {
 /* --- 2. About Section (Pure White Background) --- */
 .about-section {
     background-color: #FFFFFF;
-    padding: var(--section-padding);
+    padding: 2rem 0;
 }
 
 .about-pill-cards-grid {
@@ -619,7 +619,13 @@ section {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.15rem;
     max-width: 900px;
-    margin: 2rem auto 0 auto;
+    margin: 5rem auto 0 auto;
+}
+
+/* Add specific style for the About section description to make it smaller */
+.about-section .section-desc {
+    font-size: 0.9rem;
+    line-height: 1.5;
 }
 
 .about-pill-card {
@@ -655,7 +661,7 @@ section {
 }
 
 .pill-card-text h3 {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     font-weight: 800;
     color: var(--color-primary);
     margin-bottom: 0.2rem;
@@ -663,7 +669,7 @@ section {
 }
 
 .pill-card-text p {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     color: var(--color-text-muted);
     line-height: 1.45;
     margin: 0;
