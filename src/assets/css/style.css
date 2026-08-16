@@ -4555,10 +4555,10 @@ textarea.custom-form-control {
     background: #FFFFFF;
     border-radius: 36px;
     box-shadow: 0 24px 60px rgba(102, 0, 51, 0.08), 0 2px 10px rgba(0, 0, 0, 0.03);
-    padding: 2rem 2.5rem;
+    padding: 1.5rem 2rem;
     border: 1px solid rgba(114, 28, 36, 0.08);
     position: relative;
-    max-width: 1160px;
+    max-width: 1000px;
     margin: 0 auto;
     overflow: hidden;
 }
