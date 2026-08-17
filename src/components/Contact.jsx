@@ -30,13 +30,9 @@ const Contact = () => {
       <div className="container">
         {/* Section Header */}
         <div className="section-header text-center">
-          <span className="section-tag">Get in Touch</span>
           <h2 className="section-title">
             Visit Our Campus or <span className="text-accent">Send an Inquiry</span>
           </h2>
-          <p className="section-desc center-desc">
-            Ready to master English, crack IELTS, or get certified? Connect with our expert advisors today for free academic counseling.
-          </p>
         </div>
 
         <div className="contact-main-grid">
@@ -48,7 +44,73 @@ const Contact = () => {
             </div>
 
             <div className="contact-cards-stack">
-              {/* Address */}
+              {/* 1. WhatsApp */}
+              <a 
+                href="https://wa.me/923320565525" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="contact-quick-card"
+                style={{ textDecoration: 'none', color: 'inherit' }}
+              >
+                <div className="contact-card-icon">
+                  <i className="ph-fill ph-whatsapp-logo"></i>
+                </div>
+                <div className="contact-card-content">
+                  <strong>WhatsApp</strong>
+                  <span>0332 0565525</span>
+                </div>
+              </a>
+
+              {/* 2. Email Inquiries */}
+              <a 
+                href="mailto:info@ehubinstitute.edu.pk" 
+                className="contact-quick-card"
+                style={{ textDecoration: 'none', color: 'inherit' }}
+              >
+                <div className="contact-card-icon">
+                  <i className="ph-fill ph-envelope-simple"></i>
+                </div>
+                <div className="contact-card-content">
+                  <strong>Email Inquiries</strong>
+                  <span>info@ehubinstitute.edu.pk</span>
+                </div>
+              </a>
+
+              {/* 3. Instagram */}
+              <a 
+                href="https://www.instagram.com/ehub_institute_peshawar?igsh=MW1pZW5nd3k4eTIwNA==" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="contact-quick-card"
+                style={{ textDecoration: 'none', color: 'inherit' }}
+              >
+                <div className="contact-card-icon">
+                  <i className="ph-fill ph-instagram-logo"></i>
+                </div>
+                <div className="contact-card-content">
+                  <strong>Instagram</strong>
+                  <span>@ehub_institute_peshawar</span>
+                </div>
+              </a>
+
+              {/* 4. Facebook */}
+              <a 
+                href="https://www.facebook.com/share/1DydGHUTVu/?mibextid=wwXIfr" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="contact-quick-card"
+                style={{ textDecoration: 'none', color: 'inherit' }}
+              >
+                <div className="contact-card-icon">
+                  <i className="ph-fill ph-facebook-logo"></i>
+                </div>
+                <div className="contact-card-content">
+                  <strong>Facebook</strong>
+                  <span>E-Hub Institute Peshawar</span>
+                </div>
+              </a>
+
+              {/* 5. Campus Address */}
               <div className="contact-quick-card">
                 <div className="contact-card-icon">
                   <i className="ph-fill ph-map-pin"></i>
@@ -56,39 +118,6 @@ const Contact = () => {
                 <div className="contact-card-content">
                   <strong>Campus Address</strong>
                   <span>Tehkal Bala BRT Stop, University Road, Peshawar, KP, Pakistan</span>
-                </div>
-              </div>
-
-              {/* Phone / WhatsApp */}
-              <div className="contact-quick-card">
-                <div className="contact-card-icon">
-                  <i className="ph-fill ph-phone-call"></i>
-                </div>
-                <div className="contact-card-content">
-                  <strong>Direct Helpline / WhatsApp</strong>
-                  <span>0332 0565525</span>
-                </div>
-              </div>
-
-              {/* Timings */}
-              <div className="contact-quick-card">
-                <div className="contact-card-icon">
-                  <i className="ph-fill ph-clock"></i>
-                </div>
-                <div className="contact-card-content">
-                  <strong>Institute Timings</strong>
-                  <span>Monday – Saturday: 3:00 PM to 7:30 PM</span>
-                </div>
-              </div>
-
-              {/* Email */}
-              <div className="contact-quick-card">
-                <div className="contact-card-icon">
-                  <i className="ph-fill ph-envelope-simple"></i>
-                </div>
-                <div className="contact-card-content">
-                  <strong>Email Inquiries</strong>
-                  <span>info@ehubinstitute.edu.pk</span>
                 </div>
               </div>
             </div>

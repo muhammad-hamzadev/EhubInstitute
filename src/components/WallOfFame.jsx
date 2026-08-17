@@ -3,53 +3,63 @@ import React, { useState } from 'react';
 const achievementItems = [
   {
     id: 'wof-1',
-    name: 'Muhammad Ali',
-    tag: 'IELTS Academic 8.5 Band',
-    banner: '/EhubInstitute/assets/images/img_p18_2.png',
-    role: 'Academic',
-    metaLeft: 'Peshawar • Oxford Admit',
-    metaRight: '8.5 Band',
-    fullDesc: 'Secured 8.5 Band in first attempt through E-Hub master classes and intensive speaking practice.'
+    name: 'M. Jabir Khan Afridi',
+    tag: 'IELTS Overall 7.5 Band',
+    banner: '/EhubInstitute/assets/images/wof_afridi_7_5.svg',
+    role: 'AEO Candidate',
+    metaLeft: 'Peshawar • AEO Certified',
+    metaRight: '7.5 Band',
+    fullDesc: 'Secured an impressive 7.5 Overall Band with 8.5 in Listening module under the expert guidance of Ma\'am Maroof at E-Hub Institute.'
   },
   {
     id: 'wof-2',
-    name: 'Fatima Zahra',
-    tag: 'PTE Academic 88 Score',
-    banner: '/EhubInstitute/assets/images/img_p10_0.jpeg',
-    role: 'PTE Master',
-    metaLeft: 'Peshawar • Australia Visa',
-    metaRight: '88/90',
-    fullDesc: 'Transformed my English speaking fluency and achieved top scores within 6 weeks at E-Hub.'
+    name: 'Abdal',
+    tag: 'IELTS Overall 7.0 Band',
+    banner: '/EhubInstitute/assets/images/wof_abdal_7_0.svg',
+    role: 'British Council Candidate',
+    metaLeft: 'Peshawar • British Council',
+    metaRight: '7.0 Band',
+    fullDesc: 'Achieved 7.0 Overall Band (7.5 Reading, 6.5 Speaking & Writing) with personalized coaching and writing masterclasses by Ma\'am Maroof.'
   },
   {
     id: 'wof-3',
-    name: 'Azure Achiever',
-    tag: 'IELTS 8.5 Band Score',
-    banner: '/EhubInstitute/assets/images/img_p18_0.png',
-    role: 'Top Achiever',
-    metaLeft: 'Peshawar • Global Scholar',
-    metaRight: '8.5 Band',
-    fullDesc: 'Outstanding performance in IELTS Academic with 9.0 in Speaking & Listening modules.'
+    name: 'Imad Hassan',
+    tag: 'IELTS Speaking 7.0 Band',
+    banner: '/EhubInstitute/assets/images/wof_imad_6_5.svg',
+    role: 'British Council Candidate',
+    metaLeft: 'Peshawar • British Council',
+    metaRight: 'Speaking 7.0',
+    fullDesc: 'Scored 7.0 Band in Speaking and 6.5 Overall Band through daily fluency sessions and confidence building at E-Hub Institute.'
   },
   {
     id: 'wof-4',
-    name: 'Usman Khan',
-    tag: 'iTTi TEFL Certified',
-    banner: '/EhubInstitute/assets/images/img_p19_0.png',
-    role: 'TEFL 220h',
-    metaLeft: 'Peshawar • ESL Educator',
-    metaRight: 'Distinction',
-    fullDesc: 'Completed 220-hour iTTi-USA certification. Now teaching English professionally abroad.'
+    name: 'Ms. Shiza Zaman',
+    tag: 'IELTS Overall 8.0 Band',
+    banner: '/EhubInstitute/assets/images/wof_shiza_8_0.svg',
+    role: 'Top Band Achiever',
+    metaLeft: 'Peshawar • British Council',
+    metaRight: '8.0 Band',
+    fullDesc: 'Outstanding performance securing 8.0 Overall Band (8.5 Listening, 8.5 Reading, 8.0 Speaking) with Ma\'am Maroof.'
   },
   {
     id: 'wof-5',
-    name: 'Sana Ahmed',
-    tag: 'IELTS General 8.0 Band',
-    banner: '/EhubInstitute/assets/images/img_p21_0.png',
-    role: 'General',
-    metaLeft: 'Peshawar • Canada PR',
-    metaRight: '8.0 Band',
-    fullDesc: 'E-Hub faculty provided unbeatable strategies for IELTS Writing and Speaking modules.'
+    name: 'Najam Ul Saddan',
+    tag: 'IELTS Overall 7.5 Band',
+    banner: '/EhubInstitute/assets/images/wof_najam_7_5.svg',
+    role: 'AEO Candidate',
+    metaLeft: 'Peshawar • AEO Certified',
+    metaRight: '7.5 Band',
+    fullDesc: 'Achieved 7.5 Overall Band (8.5 Listening, 7.5 Reading, 7.5 Speaking, 7.0 Writing) with Ma\'am Maroof at E-Hub Institute.'
+  },
+  {
+    id: 'wof-6',
+    name: 'Mr. Nabeel Anwar',
+    tag: 'IELTS Overall 7.0 Band',
+    banner: '/EhubInstitute/assets/images/wof_nabeel_7_0.svg',
+    role: 'IELTS Academic',
+    metaLeft: 'Peshawar • British Council',
+    metaRight: '7.0 Band',
+    fullDesc: 'Achieved 7.0 Overall Band with 7.5 in Reading and 7.0 in Speaking under the guidance of CEO Maroof Mehmood at E-Hub Institute.'
   }
 ];
 
@@ -64,7 +74,6 @@ const WallOfFame = () => {
       <section className="wof-section" id="wall-of-fame">
         <div className="container">
           <div className="section-header text-center">
-            <span className="section-tag">Wall of Fame</span>
             <h2 className="section-title">
               Our Students. <span className="text-accent">Their Success Stories.</span>
             </h2>

@@ -37,7 +37,6 @@ const Books = () => {
       <div className="container">
         {/* Section Header */}
         <div className="section-header text-center">
-          <span className="section-tag">Publications</span>
           <h2 className="section-title">
             E-Hub <span className="text-accent">Books Series</span>
           </h2>

@@ -18,7 +18,7 @@ const Footer = () => {
           {/* Social Media Links */}
           <div className="footer-social-links">
             <a 
-              href="https://facebook.com" 
+              href="https://www.facebook.com/share/1DydGHUTVu/?mibextid=wwXIfr" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="social-btn facebook" 
@@ -27,7 +27,7 @@ const Footer = () => {
               <i className="ph-fill ph-facebook-logo"></i>
             </a>
             <a 
-              href="https://instagram.com" 
+              href="https://www.instagram.com/ehub_institute_peshawar?igsh=MW1pZW5nd3k4eTIwNA==" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="social-btn instagram" 
@@ -97,7 +97,7 @@ const Footer = () => {
             <li><a href="#programs"><i className="ph ph-caret-right"></i> English for Intermediate (Book 2)</a></li>
             <li><a href="#programs"><i className="ph ph-caret-right"></i> Communication Skills (Book 3)</a></li>
             <li><a href="#programs"><i className="ph ph-caret-right"></i> TEFL / TESOL (iTTi-USA)</a></li>
-            <li><a href="#programs"><i className="ph ph-caret-right"></i> Soft Skills & Public Speaking</a></li>
+            <li><a href="#internship-program"><i className="ph ph-caret-right"></i> Internship Programs</a></li>
           </ul>
         </div>
 
@@ -125,7 +125,7 @@ const Footer = () => {
             <div className="f-icon-box"><i className="ph-fill ph-clock"></i></div>
             <div>
               <strong>Institute Timings</strong>
-              <p>Monday – Saturday: 3:00 PM – 7:30 PM</p>
+              <p>Monday – Friday: 3:00 PM – 7:30 PM</p>
             </div>
           </div>
 

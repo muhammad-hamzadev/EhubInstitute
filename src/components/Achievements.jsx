@@ -3,45 +3,45 @@ import React, { useState, useEffect } from 'react';
 const achieversData = [
   {
     id: 'ach-1',
-    name: 'British Council Award',
-    achievement: 'Excellence Partner',
-    type: '🏆 Excellence',
-    image: '/EhubInstitute/assets/images/img_p16_0.png'
+    name: 'Career & Job Fair',
+    achievement: 'Expanding Students Exposure',
+    type: '💼 Career Fair',
+    image: '/EhubInstitute/assets/images/ach_job_fair.svg'
   },
   {
     id: 'ach-2',
-    name: 'iTTi-USA Accreditation',
-    achievement: 'Global TEFL Partner',
-    type: '🎓 Accredited',
-    image: '/EhubInstitute/assets/images/img_p17_0.jpeg'
+    name: 'National Mashal Award',
+    achievement: 'Best Educationist Award',
+    type: '🏆 Excellence',
+    image: '/EhubInstitute/assets/images/ach_national_mashal_award.svg'
   },
   {
     id: 'ach-3',
-    name: 'Graduation Summit',
-    achievement: 'Annual Milestone',
-    type: '⭐ Milestone',
-    image: '/EhubInstitute/assets/images/img_p22_0.jpeg'
+    name: 'Free Education for Orphans',
+    achievement: 'E-Hub Funds 10 Students/Month',
+    type: '💖 Community',
+    image: '/EhubInstitute/assets/images/ach_free_education_orphans.svg'
   },
   {
     id: 'ach-4',
-    name: 'Youth Oratory Cup',
-    achievement: 'National Winner',
-    type: '🎙️ Champion',
-    image: '/EhubInstitute/assets/images/img_p18_0.png'
+    name: 'Iqra National University',
+    achievement: 'MoU Partnership Signed',
+    type: '🤝 Academic MoU',
+    image: '/EhubInstitute/assets/images/ach_mou_iqra_university.svg'
   },
   {
     id: 'ach-5',
-    name: 'Executive Forum',
-    achievement: 'Corporate Mastery',
-    type: '💼 Corporate',
-    image: '/EhubInstitute/assets/images/img_p20_0.png'
+    name: 'CECOS University IT & Engg',
+    achievement: 'Awarded & Recognized',
+    type: '🏆 Recognition',
+    image: '/EhubInstitute/assets/images/ach_cecos_university_award.svg'
   },
   {
     id: 'ach-6',
-    name: 'CEF Quality Standard',
-    achievement: 'Pedagogy Benchmark',
-    type: '🌍 Distinction',
-    image: '/EhubInstitute/assets/images/img_p21_0.png'
+    name: 'British Council Partner',
+    achievement: 'Official Registered Member',
+    type: '🇬🇧 British Council',
+    image: '/EhubInstitute/assets/images/ach_british_council_member.svg'
   }
 ];
 
@@ -72,7 +72,6 @@ const Achievements = () => {
     <section className="achievements-section" id="achievements">
       <div className="container">
         <div className="section-header text-center">
-          <span className="section-tag">🏆 Recognition & Excellence</span>
           <h2 className="section-title">Our Milestones & <span className="text-accent">Achievements</span></h2>
           <p className="section-desc center-desc">
             Celebrating high IELTS band scores, PTE triumphs, and career milestones of proud E-Hubians.

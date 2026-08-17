@@ -16,7 +16,7 @@ const Hero = () => {
           </h1>
 
           <p className="hero-subtitle">
-            Peshawar's premier institute for IELTS mastery, TEFL/TESOL teacher certification, and professional excellence.
+            Peshawar's best institute for IELTS mastery, English Language communication skills and TEFL/TESOL teacher certification
           </p>
 
           <div className="hero-actions">
@@ -74,7 +74,7 @@ const Hero = () => {
         <div className="hero-arc-wrapper">
           <div className="hero-arc-outer">
             <div className="hero-arc-image-container">
-              <img src="/EhubInstitute/assets/images/img_p21_0.png" alt="E-Hub Institute Students Peshawar" />
+              <img src="/EhubInstitute/assets/images/hero-image.svg" alt="British Council IELTS Annual Partners Meet - E-Hub Institute" />
             </div>
           </div>
         </div>

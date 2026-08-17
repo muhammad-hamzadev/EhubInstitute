@@ -6,7 +6,6 @@ const About = () => {
       <div className="container">
         {/* Section Header */}
         <div className="section-header text-center">
-          <span className="section-tag">About Us</span>
           <h2 className="section-title">
             About <span className="text-accent">E-Hub Institute</span>
           </h2>

@@ -32,8 +32,9 @@ const Navbar = () => {
 
         <ul className={`nav-links ${isMobileMenuOpen ? 'mobile-active' : ''}`}>
           <li><a href="#about" onClick={closeMobileMenu}>About</a></li>
-          <li><a href="#leader" onClick={closeMobileMenu}>Meet the CEO</a></li>
+          <li><a href="#leader" onClick={closeMobileMenu}>Meet the Team</a></li>
           <li><a href="#programs" onClick={closeMobileMenu}>What We Offer</a></li>
+          <li><a href="#books" onClick={closeMobileMenu}>Books</a></li>
           <li><a href="#wall-of-fame" onClick={closeMobileMenu}>Wall of Fame</a></li>
           <li><a href="#events" onClick={closeMobileMenu}>Events</a></li>
         </ul>

@@ -612,32 +612,39 @@ section {
 /* --- 2. About Section (Pure White Background) --- */
 .about-section {
     background-color: #FFFFFF;
-    padding: 2rem 0;
+    padding: 3rem 0;
+    min-height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    scroll-margin-top: 60px;
 }
 
 .about-pill-cards-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.15rem;
+    gap: 1.25rem;
     max-width: 900px;
-    margin: 5rem auto 0 auto;
+    margin: 2.25rem auto 0 auto;
+    align-items: stretch;
 }
 
 /* Add specific style for the About section description to make it smaller */
 .about-section .section-desc {
-    font-size: 0.9rem;
-    line-height: 1.5;
+    font-size: 0.95rem;
+    line-height: 1.6;
 }
 
 .about-pill-card {
     background-color: #FFFFFF;
     border-radius: 16px;
-    padding: 1.1rem 1.4rem;
+    padding: 1.15rem 1.4rem;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
     border: 1px solid rgba(0, 0, 0, 0.05);
     display: flex;
-    align-items: center;
-    gap: 1rem;
+    align-items: flex-start;
+    gap: 1.1rem;
+    height: 100%;
     transition: var(--transition-smooth);
 }
 
@@ -661,16 +668,24 @@ section {
     border: 1px solid #F3E2C4;
 }
 
+.pill-card-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 44px;
+}
+
 .pill-card-text h3 {
     font-size: 0.95rem;
     font-weight: 800;
     color: var(--color-primary);
-    margin-bottom: 0.2rem;
-    line-height: 1.2;
+    margin-bottom: 0.25rem;
+    line-height: 1.25;
 }
 
 .pill-card-text p {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     color: var(--color-text-muted);
     line-height: 1.45;
     margin: 0;
@@ -1171,6 +1186,8 @@ section {
 /* --- 4. What We Offer Section (Accordion Cards) --- */
 .programs {
     background-color: var(--color-surface);
+    padding: 3.5rem 0;
+    scroll-margin-top: 65px;
 }
 
 .accordion-list {
@@ -1204,7 +1221,7 @@ section {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 1.25rem;
+    padding: 1.1rem 1.35rem;
     cursor: pointer;
     user-select: none;
 }
@@ -1213,20 +1230,42 @@ section {
     display: flex;
     align-items: center;
     gap: 1.25rem;
+    flex: 1;
+}
+
+.card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background-color: rgba(102, 0, 51, 0.08);
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    transition: var(--transition-smooth);
+}
+
+.accordion-card:hover .card-icon,
+.accordion-card.active .card-icon {
+    background-color: var(--color-primary);
+    color: #FFFFFF;
 }
 
 .accordion-header-left h3 {
     font-family: var(--font-body);
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 1.05rem;
     color: var(--color-primary);
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.25rem;
 }
 
 .accordion-subtitle {
-    font-size: 0.8rem;
+    font-size: 0.84rem;
     color: var(--color-text-muted);
     margin: 0;
+    line-height: 1.4;
 }
 
 .accordion-toggle {
@@ -2082,24 +2121,27 @@ select.form-input option {
     color: var(--color-text-muted);
 }
 
-/* --- Wall of Fame 3D Cover Flow Stage (1:1 Screenshot Match) --- */
+/* --- Wall of Fame Marquee Section --- */
 .wof-section {
-    background-color: var(--color-bg);
-    padding: 3rem 0;
+    background-color: #FFFFFF;
+    padding: 3rem 0 3.5rem 0;
     overflow: hidden;
     position: relative;
+    scroll-margin-top: 60px;
+    border-top: 1px solid rgba(114, 28, 36, 0.05);
+    border-bottom: 1px solid rgba(114, 28, 36, 0.05);
 }
 
 .coverflow-stage {
     position: relative;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1100px;
     height: 380px;
-    margin: 1.5rem auto 1rem auto;
+    margin: 1.5rem auto 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    perspective: 1200px;
+    perspective: 1000px;
 }
 
 .coverflow-container {
@@ -2112,16 +2154,16 @@ select.form-input option {
     transform-style: preserve-3d;
 }
 
-/* 3D Cover Flow Cards */
 .coverflow-card {
     position: absolute;
-    width: 220px;
+    width: 250px;
+    height: 300px;
     background-color: #FFFFFF;
-    border-radius: 26px;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border: 1.5px solid rgba(114, 28, 36, 0.08);
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.6s ease, border-color 0.6s ease, opacity 0.6s ease;
     cursor: pointer;
     user-select: none;
     display: flex;
@@ -2130,94 +2172,96 @@ select.form-input option {
 
 /* 1. Center Active Card */
 .coverflow-card.is-center {
-    transform: translateX(0) scale(1.18) translateZ(0);
+    transform: translateX(0) scale(1.1) translateZ(0);
     z-index: 10;
     opacity: 1;
-    filter: none;
-    box-shadow: 0 25px 60px rgba(102, 0, 51, 0.22);
+    box-shadow: 0 20px 50px rgba(102, 0, 51, 0.22);
     border-color: var(--color-secondary);
 }
 
 /* 2. Immediate Left Card */
 .coverflow-card.is-prev-1 {
-    transform: translateX(-240px) scale(0.88) rotateY(15deg) translateZ(-50px);
+    transform: translateX(-215px) scale(0.9) rotateY(12deg) translateZ(-30px);
     z-index: 5;
     opacity: 0.85;
-    filter: brightness(0.88);
 }
 
 /* 3. Immediate Right Card */
 .coverflow-card.is-next-1 {
-    transform: translateX(240px) scale(0.88) rotateY(-15deg) translateZ(-50px);
+    transform: translateX(215px) scale(0.9) rotateY(-12deg) translateZ(-30px);
     z-index: 5;
     opacity: 0.85;
-    filter: brightness(0.88);
 }
 
 /* 4. Far Left Card */
 .coverflow-card.is-prev-2 {
-    transform: translateX(-430px) scale(0.72) rotateY(25deg) translateZ(-120px);
+    transform: translateX(-380px) scale(0.78) rotateY(20deg) translateZ(-70px);
     z-index: 2;
-    opacity: 0.5;
-    filter: brightness(0.7);
+    opacity: 0.55;
 }
 
 /* 5. Far Right Card */
 .coverflow-card.is-next-2 {
-    transform: translateX(430px) scale(0.72) rotateY(-25deg) translateZ(-120px);
+    transform: translateX(380px) scale(0.78) rotateY(-20deg) translateZ(-70px);
     z-index: 2;
-    opacity: 0.5;
-    filter: brightness(0.7);
+    opacity: 0.55;
 }
 
 .wof-img-wrapper {
     position: relative;
     width: 100%;
-    height: 190px;
+    height: 180px;
     overflow: hidden;
-    background-color: #0f1428;
+    background-color: #f1f5f9;
+    flex-shrink: 0;
 }
 
 .wof-img-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: top center;
-    transition: var(--transition-smooth);
+    object-position: center;
+    transition: transform 0.4s ease;
 }
 
 .coverflow-card.is-center:hover .wof-img-wrapper img {
-    transform: scale(1.06);
+    transform: scale(1.05);
 }
 
 .wof-badge-top {
     position: absolute;
-    top: 12px;
-    right: 12px;
+    top: 10px;
+    right: 10px;
     background-color: rgba(102, 0, 51, 0.9);
+    -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
     color: #FFFFFF;
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-weight: 700;
-    padding: 0.25rem 0.75rem;
+    padding: 0.2rem 0.65rem;
     border-radius: 50px;
     border: 1px solid rgba(212, 175, 55, 0.4);
 }
 
 .wof-card-body {
-    padding: 1.35rem 1.5rem;
+    padding: 1rem;
+    background: #FFFFFF;
     position: relative;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     flex-grow: 1;
 }
 
 .wof-name {
-    font-size: 1.3rem;
+    font-size: 1.05rem;
     font-weight: 800;
     color: var(--color-primary);
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.2rem;
     line-height: 1.2;
+    font-family: var(--font-heading);
 }
 
 .wof-location {
@@ -2235,11 +2279,10 @@ select.form-input option {
 }
 
 .wof-desc {
-    font-size: 0.85rem;
-    color: #444444;
-    line-height: 1.45;
-    margin-bottom: 1rem;
-    flex-grow: 1;
+    font-size: 0.82rem;
+    color: #64748B;
+    line-height: 1.35;
+    margin: 0;
 }
 
 /* 3 Metrics Row */
@@ -2304,17 +2347,17 @@ select.form-input option {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 52px;
-    height: 52px;
+    width: 46px;
+    height: 46px;
     border-radius: 50%;
     background-color: #FFFFFF;
     color: var(--color-primary);
     border: 2px solid rgba(102, 0, 51, 0.15);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     cursor: pointer;
     z-index: 20;
     transition: var(--transition-smooth);
@@ -2328,11 +2371,11 @@ select.form-input option {
 }
 
 .nav-prev {
-    left: 20px;
+    left: 10px;
 }
 
 .nav-next {
-    right: 20px;
+    right: 10px;
 }
 
 /* Cover Flow Pagination Dots */
@@ -2341,23 +2384,23 @@ select.form-input option {
     justify-content: center;
     align-items: center;
     gap: 0.6rem;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
 }
 
 .coverflow-dot {
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    background-color: #E2E8F0;
+    background-color: #CBD5E1;
     border: none;
     cursor: pointer;
     transition: var(--transition-smooth);
 }
 
 .coverflow-dot.active {
-    width: 32px;
-    border-radius: 10px;
     background-color: var(--color-primary);
+    width: 26px;
+    border-radius: 20px;
 }
 
 @media (max-width: 992px) {
@@ -2383,10 +2426,16 @@ select.form-input option {
 /* --- New 3D Event Photo Book --- */
 .events-book-section {
     background: linear-gradient(180deg, #660033 0%, #3d001e 100%);
-    padding: var(--section-padding);
+    padding: 2.5rem 0;
+    min-height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
     position: relative;
     color: #FFFFFF;
+    scroll-margin-top: 60px;
 }
 
 .book-stage {
@@ -3352,12 +3401,15 @@ select.form-input option {
     }
 }
 
-/* --- 11. Milestones & Achievements Single Photo Card Marquee & Hover Spotlight Zoom --- */
+/* --- 11. Milestones & Achievements 3D Coverflow & Stage --- */
 .achievements-section {
-    padding: 3rem 0;
-    background-color: #f8fafc;
+    padding: 3.5rem 0 4rem 0;
+    background: linear-gradient(180deg, #F8F4EC 0%, #EFE7DC 100%);
     position: relative;
     overflow: hidden;
+    scroll-margin-top: 60px;
+    border-top: 1px solid rgba(114, 28, 36, 0.06);
+    border-bottom: 1px solid rgba(114, 28, 36, 0.06);
 }
 
 .infinite-marquee-viewport {
@@ -3380,12 +3432,12 @@ select.form-input option {
 
 .infinite-marquee-viewport::before {
     left: 0;
-    background: linear-gradient(90deg, #f8fafc 0%, rgba(248, 250, 252, 0) 100%);
+    background: linear-gradient(90deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
 }
 
 .infinite-marquee-viewport::after {
     right: 0;
-    background: linear-gradient(-90deg, #f8fafc 0%, rgba(248, 250, 252, 0) 100%);
+    background: linear-gradient(-90deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
 }
 
 .infinite-marquee-track {
@@ -3414,9 +3466,9 @@ select.form-input option {
 /* Single Picture Spotlight Card (1:1 Screenshot Match) */
 .single-pic-spotlight-card {
     position: relative;
-    width: 210px;
-    height: 240px;
-    border-radius: 24px;
+    width: 220px;
+    height: 250px;
+    border-radius: 20px;
     background-color: #FFFFFF;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
     border: 1px solid rgba(0, 0, 0, 0.08);
@@ -3454,9 +3506,10 @@ select.form-input option {
 .spotlight-single-banner {
     position: relative;
     width: 100%;
-    height: 130px;
+    height: 140px;
     background-color: #f1f5f9;
     overflow: hidden;
+    flex-shrink: 0;
 }
 
 .single-banner-img {
@@ -3472,20 +3525,20 @@ select.form-input option {
 
 /* Card Body Content (Matching Screenshot 1:1) */
 .spotlight-body {
-    padding: 1.25rem;
+    padding: 0.9rem 1.15rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     flex: 1;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .spotlight-name {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     font-weight: 800;
     color: #0f172a;
-    margin-bottom: 0.15rem;
+    margin-bottom: 0.2rem;
     line-height: 1.25;
 }
 
@@ -3688,18 +3741,35 @@ select.form-input option {
 /* --- Pure 3D Interactive Flip Books Section --- */
 .books-section {
     background: linear-gradient(180deg, #F8F4EC 0%, #F1E9DC 100%);
-    padding: var(--section-padding);
+    padding: 2rem 0 2.5rem 0;
     position: relative;
     border-top: 1px solid rgba(114, 28, 36, 0.05);
     border-bottom: 1px solid rgba(114, 28, 36, 0.05);
+    scroll-margin-top: 60px;
 }
 
 .books-pure-flip-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2.25rem;
-    margin-top: 2.75rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    max-width: 1020px;
+    margin: 1.5rem auto 0 auto;
+    justify-items: center;
+    align-items: stretch;
+}
+
+@media (max-width: 992px) {
+    .books-pure-flip-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 540px) {
+    .books-pure-flip-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
 }
 
 .book-card-item {
@@ -3707,17 +3777,21 @@ select.form-input option {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    width: 215px;
+    width: 100%;
+    max-width: 210px;
+    height: 100%;
 }
 
 .flip-card {
     background-color: transparent;
-    width: 215px;
-    height: 305px;
+    width: 100%;
+    max-width: 210px;
+    height: 285px;
     perspective: 1000px;
     font-family: var(--font-body);
     cursor: pointer;
     user-select: none;
+    flex-shrink: 0;
 }
 
 .flip-card-inner {
@@ -3727,7 +3801,7 @@ select.form-input option {
     text-align: center;
     transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transform-style: preserve-3d;
-    border-radius: 1rem;
+    border-radius: 0.85rem;
 }
 
 .flip-card:hover .flip-card-inner {
@@ -3736,7 +3810,7 @@ select.form-input option {
 
 .flip-card-front,
 .flip-card-back {
-    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.04);
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -3747,7 +3821,7 @@ select.form-input option {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     border: 1.5px solid rgba(114, 28, 36, 0.15);
-    border-radius: 1rem;
+    border-radius: 0.85rem;
     overflow: hidden;
     background: #FFFFFF;
     transition: box-shadow 0.35s ease, border-color 0.35s ease;
@@ -3755,7 +3829,7 @@ select.form-input option {
 
 .flip-card:hover .flip-card-front,
 .flip-card:hover .flip-card-back {
-    box-shadow: 0 16px 36px rgba(114, 28, 36, 0.22);
+    box-shadow: 0 16px 32px rgba(114, 28, 36, 0.2);
     border-color: var(--color-primary);
 }
 
@@ -3771,46 +3845,46 @@ select.form-input option {
 .flip-img {
     width: 100%;
     height: 100%;
-    object-fit: fill;
+    object-fit: cover;
     object-position: center;
     display: block;
-    border-radius: calc(1rem - 1.5px);
+    border-radius: calc(0.85rem - 1.5px);
     background-color: #FFFFFF;
 }
 
 .book-item-meta {
-    margin-top: 1rem;
+    margin-top: 0.65rem;
     width: 100%;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .book-item-title {
-    font-size: 1.05rem;
+    font-size: 0.92rem;
     font-weight: 700;
     color: var(--color-primary);
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.15rem;
+    line-height: 1.25;
     font-family: var(--font-body);
-    line-height: 1.3;
-    min-height: 2.6rem;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
 }
 
 .book-item-author {
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: #666666;
-    display: block;
+    font-size: 0.76rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
 }
+
 
 /* ==========================================================================
    DEDICATED CONTACT & INQUIRY SECTION
    ========================================================================== */
 .contact-section {
     background-color: #FFFFFF;
-    padding: 2.5rem 0;
+    padding: 3.5rem 0;
     position: relative;
+    scroll-margin-top: 60px;
 }
 
 .contact-main-grid {
@@ -3835,12 +3909,13 @@ select.form-input option {
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
+    height: 100%;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
 }
 
 .contact-info-header h3 {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     font-weight: 800;
     color: var(--color-primary);
     margin-bottom: 0.35rem;
@@ -3848,7 +3923,7 @@ select.form-input option {
 }
 
 .contact-info-header p {
-    font-size: 0.8rem;
+    font-size: 0.82rem;
     color: #666666;
     margin-bottom: 1.25rem;
 }
@@ -3856,20 +3931,23 @@ select.form-input option {
 .contact-cards-stack {
     display: flex;
     flex-direction: column;
-    gap: 0.85rem;
-    margin-bottom: 1.25rem;
+    gap: 0.75rem;
+    flex: 1;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
 }
 
 .contact-quick-card {
     display: flex;
-    align-items: flex-start;
-    gap: 0.85rem;
+    align-items: center;
+    gap: 0.9rem;
     background: #FFFFFF;
-    padding: 0.5rem 0.8rem;
+    padding: 0.7rem 0.95rem;
     border-radius: 12px;
     border: 1px solid rgba(0, 0, 0, 0.05);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    min-height: 60px;
 }
 
 .contact-quick-card:hover {
@@ -3878,28 +3956,28 @@ select.form-input option {
 }
 
 .contact-card-icon {
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
     border-radius: 10px;
     background: rgba(114, 28, 36, 0.08);
     color: var(--color-primary);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     flex-shrink: 0;
 }
 
 .contact-card-content strong {
     display: block;
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     font-weight: 700;
     color: var(--color-primary);
     margin-bottom: 2px;
 }
 
 .contact-card-content span {
-    font-size: 0.8rem;
+    font-size: 0.82rem;
     color: #555555;
     line-height: 1.3;
     display: block;
@@ -4313,28 +4391,54 @@ textarea.custom-form-control {
    ========================================================================== */
 .leader-section {
     background: linear-gradient(180deg, #F8F4EC 0%, #EFE7DC 100%);
-    padding: 2rem 0;
+    padding: 1.5rem 0 2.5rem 0;
     position: relative;
     border-top: 1px solid rgba(114, 28, 36, 0.06);
     border-bottom: 1px solid rgba(114, 28, 36, 0.06);
+    scroll-margin-top: 60px;
+}
+
+.leader-container-wide {
+    max-width: 1440px;
+    width: 95%;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.leader-showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+    margin: 0 auto;
+    align-items: stretch;
+}
+
+@media (max-width: 1100px) {
+    .leader-showcase-grid {
+        grid-template-columns: 1fr;
+        gap: 2.25rem;
+    }
 }
 
 .leader-showcase-card {
     background: #FFFFFF;
-    border-radius: 36px;
-    box-shadow: 0 24px 60px rgba(102, 0, 51, 0.08), 0 2px 10px rgba(0, 0, 0, 0.03);
-    padding: 1.25rem 1.75rem;
+    border-radius: 28px;
+    box-shadow: 0 20px 50px rgba(102, 0, 51, 0.07), 0 2px 10px rgba(0, 0, 0, 0.03);
+    padding: 1.25rem 1.35rem 1.35rem 1.35rem;
     border: 1px solid rgba(114, 28, 36, 0.08);
     position: relative;
-    max-width: 1000px;
-    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
 }
 
 @media (max-width: 768px) {
     .leader-showcase-card {
-        padding: 2rem 1.5rem;
-        border-radius: 24px;
+        padding: 1.25rem 1rem;
+        border-radius: 20px;
     }
 }
 
@@ -4342,14 +4446,14 @@ textarea.custom-form-control {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
     position: relative;
     z-index: 5;
 }
 
 .leader-diamond-line {
-    width: 65px;
+    width: 45px;
     height: 1.5px;
     background: linear-gradient(90deg, transparent, #D97706);
     position: relative;
@@ -4360,27 +4464,28 @@ textarea.custom-form-control {
 }
 
 .leader-tag-text {
-    font-size: 0.88rem;
+    font-size: 0.78rem;
     font-weight: 800;
     color: #B45309;
-    letter-spacing: 2.5px;
+    letter-spacing: 2px;
     text-transform: uppercase;
     font-family: var(--font-body);
 }
 
 .leader-grid {
     display: grid;
-    grid-template-columns: 1fr 1.3fr;
-    gap: 2rem;
+    grid-template-columns: 0.95fr 1.35fr;
+    gap: 1.15rem;
     align-items: center;
     position: relative;
     z-index: 5;
+    height: 100%;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 600px) {
     .leader-grid {
         grid-template-columns: 1fr;
-        gap: 2.5rem;
+        gap: 1.5rem;
     }
 }
 
@@ -4388,46 +4493,46 @@ textarea.custom-form-control {
     position: relative;
     display: flex;
     justify-content: center;
+    align-items: center;
+    padding-bottom: 0.5rem;
 }
 
 .leader-portrait-canvas {
     position: relative;
     width: 100%;
-    max-width: 400px;
-    height: 400px;
+    max-width: 250px;
+    height: 255px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transform: scale(0.95);
-    transform-origin: center center;
 }
 
 .maroon-corner-shape {
     position: absolute;
-    top: -50px;
-    left: -50px;
-    bottom: -50px;
-    width: 250px;
+    top: -15px;
+    left: -15px;
+    bottom: -15px;
+    width: 140px;
     background: linear-gradient(145deg, #660033 0%, #450022 100%);
-    border-top-left-radius: 36px;
-    border-bottom-left-radius: 36px;
-    border-top-right-radius: 150px;
-    border-bottom-right-radius: 150px;
+    border-top-left-radius: 24px;
+    border-bottom-left-radius: 24px;
+    border-top-right-radius: 95px;
+    border-bottom-right-radius: 95px;
     z-index: 1;
-    box-shadow: 0 15px 35px rgba(102, 0, 51, 0.25);
+    box-shadow: 0 12px 28px rgba(102, 0, 51, 0.22);
 }
 
 /* Photo Container */
 .leader-oval-arch-frame {
     position: relative;
-    width: 380px;
-    height: 380px;
+    width: 230px;
+    height: 230px;
     border-radius: 50%;
     overflow: hidden;
     background: linear-gradient(180deg, #FBF6EF 0%, #EFE5D6 100%);
     z-index: 3;
-    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25);
-    border: 3.5px solid #D4AF37;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+    border: 3px solid #D4AF37;
 }
 
 .leader-portrait-img {
@@ -4436,7 +4541,7 @@ textarea.custom-form-control {
     object-fit: cover;
     object-position: center 5%;
     transform: scale(1.15);
-    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15));
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15));
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -4447,34 +4552,34 @@ textarea.custom-form-control {
 /* Floating CEO Glass Pill Badge */
 .leader-floating-pill-badge {
     position: absolute;
-    bottom: -10px;
+    bottom: -2px;
     left: 50%;
     transform: translateX(-50%);
-    width: calc(100% - 30px);
-    max-width: 320px;
+    width: calc(100% - 16px);
+    max-width: 220px;
     z-index: 6;
     background: rgba(50, 0, 25, 0.94);
     -webkit-backdrop-filter: blur(14px);
     backdrop-filter: blur(14px);
     border: 1.5px solid rgba(255, 215, 0, 0.6);
-    border-radius: 14px;
-    padding: 0.8rem 1.15rem;
+    border-radius: 11px;
+    padding: 0.45rem 0.65rem;
     display: flex;
     align-items: center;
-    gap: 0.85rem;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+    gap: 0.55rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
 }
 
 .pill-badge-avatar {
-    width: 36px;
-    height: 36px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     border: 1.5px solid #FFD700;
     color: #FFD700;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.25rem;
+    font-size: 0.95rem;
     background: rgba(255, 215, 0, 0.15);
     flex-shrink: 0;
 }
@@ -4486,113 +4591,120 @@ textarea.custom-form-control {
 
 .pill-badge-name {
     color: #FFFFFF;
-    font-size: 1.05rem;
+    font-size: 0.84rem;
     font-weight: 800;
-    margin: 0 0 2px 0;
+    margin: 0 0 1px 0;
     font-family: var(--font-heading);
     line-height: 1.2;
 }
 
 .pill-badge-role {
     color: #E2E8F0;
-    font-size: 0.76rem;
+    font-size: 0.64rem;
     font-weight: 600;
     display: block;
-    line-height: 1.3;
+    line-height: 1.2;
 }
 
 .pill-badge-cert {
     color: #FFD700;
-    font-size: 0.72rem;
+    font-size: 0.6rem;
     font-weight: 700;
     display: block;
-    line-height: 1.3;
+    line-height: 1.2;
 }
 
 .leader-content-col {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 }
 
 .leader-main-title {
-    font-size: 2.2rem;
+    font-size: 1.45rem;
     font-weight: 900;
     color: var(--color-primary);
-    margin-bottom: 0.85rem;
+    margin-bottom: 0.35rem;
     font-family: var(--font-heading);
     line-height: 1.15;
+    text-align: left;
 }
 
 @media (max-width: 768px) {
     .leader-main-title {
-        font-size: 2.2rem;
+        font-size: 1.35rem;
     }
 }
 
 .leader-intro-desc {
-    font-size: 0.85rem;
+    font-size: 0.74rem;
     color: #475569;
-    line-height: 1.65;
-    margin-bottom: 1.25rem;
+    line-height: 1.45;
+    margin-bottom: 0.5rem;
+    text-align: left;
 }
 
 .ceo-message-box {
     border: 1.5px solid #E6D8C3;
     background: #FFFDF9;
-    border-radius: 16px;
-    padding: 0.8rem 1.1rem;
+    border-radius: 12px;
+    padding: 0.55rem 0.8rem;
     position: relative;
-    margin-bottom: 0.75rem;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.02);
+    margin-bottom: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
 }
 
 .quote-icon-top {
-    font-size: 2rem;
+    font-size: 1.3rem;
     color: #D97706;
     line-height: 1;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.2rem;
 }
 
 .quote-icon-bottom {
     position: absolute;
-    bottom: 12px;
-    right: 20px;
-    font-size: 2rem;
+    bottom: 6px;
+    right: 12px;
+    font-size: 1.3rem;
     color: #D97706;
+    line-height: 1;
     opacity: 0.8;
-    transform: rotate(180deg);
 }
 
 .ceo-message-heading {
-    font-size: 0.85rem;
+    font-size: 0.7rem;
     font-weight: 800;
     color: var(--color-primary);
     letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
+    font-family: var(--font-heading);
 }
 
 .ceo-message-body {
-    font-size: 0.82rem;
+    font-size: 0.72rem;
     color: #475569;
-    line-height: 1.65;
+    line-height: 1.35;
     font-style: italic;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
 }
 
 .ceo-message-highlight {
-    font-size: 0.85rem;
+    font-size: 0.73rem;
     font-weight: 800;
-    color: var(--color-primary);
-    line-height: 1.5;
+    color: #721C24;
+    line-height: 1.35;
     margin: 0;
 }
 
 .leader-footer-row {
     display: flex;
     align-items: center;
-    gap: 2.25rem;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding-top: 0.45rem;
+    border-top: 1px dashed rgba(114, 28, 36, 0.15);
+    margin-top: auto;
 }
 
 .leader-signature-col {
@@ -4601,63 +4713,55 @@ textarea.custom-form-control {
 }
 
 .leader-cursive-signature {
-    font-family: 'Caveat', cursive;
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: var(--color-primary);
-    line-height: 1;
-    margin-bottom: 4px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    font-weight: 900;
+    color: #721C24;
+    line-height: 1.1;
+    letter-spacing: 0.5px;
 }
 
 .leader-sig-role {
-    font-size: 0.8rem;
+    font-size: 0.65rem;
     font-weight: 700;
-    color: #334155;
-    line-height: 1.3;
+    color: #1E293B;
 }
 
 .leader-sig-cert {
-    font-size: 0.75rem;
+    font-size: 0.62rem;
     font-weight: 600;
-    color: #64748B;
-    line-height: 1.3;
+    color: #9A3412;
 }
 
 .leader-divider-vertical {
     width: 1px;
-    height: 52px;
-    background: #E2E8F0;
-}
-
-@media (max-width: 640px) {
-    .leader-divider-vertical {
-        display: none;
-    }
+    height: 30px;
+    background: rgba(114, 28, 36, 0.15);
 }
 
 .leader-motto-col {
     display: flex;
     align-items: center;
-    gap: 0.85rem;
+    gap: 0.4rem;
 }
 
 .motto-laurel-icon {
-    font-size: 2.2rem;
+    font-size: 1.35rem;
     color: #D97706;
-    flex-shrink: 0;
 }
 
 .motto-text strong {
     display: block;
-    font-size: 0.9rem;
+    font-size: 0.72rem;
     color: #1E293B;
     font-weight: 800;
-    line-height: 1.3;
+    line-height: 1.15;
 }
 
 .motto-text span {
-    font-size: 0.85rem;
+    display: block;
+    font-size: 0.68rem;
     color: #64748B;
-    font-weight: 600;
-    line-height: 1.3;
+    line-height: 1.15;
 }

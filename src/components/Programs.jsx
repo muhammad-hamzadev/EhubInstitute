@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const Programs = () => {
@@ -8,17 +8,34 @@ const Programs = () => {
     setOpenCard(openCard === index ? null : index);
   };
 
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === '#internship-program') {
+        setOpenCard(3);
+        setTimeout(() => {
+          const el = document.getElementById('internship-program');
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 150);
+      }
+    };
+
+    handleHashChange();
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
   const programsData = [
     {
       icon: "ph-chat-teardrop-text",
       title: "English Language Program",
-      subtitle: "Comprehensive spoken, written, and neutral accent training for all proficiency levels.",
+      subtitle: "Four-stage structured roadmap covering Basic, Intermediate, Communication, and IELTS.",
       points: [
-        "Intensive Spoken English practice with accent neutralization.",
-        "Practical Grammar, vocabulary expansion, and real-world conversation clubs.",
-        "Professional Email Writing, reporting, and formal presentation skills.",
-        "Daily confidence-building activities and interactive public speaking sessions.",
-        "Flexible timings for students, job seekers, and working professionals."
+        <><strong>Basic:</strong> Fundamental grammar, vocabulary expansion, sentence building & spoken confidence.</>,
+        <><strong>Intermediate:</strong> Grammar refinement, active listening comprehension & fluency enhancement.</>,
+        <><strong>Communication:</strong> Public speaking, email writing, presentation skills & accent refinement.</>,
+        <><strong>IELTS:</strong> Complete module preparation (Listening, Reading, Writing, Speaking) & mock tests.</>
       ],
       actionText: "Enroll in English Course"
     },
@@ -50,15 +67,15 @@ const Programs = () => {
     },
     {
       icon: "ph-briefcase",
-      title: "Professional & Soft Skills Development",
-      subtitle: "Elevate your career with vital soft skills, leadership, and interview confidence.",
+      title: "Internship Program",
+      subtitle: "Hands-on practical experience, real-world corporate training, and career mentorship.",
       points: [
-        "Public Speaking, stage presence, and voice modulation training.",
-        "Resume building, LinkedIn profile optimization, and job interview preparation.",
-        "Critical thinking, problem-solving, and emotional intelligence in business.",
-        "Corporate etiquette, negotiation strategies, and leadership development."
+        "Practical experience in educational management, communication & training coordination.",
+        "Direct one-on-one mentorship from senior trainers and CEO Maroof Mehmood.",
+        "Real-world project execution, professional networking, and leadership grooming.",
+        "Official E-Hub Internship Certificate with a verified letter of recommendation."
       ],
-      actionText: "Enroll in Soft Skills"
+      actionText: "Apply for Internship"
     },
     {
       icon: "ph-smiley",
@@ -90,7 +107,6 @@ const Programs = () => {
     <section className="programs" id="programs">
       <div className="container">
         <div className="section-header text-center">
-          <span className="section-tag">What We Offer</span>
           <h2 className="section-title">Our Premium <span className="text-accent">Courses & Programs</span></h2>
           <p className="section-desc center-desc">Click on any vertical course card below to expand and reveal detailed course points.</p>
         </div>
@@ -98,8 +114,10 @@ const Programs = () => {
         <div className="accordion-list">
           {programsData.map((program, index) => (
             <motion.div 
+              id={index === 3 ? "internship-program" : undefined}
               className={`accordion-card ${openCard === index ? 'active' : ''}`} 
               key={index}
+              style={index === 3 ? { scrollMarginTop: '100px' } : undefined}
               initial={{ opacity: 0, x: index % 2 === 0 ? -60 : 60 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-50px" }}
