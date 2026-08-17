@@ -146,7 +146,7 @@ const Footer = () => {
             &copy; {new Date().getFullYear()} <strong>E-Hub Institute Peshawar</strong>. All rights reserved.
           </p>
           <div className="developer-credit">
-            <span>Developed by <strong className="credit-brand">Solvia Codes</strong></span>
+            <span>Developed by <a href="https://www.solvia.codes" target="_blank" rel="noopener noreferrer" className="credit-brand">Solvia Codes</a></span>
           </div>
         </div>
       </div>

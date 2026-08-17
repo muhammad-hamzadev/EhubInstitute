@@ -4800,6 +4800,15 @@ textarea.custom-form-control {
     color: #FFB703;
     font-weight: 800;
     letter-spacing: 0.5px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    display: inline-block;
+}
+
+.credit-brand:hover {
+    color: #FFFFFF;
+    text-shadow: 0 0 10px rgba(255, 183, 3, 0.6);
+    transform: translateY(-1px);
 }
 
 /* ==========================================================================
