@@ -2438,272 +2438,688 @@ select.form-input option {
     scroll-margin-top: 60px;
 }
 
+.text-light-heading {
+    color: #FFFFFF !important;
+}
+
+.text-light-muted {
+    color: rgba(255, 255, 255, 0.82) !important;
+}
+
+/* --- 3D Book Stage Container --- */
 .book-stage {
     position: relative;
     width: 100%;
-    max-width: 760px;
-    height: 420px;
-    margin: 2rem auto 2rem;
-    perspective: 2500px;
+    max-width: 860px;
+    height: 470px;
+    margin: 2.5rem auto 2.5rem;
+    perspective: 2800px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .the-3d-book {
-    width: 380px;
-    height: 400px;
+    width: 100%;
+    max-width: 860px;
+    height: 460px;
     position: relative;
     transform-style: preserve-3d;
-    transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: transform 0.9s cubic-bezier(0.4, 0.0, 0.2, 1);
+    filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.45));
+    transform: rotateX(2deg);
 }
 
-/* Book States */
+/* --- Book States (Anchored in Center, Zero Horizontal Sliding) --- */
 .the-3d-book.state-closed-front {
-    transform: translateX(0) rotateY(0deg) rotateX(10deg);
+    transform: rotateX(4deg);
 }
 
 .the-3d-book.state-open {
-    transform: translateX(190px) rotateY(0deg) rotateX(5deg);
+    transform: rotateX(2deg);
 }
 
 .the-3d-book.state-closed-back {
-    transform: translateX(380px) rotateY(-180deg) rotateX(10deg);
+    transform: rotateX(4deg);
 }
 
-/* Covers & Pages base */
-.book-cover, .book-pages-container {
+/* --- Internal Book Pages Container (Spread when Open) --- */
+.book-pages-container {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    transform-origin: left center;
     transform-style: preserve-3d;
-    transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
-    border-radius: 4px 16px 16px 4px;
+    display: flex;
+    border-radius: 6px 14px 14px 6px;
+    background: linear-gradient(to right, #F5F0E6 0%, #FDFBF7 48%, #E5DDD0 50%, #FDFBF7 52%, #F5F0E6 100%);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45), inset 0 0 30px rgba(0, 0, 0, 0.08);
+    opacity: 1;
+    overflow: visible;
 }
 
-/* Covers Styling */
+.the-3d-book.state-closed-front .book-pages-container {
+    opacity: 0;
+    pointer-events: none !important;
+    transition: opacity 0.15s ease;
+}
+
+.the-3d-book.state-closed-front .page-left {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.the-3d-book.state-open .book-pages-container {
+    opacity: 1;
+    transition: opacity 0.45s ease 0.35s;
+}
+
+.the-3d-book.state-open .page-left {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.4s ease 0.3s;
+}
+
+.the-3d-book.state-closed-back .book-pages-container {
+    opacity: 0;
+    pointer-events: none !important;
+    transition: opacity 0.2s ease;
+}
+
+/* --- Covers Styling (Luxury Leather & Gold Embossing) --- */
 .book-cover {
-    background: linear-gradient(135deg, #520021 0%, #330014 100%);
-    box-shadow: inset 4px 0 10px rgba(0,0,0,0.5), 5px 15px 30px rgba(0,0,0,0.6);
-    border: 2px solid rgba(212, 175, 55, 0.5);
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.9s cubic-bezier(0.4, 0.0, 0.2, 1);
+    background: linear-gradient(135deg, #580026 0%, #380017 50%, #20000d 100%);
+    box-shadow: inset 4px 0 15px rgba(0, 0, 0, 0.6), 8px 18px 35px rgba(0, 0, 0, 0.55);
+    border: 3px solid rgba(212, 175, 55, 0.65);
     z-index: 10;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     backface-visibility: hidden;
+    overflow: hidden;
+}
+
+/* Front Cover sits on the Right side and rotates to the Left */
+.book-front {
+    left: 50%;
+    transform-origin: left center;
+    border-radius: 0 14px 14px 0;
+    z-index: 20;
     pointer-events: auto;
 }
 
-.the-3d-book.state-open .book-cover {
-    pointer-events: none;
-}
-
-.book-front {
-    z-index: 20;
+.the-3d-book.state-closed-front .book-front {
+    transform: rotateY(0deg);
+    pointer-events: auto;
 }
 
 .the-3d-book.state-open .book-front {
     transform: rotateY(-180deg);
     z-index: 1;
+    pointer-events: none !important;
 }
 
 .the-3d-book.state-closed-back .book-front {
     transform: rotateY(-180deg);
+    z-index: 1;
+    pointer-events: none !important;
 }
 
+/* Back Cover sits on the Left side and closes forward */
 .book-back {
+    left: 0;
+    transform-origin: right center;
+    border-radius: 14px 0 0 14px;
     transform: rotateY(180deg);
     z-index: 5;
-    border-radius: 16px 4px 4px 16px;
+    pointer-events: none;
 }
 
 .the-3d-book.state-closed-back .book-back {
     transform: rotateY(0deg);
     z-index: 20;
+    pointer-events: auto !important;
 }
 
-/* Cover Content */
+/* Leather Texture Pattern */
+.cover-leather-texture {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(212, 175, 55, 0.08) 1px, transparent 1px);
+    background-size: 8px 8px;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Cover Inner Content */
 .cover-inner-content {
-    width: calc(100% - 30px);
-    height: calc(100% - 30px);
-    border: 2px dashed rgba(212, 175, 55, 0.4);
-    border-radius: 8px;
+    width: calc(100% - 32px);
+    height: calc(100% - 32px);
+    border: 2px solid rgba(212, 175, 55, 0.5);
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 2rem;
+    padding: 2rem 1.5rem;
+    position: relative;
+    z-index: 2;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+}
+
+.cover-border {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border: 1px dashed rgba(212, 175, 55, 0.4);
+    padding: 1.25rem;
+    border-radius: 6px;
+}
+
+.cover-gold-crest {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(212, 175, 55, 0.05) 100%);
+    border: 1.5px solid #FFD700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFD700;
+    font-size: 1.6rem;
+    margin-bottom: 0.75rem;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
+}
+
+.cover-eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: #FFD700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+    font-weight: 700;
 }
 
 .cover-title {
     font-family: var(--font-heading);
-    font-size: 2.8rem;
-    color: #FFD700;
-    margin-bottom: 0.5rem;
+    font-size: 2.6rem;
+    color: #FFFFFF;
+    margin-bottom: 0.35rem;
     line-height: 1.1;
-    text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+    background: linear-gradient(180deg, #FFFFFF 30%, #FFEBAA 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .cover-subtitle {
-    font-size: 1.2rem;
-    color: #FFFFFF;
+    font-size: 0.95rem;
+    color: #FFD700;
     letter-spacing: 2px;
     text-transform: uppercase;
-    margin-bottom: 2rem;
+    margin-bottom: 1.2rem;
+    font-weight: 600;
+}
+
+.cover-gold-badge {
+    padding: 0.3rem 0.9rem;
+    border: 1px solid rgba(212, 175, 55, 0.6);
+    border-radius: 50px;
+    background: rgba(0, 0, 0, 0.3);
+    color: #FFD700;
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+}
+
+.cover-quote {
+    font-family: 'Caveat', cursive;
+    font-size: 1.2rem;
+    color: #FFEBAA;
+    margin: 1rem 0;
+    max-width: 260px;
 }
 
 .cover-btn {
-    background: rgba(255, 215, 0, 0.15);
-    color: #FFD700;
-    padding: 0.75rem 1.5rem;
-    border: 1px solid #FFD700;
-    border-radius: 50px;
-    font-weight: 700;
-    transition: all 0.3s;
-}
-.book-cover:hover .cover-btn {
-    background: #FFD700;
+    background: linear-gradient(135deg, #FFD700 0%, #D4AF37 100%);
     color: #330014;
+    padding: 0.65rem 1.4rem;
+    border: none;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 0.88rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 6px 18px rgba(212, 175, 55, 0.35);
 }
 
-/* Internal Pages */
-.book-pages-container {
-    z-index: 50;
-    background-color: #F8F4EE;
-    box-shadow: inset 0 0 25px rgba(0,0,0,0.1);
-    display: flex;
-    width: 200%; /* Double width for 2-page spread */
-    left: -100%; /* Shift back to center spine */
-    transform-origin: center center;
-    opacity: 1;
-    transition: opacity 0.4s ease 0.5s;
+.cover-btn:hover {
+    transform: scale(1.06);
+    box-shadow: 0 8px 24px rgba(255, 215, 0, 0.5);
+    background: #FFFFFF;
+    color: var(--color-primary);
 }
 
-.the-3d-book.state-closed-front .book-pages-container,
-.the-3d-book.state-closed-back .book-pages-container {
-    opacity: 0;
+/* --- Page Texture Overlay --- */
+.page-texture-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(#d3c6ab 0.5px, transparent 0.5px);
+    background-size: 10px 10px;
+    opacity: 0.35;
     pointer-events: none;
-    transition: opacity 0.2s ease;
+    border-radius: inherit;
 }
 
-@keyframes pageFadeIn {
-    from { opacity: 0; transform: scale(0.98); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-.page-fade-anim {
-    animation: pageFadeIn 0.4s ease-out forwards;
-}
-
+/* --- Left & Right Static Base Pages --- */
 .book-page {
     width: 50%;
     height: 100%;
-    padding: 2rem;
+    padding: 1.6rem 1.8rem;
     position: relative;
     box-sizing: border-box;
+    cursor: pointer;
+    background-color: #FAF6F0;
+    transition: background-color 0.2s ease;
+}
+
+.book-page:hover {
+    background-color: #FDFBF7;
 }
 
 .page-left {
-    background-color: #ede7dc;
-    border-radius: 12px 0 0 12px;
-    box-shadow: inset -10px 0 20px rgba(0,0,0,0.05);
+    border-radius: 6px 0 0 6px;
+    box-shadow: inset -15px 0 25px rgba(0, 0, 0, 0.06);
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .page-right {
-    background-color: #F8F4EE;
-    border-radius: 0 12px 12px 0;
-    box-shadow: inset 10px 0 20px rgba(0,0,0,0.02);
+    border-radius: 0 14px 14px 0;
+    box-shadow: inset 15px 0 25px rgba(0, 0, 0, 0.04);
 }
 
+/* Center Spine Crease & Stitching */
 .page-spine-crease {
     position: absolute;
     left: 50%;
     top: 0;
     height: 100%;
-    width: 40px;
+    width: 44px;
     transform: translateX(-50%);
-    background: linear-gradient(90deg, rgba(0,0,0,0.1) 0%, rgba(255,255,255,0.4) 50%, rgba(0,0,0,0.1) 100%);
-    z-index: 15;
+    background: linear-gradient(90deg, 
+        rgba(0, 0, 0, 0.15) 0%, 
+        rgba(0, 0, 0, 0.02) 40%, 
+        rgba(255, 255, 255, 0.3) 50%, 
+        rgba(0, 0, 0, 0.02) 60%, 
+        rgba(0, 0, 0, 0.15) 100%
+    );
+    z-index: 25;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spine-stitch-line {
+    width: 1px;
+    height: 90%;
+    border-left: 1.5px dashed rgba(120, 90, 40, 0.3);
+}
+
+/* --- 3D TURNING PAGE LEAF ANIMATIONS --- */
+.turning-page-leaf {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    transform-style: preserve-3d;
+    z-index: 100;
     pointer-events: none;
 }
 
+/* Flipping to NEXT page (rotates from 0deg on right to -180deg on left) */
+.turning-page-leaf.leaf-flipping-next {
+    left: 50%;
+    transform-origin: left center;
+    animation: flipLeafNextAnim 0.7s cubic-bezier(0.35, 0.0, 0.15, 1) forwards;
+}
+
+@keyframes flipLeafNextAnim {
+    0% {
+        transform: rotateY(0deg);
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+    }
+    50% {
+        transform: rotateY(-90deg);
+        box-shadow: 0 35px 50px rgba(0, 0, 0, 0.35);
+    }
+    100% {
+        transform: rotateY(-180deg);
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+    }
+}
+
+/* Flipping to PREV page — LEFT page lifts and flips LEFT→RIGHT (natural book direction) */
+.turning-page-leaf.leaf-flipping-prev {
+    left: 0;                        /* sits on the LEFT side of the spread */
+    transform-origin: right center; /* pivots from the center spine (right edge of left half) */
+    animation: flipLeafPrevAnim 0.7s cubic-bezier(0.35, 0.0, 0.15, 1) forwards;
+}
+
+@keyframes flipLeafPrevAnim {
+    0% {
+        transform: rotateY(0deg);
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+    }
+    50% {
+        transform: rotateY(90deg);
+        box-shadow: 0 35px 50px rgba(0, 0, 0, 0.35);
+    }
+    100% {
+        transform: rotateY(180deg);
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+    }
+}
+
+/* Prev leaf border-radius overrides: left page shape at front, right page shape at back */
+.leaf-flipping-prev .prev-leaf-front {
+    border-radius: 14px 0 0 14px !important;
+    box-shadow: inset -15px 0 25px rgba(0, 0, 0, 0.06) !important;
+}
+
+.leaf-flipping-prev .prev-leaf-back {
+    border-radius: 0 14px 14px 0 !important;
+    box-shadow: inset 15px 0 25px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Dual-sided Leaf Faces */
+.leaf-face {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 1.6rem 1.8rem;
+    box-sizing: border-box;
+    backface-visibility: hidden;
+    background-color: #FAF6F0;
+}
+
+.leaf-front {
+    transform: rotateY(0deg);
+    border-radius: 0 14px 14px 0;
+    box-shadow: inset 15px 0 25px rgba(0, 0, 0, 0.05);
+}
+
+.leaf-back {
+    transform: rotateY(180deg);
+    border-radius: 6px 0 0 6px;
+    box-shadow: inset -15px 0 25px rgba(0, 0, 0, 0.07);
+}
+
+.leaf-shadow-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.12) 0%, transparent 60%);
+    opacity: 0.8;
+}
+
+/* --- Page Content Formatting --- */
 .book-page-content {
     display: flex;
     flex-direction: column;
     height: 100%;
     position: relative;
+    z-index: 5;
+    color: #2D2D2D;
 }
 
-/* Page Content Formatting */
+.page-top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.6rem;
+}
+
+.page-top-header.right-align {
+    justify-content: space-between;
+}
+
+.page-corner-badge {
+    background: var(--color-primary);
+    color: #FFFFFF;
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 0.25rem 0.7rem;
+    border-radius: 50px;
+    letter-spacing: 0.5px;
+}
+
+.chapter-label {
+    font-size: 0.74rem;
+    color: var(--color-primary);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.page-number-indicator {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #888888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Main Photo Frame on Left Page */
 .main-photo-frame {
     position: relative;
     width: 100%;
-    height: 210px;
-    border-radius: 8px;
+    height: 220px;
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    border: 4px solid #FFF;
-    margin-bottom: 1rem;
-    margin-top: 0.5rem;
-    background-color: #FFF;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14);
+    border: 4px solid #FFFFFF;
+    margin-bottom: 0.85rem;
+    background-color: #FFFFFF;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.slide-photo { width: 100%; height: 100%; object-fit: contain; }
-.photo-badge {
-    position: absolute; top: 10px; left: 10px;
-    background: var(--color-primary); color: #FFF;
-    padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700;
-}
-.speech-bubble-box {
-    background: #FFF; padding: 1rem; border-radius: 12px; font-size: 0.9rem; color: #333;
-    font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.05);
+
+.slide-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.polaroids-container {
-    position: relative; height: 140px; width: 100%; margin-top: 0.5rem;
+.photo-shine-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 60%);
+    pointer-events: none;
 }
-.polaroid-wrapper {
-    position: absolute; background: #FFF; padding: 4px 4px 14px 4px; border-radius: 2px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(0,0,0,0.05);
+
+/* Speech Bubble Box */
+.speech-bubble-box {
+    background: #FFFFFF;
+    padding: 0.85rem 1rem;
+    border-radius: 10px;
+    font-size: 0.86rem;
+    color: #333333;
+    font-weight: 600;
+    line-height: 1.4;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: auto;
 }
-.polaroid-wrapper img { width: 85px; height: 85px; object-fit: cover; }
-.p-tilted-1 { top: 0; right: 20px; transform: rotate(5deg); }
-.p-tilted-2 { bottom: -10px; right: 50px; transform: rotate(-8deg); }
+
+.speech-quote-icon {
+    color: var(--color-secondary);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+/* Secondary Photo Frame on Right Page (replaced polaroids) */
+.secondary-photo-frame {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14);
+    border: 4px solid #FFFFFF;
+    margin-bottom: 0.85rem;
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+
+/* Journal Text Content */
 
 .journal-text-content {
-    margin-top: 0.5rem;
+    margin-top: 0.4rem;
+    margin-bottom: auto;
 }
-.chapter-label { font-size: 0.7rem; color: var(--color-primary); font-weight: 800; text-transform: uppercase; display: block; margin-bottom: 0.3rem;}
-.slide-heading { font-size: 1.1rem; color: #111; font-weight: 800; margin-bottom: 0.5rem; line-height: 1.2;}
-.cursive-handwriting { font-family: 'Caveat', cursive; font-size: 1.1rem; color: #333; line-height: 1.3; }
+
+.slide-heading {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    color: var(--color-primary);
+    font-weight: 800;
+    margin-bottom: 0.4rem;
+    line-height: 1.2;
+}
+
+.cursive-handwriting {
+    font-family: 'Caveat', cursive;
+    font-size: 1.15rem;
+    color: #2D2D2D;
+    line-height: 1.35;
+}
+
+/* Page Footer Navigation Buttons */
+.page-footer-nav {
+    display: flex;
+    margin-top: auto;
+    padding-top: 0.5rem;
+}
+
+.page-footer-nav.right-align {
+    justify-content: flex-end;
+}
 
 .book-nav-btn {
     position: relative;
-    margin-top: auto;
     background: var(--color-primary);
     border: none;
     color: #FFFFFF;
     font-weight: 800;
     cursor: pointer;
-    display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
-    font-size: 0.85rem;
-    transition: transform 0.2s, background 0.2s;
-    padding: 0.5rem 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    font-size: 0.82rem;
+    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+    padding: 0.45rem 1.1rem;
     border-radius: 50px;
-    z-index: 99999 !important;
+    z-index: 50;
     pointer-events: auto !important;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 12px rgba(102, 0, 51, 0.25);
 }
-.book-nav-btn:hover { transform: scale(1.05); background: #3d001e; }
-.prev-btn { align-self: flex-start; }
-.next-btn { align-self: flex-end; }
+
+.book-nav-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    background: var(--color-primary-light);
+    box-shadow: 0 6px 16px rgba(102, 0, 51, 0.4);
+}
+
+/* Responsive adjustments for 3D Book */
+@media (max-width: 920px) {
+    .book-stage {
+        max-width: 700px;
+        height: 420px;
+    }
+    .the-3d-book {
+        height: 410px;
+    }
+    .book-page, .leaf-face {
+        padding: 1.2rem 1.4rem;
+    }
+    .main-photo-frame {
+        height: 180px;
+    }
+    .polaroids-container {
+        height: 120px;
+    }
+    .polaroid-wrapper img {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+@media (max-width: 680px) {
+    .book-stage {
+        height: 380px;
+        perspective: 1800px;
+    }
+    .the-3d-book {
+        height: 370px;
+    }
+    .book-page, .leaf-face {
+        padding: 1rem;
+    }
+    .main-photo-frame {
+        height: 140px;
+    }
+    .speech-bubble-box {
+        display: none;
+    }
+    .polaroids-container {
+        height: 100px;
+    }
+    .polaroid-wrapper img {
+        width: 65px;
+        height: 65px;
+    }
+    .slide-heading {
+        font-size: 1rem;
+    }
+    .cursive-handwriting {
+        font-size: 0.95rem;
+    }
+    .cover-title {
+        font-size: 1.8rem;
+    }
+}
 
 
 /* --- 10. Floating Interactive AI Chatbot Widget (1:1 Mascot Icon in Royal Maroon) --- */

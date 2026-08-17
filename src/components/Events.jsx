@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 
 const journalPages = [
   {
@@ -113,20 +113,114 @@ const journalPages = [
   }
 ];
 
+// Helper to render the Left Page Spread content
+const LeftPageContent = ({ data, onPrev, isFirstPage }) => {
+  if (!data) return null;
+  return (
+    <div className="book-page-content page-left-content">
+      <div className="page-top-header">
+        <span className="page-corner-badge">{data.tag}</span>
+        <span className="page-number-indicator">E-HUB JOURNAL</span>
+      </div>
+
+      <div className="main-photo-frame">
+        <img src={data.mainImg} alt={data.title} className="slide-photo" loading="lazy" />
+        <div className="photo-shine-overlay"></div>
+      </div>
+
+      <div className="speech-bubble-box">
+        <i className="ph-fill ph-quotes speech-quote-icon"></i>
+        <span>"{data.bubble}"</span>
+      </div>
+
+      <div className="page-footer-nav">
+        <button
+          type="button"
+          className="book-nav-btn prev-btn"
+          onClick={(e) => {
+            e.stopPropagation();
+            onPrev();
+          }}
+          aria-label="Previous page"
+        >
+          <i className="ph-bold ph-caret-left"></i>
+          <span>{isFirstPage ? "Close Cover" : "Previous"}</span>
+        </button>
+      </div>
+    </div>
+  );
+};
+
+// Helper to render the Right Page Spread content
+const RightPageContent = ({ data, onNext, isLastPage, pageNumber, totalPages }) => {
+  if (!data) return null;
+  return (
+    <div className="book-page-content page-right-content">
+      <div className="page-top-header right-align">
+        <span className="chapter-label">{data.chapter}</span>
+        <span className="page-number-indicator">Page {pageNumber} of {totalPages}</span>
+      </div>
+
+      {/* Clean secondary photo frame — no floating polaroids */}
+      <div className="secondary-photo-frame">
+        <img src={data.polaroid1} alt={data.title} className="slide-photo" loading="lazy" />
+        <div className="photo-shine-overlay"></div>
+      </div>
+
+      <div className="journal-text-content">
+        <h3 className="slide-heading">{data.title}</h3>
+        <p className="cursive-handwriting">
+          "{data.cursiveNote}"
+        </p>
+      </div>
+
+      <div className="page-footer-nav right-align">
+        <button
+          type="button"
+          className="book-nav-btn next-btn"
+          onClick={(e) => {
+            e.stopPropagation();
+            onNext();
+          }}
+          aria-label="Next page"
+        >
+          <span>{isLastPage ? "Close Book" : "Next Page"}</span>
+          <i className={`ph-bold ${isLastPage ? 'ph-book-bookmark' : 'ph-caret-right'}`}></i>
+        </button>
+      </div>
+    </div>
+  );
+};
+
 const Events = () => {
-  const [bookState, setBookState] = useState('closed-front'); // 'closed-front', 'open', 'closed-back'
+  const [bookState, setBookState] = useState('closed-front'); // 'closed-front' | 'open' | 'closed-back'
   const [pageIndex, setPageIndex] = useState(0);
+  const [isFlipping, setIsFlipping] = useState(false);
+  const [flipDirection, setFlipDirection] = useState(null); // 'next' | 'prev' | null
   const [hasAutoOpened, setHasAutoOpened] = useState(false);
   const sectionRef = useRef(null);
   const totalPages = journalPages.length;
 
-  const currentData = journalPages[pageIndex];
+  const handleOpen = () => {
+    setBookState('open');
+    setPageIndex(0);
+  };
 
-  const handleOpen = () => setBookState('open');
-  const handleCloseFront = () => { setBookState('closed-front'); setPageIndex(0); };
-  const handleCloseBack = () => setBookState('closed-back');
+  const handleCloseFront = () => {
+    setBookState('closed-front');
+    setPageIndex(0);
+  };
 
-  // Auto-open book when user scrolls to it
+  const handleCloseBack = () => {
+    setBookState('closed-back');
+  };
+
+  const handleReopenFromBack = () => {
+    setBookState('open');
+    setPageIndex(0);
+  };
+
+  // Scroll detection to auto open book
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -134,10 +228,10 @@ const Events = () => {
           setTimeout(() => {
             setBookState('open');
             setHasAutoOpened(true);
-          }, 800); // slight delay after scrolling into view for a better effect
+          }, 600);
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.35 }
     );
 
     if (sectionRef.current) {
@@ -151,107 +245,238 @@ const Events = () => {
     };
   }, [hasAutoOpened]);
 
-  // Auto-close on the last page after 5 seconds
-  useEffect(() => {
-    let timeoutId;
-    if (pageIndex === totalPages - 1 && bookState === 'open') {
-      timeoutId = setTimeout(() => {
-        handleCloseBack();
-      }, 5000);
-    }
-    return () => clearTimeout(timeoutId);
-  }, [pageIndex, bookState, totalPages]);
+  // Turn to Next Page with realistic 3D leaf flip
+  const handleNext = useCallback(() => {
+    if (isFlipping || bookState !== 'open') return;
 
-  const handleNext = () => {
-    if (pageIndex === totalPages - 1) {
+    if (pageIndex >= totalPages - 1) {
       handleCloseBack();
-    } else {
-      setPageIndex(pageIndex + 1);
+      return;
     }
-  };
 
-  const handlePrev = () => {
+    setIsFlipping(true);
+    setFlipDirection('next');
+
+    setTimeout(() => {
+      setPageIndex((prev) => prev + 1);
+      setIsFlipping(false);
+      setFlipDirection(null);
+    }, 700);
+  }, [isFlipping, bookState, pageIndex, totalPages]);
+
+  // Turn to Previous Page with realistic 3D leaf flip
+  const handlePrev = useCallback(() => {
+    if (isFlipping || bookState !== 'open') return;
+
     if (pageIndex === 0) {
       handleCloseFront();
-    } else {
-      setPageIndex(pageIndex - 1);
+      return;
     }
-  };
+
+    setIsFlipping(true);
+    setFlipDirection('prev');
+
+    setTimeout(() => {
+      setPageIndex((prev) => prev - 1);
+      setIsFlipping(false);
+      setFlipDirection(null);
+    }, 700);
+  }, [isFlipping, bookState, pageIndex]);
+
+  // Keyboard Arrow navigation
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (bookState !== 'open') return;
+      if (e.key === 'ArrowRight') {
+        handleNext();
+      } else if (e.key === 'ArrowLeft') {
+        handlePrev();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [bookState, handleNext, handlePrev]);
+
+  // Active spread data
+  const currentData = journalPages[pageIndex];
+  const nextData = pageIndex < totalPages - 1 ? journalPages[pageIndex + 1] : null;
+  const prevData = pageIndex > 0 ? journalPages[pageIndex - 1] : null;
 
   return (
     <section className="events-book-section maroon-bg" id="events" ref={sectionRef}>
       <div className="container">
+        {/* Section Header */}
+        <div className="section-header text-center">
+          <span className="section-tag">Memories & Highlights</span>
+          <h2 className="section-title text-light-heading">
+            Life at E-Hub • <span className="text-accent">Interactive Photo Journal</span>
+          </h2>
+          <p className="section-desc center-desc text-light-muted">
+            Flip through our journey, workshops, student distinctions, and memorable celebrations. Click the pages or use the controls below to turn pages like a real book.
+          </p>
+        </div>
 
-
+        {/* 3D Book Stage */}
         <div className="book-stage">
-          <div className={`the-3d-book state-${bookState}`}>
-            {/* Book Pages (Left and Right Spreads) - Rendered behind covers */}
+          <div className={`the-3d-book state-${bookState} ${isFlipping ? 'is-flipping' : ''}`}>
+            
+            {/* Book Pages Container (Spread when open) */}
             <div className="book-pages-container">
-               {/* Left Page (Photos) */}
-               <div className="book-page page-left">
-                  <div className="book-page-content page-fade-anim" key={`left-${pageIndex}`}>
-                    <button className="book-nav-btn prev-btn" onClick={handlePrev}>
-                       <i className="ph-bold ph-caret-left"></i> Previous
-                    </button>
-                    <div className="main-photo-frame">
-                      <img src={currentData.mainImg} alt={currentData.title} className="slide-photo" />
-                      <span className="photo-badge">{currentData.tag}</span>
-                    </div>
-                    <div className="speech-bubble-box">
-                      "{currentData.bubble}"
-                    </div>
-                  </div>
-               </div>
+              
+              {/* LEFT PAGE (Static Base Spread) */}
+              <div 
+                className="book-page page-left" 
+                onClick={handlePrev}
+                title="Click to turn to previous page"
+              >
+                <div className="page-texture-overlay"></div>
+                <LeftPageContent
+                  data={flipDirection === 'prev' ? prevData : currentData}
+                  onPrev={handlePrev}
+                  isFirstPage={flipDirection === 'prev' ? (pageIndex - 1 === 0) : (pageIndex === 0)}
+                />
+              </div>
 
-               {/* Center Spine Crease */}
-               <div className="page-spine-crease"></div>
+              {/* Center Spine Crease & Shadow */}
+              <div className="page-spine-crease">
+                <div className="spine-stitch-line"></div>
+              </div>
 
-               {/* Right Page (Details) */}
-               <div className="book-page page-right">
-                  <div className="book-page-content page-fade-anim" key={`right-${pageIndex}`}>
-                    <div className="polaroids-container">
-                      <div className="polaroid-wrapper p-tilted-1">
-                        <img src={currentData.polaroid1} alt="Polaroid 1" />
-                      </div>
-                      <div className="polaroid-wrapper p-tilted-2">
-                        <img src={currentData.polaroid2} alt="Polaroid 2" />
-                      </div>
-                    </div>
-                    <div className="journal-text-content">
-                      <span className="chapter-label">{currentData.chapter}</span>
-                      <h3 className="slide-heading">{currentData.title}</h3>
-                      <p className="cursive-handwriting">
-                        "{currentData.cursiveNote}"
-                      </p>
-                    </div>
-                    <button className="book-nav-btn next-btn" onClick={handleNext}>
-                       {pageIndex === totalPages - 1 ? "Close Book" : "Next Page"} <i className="ph-bold ph-caret-right"></i>
-                    </button>
+              {/* RIGHT PAGE (Static Base Spread) */}
+              <div 
+                className="book-page page-right" 
+                onClick={handleNext}
+                title="Click to turn to next page"
+              >
+                <div className="page-texture-overlay"></div>
+                <RightPageContent
+                  data={flipDirection === 'next' ? nextData : currentData}
+                  onNext={handleNext}
+                  isLastPage={flipDirection === 'next' ? (pageIndex + 1 === totalPages - 1) : (pageIndex === totalPages - 1)}
+                  pageNumber={flipDirection === 'next' ? pageIndex + 2 : pageIndex + 1}
+                  totalPages={totalPages}
+                />
+              </div>
+
+              {/* 3D TURNING LEAF (Active when flipping Next) */}
+              {isFlipping && flipDirection === 'next' && (
+                <div className="turning-page-leaf leaf-flipping-next">
+                  {/* Front Face: Current Right Page (Turns away) */}
+                  <div className="leaf-face leaf-front">
+                    <div className="page-texture-overlay"></div>
+                    <RightPageContent
+                      data={currentData}
+                      onNext={handleNext}
+                      isLastPage={pageIndex === totalPages - 1}
+                      pageNumber={pageIndex + 1}
+                      totalPages={totalPages}
+                    />
+                    <div className="leaf-shadow-overlay"></div>
                   </div>
-               </div>
+
+                  {/* Back Face: Incoming Left Page (Lands on Left) */}
+                  <div className="leaf-face leaf-back">
+                    <div className="page-texture-overlay"></div>
+                    <LeftPageContent
+                      data={nextData}
+                      onPrev={handlePrev}
+                      isFirstPage={pageIndex + 1 === 0}
+                    />
+                    <div className="leaf-shadow-overlay"></div>
+                  </div>
+                </div>
+              )}
+
+              {/* 3D TURNING LEAF (Active when flipping Prev) — Left page lifts LEFT→RIGHT like a real book */}
+              {isFlipping && flipDirection === 'prev' && (
+                <div className="turning-page-leaf leaf-flipping-prev">
+                  {/* Front Face — LEFT side at start, lifts and turns away to the right */}
+                  {/* Shows: CURRENT LEFT page content */}
+                  <div className="leaf-face leaf-front prev-leaf-front">
+                    <div className="page-texture-overlay"></div>
+                    <LeftPageContent
+                      data={currentData}
+                      onPrev={handlePrev}
+                      isFirstPage={pageIndex === 0}
+                    />
+                    <div className="leaf-shadow-overlay"></div>
+                  </div>
+
+                  {/* Back Face — lands on RIGHT side after flip */}
+                  {/* Shows: PREVIOUS RIGHT page content */}
+                  <div className="leaf-face leaf-back prev-leaf-back">
+                    <div className="page-texture-overlay"></div>
+                    <RightPageContent
+                      data={prevData}
+                      onNext={handleNext}
+                      isLastPage={false}
+                      pageNumber={pageIndex}
+                      totalPages={totalPages}
+                    />
+                    <div className="leaf-shadow-overlay"></div>
+                  </div>
+                </div>
+              )}
+
             </div>
 
-            {/* Front Cover */}
-            <div className="book-cover book-front" onClick={bookState === 'closed-front' ? handleOpen : undefined}>
+            {/* FRONT COVER (Hardcover with Gold Debossing) */}
+            <div 
+              className="book-cover book-front" 
+              onClick={bookState === 'closed-front' ? handleOpen : undefined}
+              title={bookState === 'closed-front' ? "Click to open book" : undefined}
+            >
+              <div className="cover-leather-texture"></div>
               <div className="cover-inner-content">
                 <div className="cover-border">
-                  <h1 className="cover-title">Event Photos</h1>
-                  <p className="cover-subtitle">E-Hub Institute</p>
+                  <div className="cover-gold-crest">
+                    <i className="ph-fill ph-book-open"></i>
+                  </div>
+                  <h3 className="cover-eyebrow">E-Hub Institute</h3>
+                  <h1 className="cover-title">Events & Life</h1>
+                  <p className="cover-subtitle">Memories • Milestones • Legacy</p>
+                  <div className="cover-gold-badge">
+                    <span>ESTD 2019 • PESHAWAR</span>
+                  </div>
+                  {bookState === 'closed-front' && (
+                    <button type="button" className="cover-btn" onClick={handleOpen}>
+                      <i className="ph-bold ph-hand-pointing"></i> Click to Open Journal
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
 
-            {/* Back Cover */}
-            <div className="book-cover book-back" onClick={bookState === 'closed-back' ? () => {setBookState('open'); setPageIndex(totalPages-1);} : undefined}>
+            {/* BACK COVER (Hardcover Back) */}
+            <div 
+              className="book-cover book-back" 
+              onClick={bookState === 'closed-back' ? handleReopenFromBack : undefined}
+              title={bookState === 'closed-back' ? "Click to reopen book" : undefined}
+            >
+              <div className="cover-leather-texture"></div>
               <div className="cover-inner-content">
                 <div className="cover-border">
+                  <div className="cover-gold-crest">
+                    <i className="ph-fill ph-sparkle"></i>
+                  </div>
                   <h1 className="cover-title">The End</h1>
-                  <p className="cover-subtitle">Thank you for exploring!</p>
+                  <p className="cover-subtitle">Thank You For Exploring</p>
+                  <p className="cover-quote">
+                    "Join E-Hub today and write your own chapter of success."
+                  </p>
+                  {bookState === 'closed-back' && (
+                    <button type="button" className="cover-btn" onClick={handleReopenFromBack}>
+                      <i className="ph-bold ph-arrow-counter-clockwise"></i> Reopen From Start
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
+
           </div>
         </div>
+
       </div>
     </section>
   );
