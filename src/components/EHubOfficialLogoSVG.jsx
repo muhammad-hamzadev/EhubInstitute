@@ -31,9 +31,9 @@ const EHubOfficialLogoSVG = ({ height = 55, className = "", textColor = "#721C24
         </clipPath>
       </defs>
 
-      {/* --- RASTER ICON (Left Side) --- */}
+      {/* --- VECTOR SVG ICON (Left Side) --- */}
       <g transform="translate(5, 5)">
-        <image href="/EhubInstitute/ehub-logo.png" x="0" y="0" width="130" height="130" clipPath="url(#circleClip)" />
+        <image href="/EhubInstitute/ehub-logo.svg" x="0" y="0" width="130" height="130" clipPath="url(#circleClip)" />
       </g>
 
       {/* --- TYPOGRAPHY GROUP (Prominent E-Hub Institute Branding) --- */}
