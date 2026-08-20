@@ -3195,7 +3195,7 @@ select.form-input option {
 /* --- 10. Floating Interactive AI Chatbot Widget (1:1 Mascot Icon in Royal Maroon) --- */
 .ai-chatbot-wrapper {
     position: fixed;
-    bottom: 28px;
+    bottom: 45px;
     right: 28px;
     z-index: 9999;
     font-family: var(--font-body);
@@ -3203,24 +3203,30 @@ select.form-input option {
 
 .ai-mascot-circle-trigger {
     position: relative;
-    width: 48px;
-    height: 48px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
-    background: #FFFFFF;
-    color: var(--color-primary);
-    border: 2.5px solid var(--color-primary);
+    background: transparent;
+    border: none;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 10px 30px rgba(102, 0, 51, 0.4);
+    box-shadow: none;
     transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.ai-mascot-circle-trigger.active {
+    width: 48px;
+    height: 48px;
+    background: #FFFFFF;
+    color: var(--color-primary);
+    border: 2.5px solid var(--color-primary);
+    box-shadow: 0 10px 30px rgba(102, 0, 51, 0.4);
 }
 
 .ai-mascot-circle-trigger:hover {
     transform: translateY(-3px) scale(1.08);
-    box-shadow: 0 16px 40px rgba(102, 0, 51, 0.6);
-    border-color: var(--color-secondary);
 }
 
 .trigger-label-pill {
@@ -3293,11 +3299,11 @@ select.form-input option {
 
 .ai-chatbot-window {
     position: fixed;
-    bottom: 65px;
-    right: 24px;
+    bottom: 95px;
+    right: 28px;
     width: 350px;
     height: 440px;
-    max-height: calc(100vh - 95px);
+    max-height: calc(100vh - 120px);
     background-color: #FFFFFF;
     border-radius: 24px;
     box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
@@ -3544,21 +3550,33 @@ select.form-input option {
     gap: 0.6rem;
 }
 
-/* Spline 3D Viewer Custom Sizing */
 .spline-icon-wrapper {
-    width: 48px;
-    height: 48px;
+    position: relative;
+    width: 130px;
+    height: 130px;
     display: flex;
     align-items: center;
     justify-content: center;
-    pointer-events: none;
-    overflow: hidden;
+    overflow: visible;
+    cursor: pointer;
+}
+
+.spline-click-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 50;
+    cursor: pointer;
+    background: transparent;
 }
 
 .spline-icon-wrapper spline-viewer {
-    width: 64px;
-    height: 64px;
-    transform: scale(0.85);
+    width: 160px;
+    height: 160px;
+    transform: scale(1.15);
+    pointer-events: none;
 }
 
 .spline-avatar-wrapper {

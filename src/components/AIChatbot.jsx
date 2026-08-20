@@ -80,6 +80,30 @@ const AIChatbot = () => {
     }
   }, [messages, isOpen]);
 
+  // Remove "Built with Spline" watermark logo badge from Spline Viewer Shadow Root
+  useEffect(() => {
+    const hideSplineLogo = () => {
+      document.querySelectorAll('spline-viewer').forEach((viewer) => {
+        if (viewer.shadowRoot) {
+          const logoElements = viewer.shadowRoot.querySelectorAll('#logo, a, [id*="logo"], [class*="logo"]');
+          logoElements.forEach((el) => {
+            el.style.display = 'none';
+            el.style.opacity = '0';
+            el.style.visibility = 'hidden';
+            el.style.pointerEvents = 'none';
+            el.style.width = '0px';
+            el.style.height = '0px';
+            el.style.transform = 'scale(0)';
+          });
+        }
+      });
+    };
+
+    hideSplineLogo();
+    const interval = setInterval(hideSplineLogo, 100);
+    return () => clearInterval(interval);
+  }, []);
+
   const handleSend = (textToSend) => {
     const userText = textToSend || inputValue;
     if (!userText.trim()) return;
@@ -122,24 +146,23 @@ const AIChatbot = () => {
 
   return (
     <div className="ai-chatbot-wrapper">
-      {/* Compact Floating Trigger Button with "E-Hub AI" Label Pill */}
-      <button
+      {/* Floating 3D Spline Mascot Trigger */}
+      <div
         className={`ai-mascot-circle-trigger ${isOpen ? 'active' : ''}`}
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Toggle E-Hub AI Chatbot"
+        role="button"
+        tabIndex={0}
       >
         {isOpen ? (
           <i className="ph-bold ph-x"></i>
         ) : (
-          <>
-            <div className="trigger-pulse"></div>
-            <div className="spline-icon-wrapper">
-              <spline-viewer url="https://prod.spline.design/vRdVA40gtbx99rEJ/scene.splinecode"></spline-viewer>
-            </div>
-            <span className="trigger-label-pill">E-Hub AI</span>
-          </>
+          <div className="spline-icon-wrapper" onClick={() => setIsOpen(true)}>
+            <div className="spline-click-overlay"></div>
+            <spline-viewer url="https://prod.spline.design/vRdVA40gtbx99rEJ/scene.splinecode"></spline-viewer>
+          </div>
         )}
-      </button>
+      </div>
 
       {/* Chatbot Window */}
       {isOpen && (
@@ -197,15 +220,6 @@ const AIChatbot = () => {
               </div>
             )}
             <div ref={chatBottomRef} />
-          </div>
-
-          {/* Quick Option Chips */}
-          <div className="chatbot-quick-chips">
-            {quickChips.map((chip, idx) => (
-              <button key={idx} className="chip-btn" onClick={() => handleSend(chip)}>
-                {chip}
-              </button>
-            ))}
           </div>
 
           {/* Input Footer */}
