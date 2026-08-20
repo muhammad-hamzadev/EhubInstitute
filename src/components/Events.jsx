@@ -308,7 +308,6 @@ const Events = () => {
               <div 
                 className="book-page page-left" 
                 onClick={handlePrev}
-                title="Click to turn to previous page"
               >
                 <div className="page-texture-overlay"></div>
                 <LeftPageContent
@@ -327,7 +326,6 @@ const Events = () => {
               <div 
                 className="book-page page-right" 
                 onClick={handleNext}
-                title="Click to turn to next page"
               >
                 <div className="page-texture-overlay"></div>
                 <RightPageContent

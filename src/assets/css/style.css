@@ -2990,13 +2990,13 @@ select.form-input option {
 .main-photo-frame {
     position: relative;
     width: 100%;
-    height: 220px;
+    height: 225px;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14);
     border: 4px solid #FFFFFF;
     margin-bottom: 0.85rem;
-    background-color: #FFFFFF;
+    background-color: #3d001e;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3005,7 +3005,10 @@ select.form-input option {
 .slide-photo {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    max-height: 100%;
+    object-fit: contain;
+    object-position: center;
+    background-color: #3d001e;
 }
 
 .photo-shine-overlay {
@@ -3049,11 +3052,10 @@ select.form-input option {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14);
     border: 4px solid #FFFFFF;
     margin-bottom: 0.85rem;
-    background-color: #FFFFFF;
+    background-color: #3d001e;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
 }
 
 
@@ -5510,8 +5512,65 @@ html, body {
         margin-bottom: 1rem;
     }
 
-    .book-cover {
+    .the-3d-book.state-closed-front .book-front,
+    .the-3d-book.state-closed-back .book-back {
+        left: 50% !important;
+        transform: translateX(-50%) rotateY(0deg) !important;
+        width: 92% !important;
+        max-width: 350px !important;
+        border-radius: 14px !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: flex !important;
+        z-index: 50 !important;
+    }
+
+    .the-3d-book.state-open .book-cover,
+    .the-3d-book.state-open .book-front,
+    .the-3d-book.state-open .book-back {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+        display: none !important;
+    }
+
+    .the-3d-book.state-open .book-pages-container {
+        position: relative !important;
         width: 100% !important;
+        height: 310px !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 0 !important;
+        z-index: 10 !important;
+        border-radius: 16px !important;
+        background: linear-gradient(to right, #F8F4EC 0%, #EFE5D6 49%, #D4C5B0 50%, #EFE5D6 51%, #F8F4EC 100%) !important;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4) !important;
+        overflow: hidden !important;
+        border: 2px solid rgba(212, 175, 55, 0.4) !important;
+    }
+
+    .the-3d-book.state-open .page-left,
+    .the-3d-book.state-open .page-right {
+        position: relative !important;
+        width: 50% !important;
+        height: 100% !important;
+        padding: 0.5rem 0.5rem !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+
+    .the-3d-book.state-open .page-left {
+        border-right: 1px dashed rgba(114, 28, 36, 0.25) !important;
     }
 }
 
@@ -5623,15 +5682,24 @@ html, body {
         margin-bottom: 1.25rem;
     }
 
+    .leader-media-col {
+        justify-content: flex-start !important;
+        align-items: flex-start !important;
+        padding-left: 0.25rem !important;
+        margin-left: 0 !important;
+    }
+
     .leader-portrait-canvas {
-        width: 100%;
-        max-width: 200px;
-        height: 180px;
+        width: 100% !important;
+        max-width: 270px !important;
+        height: 240px !important;
+        margin-left: 0 !important;
+        margin-right: auto !important;
     }
 
     .leader-oval-arch-frame {
-        width: 150px;
-        height: 150px;
+        width: 185px !important;
+        height: 195px !important;
     }
 
     .leader-main-title {
@@ -5782,86 +5850,97 @@ html, body {
         padding: 0;
     }
 
+    .main-photo-frame,
+    .secondary-photo-frame {
+        height: 125px !important;
+        margin-bottom: 0.2rem !important;
+        border-radius: 8px !important;
+        border: 2px solid #FFFFFF !important;
+    }
+
+    .speech-bubble-box {
+        display: flex !important;
+        padding: 0.3rem 0.45rem !important;
+        font-size: 0.6rem !important;
+        line-height: 1.2 !important;
+        margin-top: 0.15rem !important;
+        margin-bottom: 0.2rem !important;
+        border-radius: 6px !important;
+        background: rgba(255, 255, 255, 0.95) !important;
+        border: 1px solid rgba(114, 28, 36, 0.12) !important;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04) !important;
+    }
+
+    .speech-quote-icon {
+        font-size: 0.72rem !important;
+        margin-top: 0 !important;
+        color: var(--color-secondary) !important;
+    }
+
     .page-top-header {
-        flex-wrap: wrap !important;
-        gap: 0.3rem !important;
-        margin-bottom: 0.4rem !important;
+        flex-wrap: nowrap !important;
+        gap: 0.2rem !important;
+        margin-bottom: 0.25rem !important;
     }
 
     .page-corner-badge {
-        font-size: 0.66rem !important;
-        padding: 0.2rem 0.55rem !important;
+        font-size: 0.55rem !important;
+        padding: 0.15rem 0.4rem !important;
         white-space: nowrap !important;
         display: inline-flex !important;
         align-items: center !important;
         border-radius: 50px !important;
     }
 
-    .the-3d-book {
-        height: auto !important;
-        min-height: 330px !important;
+    .chapter-label {
+        font-size: 0.62rem !important;
+        line-height: 1.1 !important;
     }
 
-    .book-spread-inner {
-        flex-direction: column !important;
-        height: auto !important;
-        gap: 0.75rem;
-    }
-
-    .book-left-page,
-    .book-right-page {
-        width: 100% !important;
-        position: relative !important;
-        border-radius: 10px !important;
-        padding: 0.75rem 0.85rem !important;
-        margin-bottom: 0.5rem;
-    }
-
-    .main-photo-frame {
-        height: 160px !important;
-        margin-bottom: 0.4rem !important;
-    }
-
-    .secondary-photo-frame {
-        height: 130px !important;
-        margin-bottom: 0.4rem !important;
-    }
-
-    .speech-bubble-box {
-        padding: 0.4rem 0.6rem !important;
-        font-size: 0.75rem !important;
-        margin: 0.3rem 0 !important;
-    }
-
-    .journal-text-content {
-        margin-top: 0.3rem;
+    .page-number-indicator {
+        font-size: 0.55rem !important;
     }
 
     .slide-heading {
-        font-size: 1rem !important;
-        margin-bottom: 0.25rem !important;
+        font-size: 0.85rem !important;
+        margin-bottom: 0.15rem !important;
+        line-height: 1.15 !important;
     }
 
     .cursive-handwriting {
-        font-size: 0.75rem !important;
-        line-height: 1.25 !important;
+        font-size: 0.62rem !important;
+        line-height: 1.15 !important;
     }
 
     .page-footer-nav {
-        flex-direction: column;
-        gap: 0.4rem;
-        margin-top: 0.5rem;
+        flex-direction: row !important;
+        margin-top: auto !important;
+        padding-top: 0.15rem !important;
+        display: flex !important;
+        align-items: center !important;
+        width: 100% !important;
+    }
+
+    .page-left .page-footer-nav {
+        justify-content: flex-start !important;
+    }
+
+    .page-right .page-footer-nav {
+        justify-content: flex-end !important;
     }
 
     .book-nav-btn {
-        width: 100%;
-        padding: 0.45rem 0.75rem;
-        font-size: 0.82rem;
-        justify-content: center;
+        padding: 0.32rem 0.6rem !important;
+        font-size: 0.7rem !important;
+        border-radius: 50px !important;
     }
 
     .book-cover {
-        width: 100% !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 92% !important;
+        max-width: 350px !important;
+        border-radius: 14px !important;
     }
 
     /* Floating AI Chat Assistant Widget */
