@@ -770,7 +770,7 @@ section {
 }
 
 .reveal-card:hover .reveal-card-photo {
-    transform: scale(1.06);
+    transform: none;
 }
 
 .reveal-img-gradient-overlay {
@@ -1388,7 +1388,7 @@ section {
 }
 
 .book-card:hover .book-cover {
-    transform: scale(1.05) rotate(-2deg);
+    transform: none;
 }
 
 .book-badge {
@@ -1472,7 +1472,7 @@ section {
 }
 
 .success-card:hover {
-    transform: scale(1.03);
+    transform: none;
     box-shadow: var(--shadow-md);
 }
 
@@ -1634,7 +1634,7 @@ section {
 }
 
 .gallery-slide:hover img {
-    transform: scale(1.06);
+    transform: none;
 }
 
 .slide-caption {
@@ -2057,7 +2057,7 @@ select.form-input option {
 }
 
 .book-card:hover .book-cover-wrapper img {
-    transform: scale(1.05);
+    transform: none;
 }
 
 .book-badge {
@@ -2226,7 +2226,7 @@ select.form-input option {
 }
 
 .coverflow-card.is-center:hover .wof-img-wrapper img {
-    transform: scale(1.05);
+    transform: none;
 }
 
 .wof-badge-top {
@@ -3959,7 +3959,7 @@ select.form-input option {
 }
 
 .single-pic-spotlight-card:hover .single-banner-img {
-    transform: scale(1.08);
+    transform: none;
 }
 
 /* Card Body Content (Matching Screenshot 1:1) */
@@ -4994,7 +4994,7 @@ textarea.custom-form-control {
 }
 
 .leader-oval-arch-frame:hover .leader-portrait-img {
-    transform: scale(1.22);
+    transform: scale(1.15);
 }
 
 /* Floating CEO Glass Pill Badge */
@@ -5215,7 +5215,7 @@ textarea.custom-form-control {
 }
 
 .hero-arc-wrapper:hover .hero-arc-image-container img {
-    transform: scale(1.05);
+    transform: none;
 }
 
 /* ==========================================================================
