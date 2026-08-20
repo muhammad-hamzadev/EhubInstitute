@@ -363,7 +363,7 @@ section {
 
 .hero-dots-grid {
     position: absolute;
-    top: 5rem;
+    top: 7.5rem;
     left: 48%;
     transform: translateX(-50%);
     width: 120px;
@@ -5123,8 +5123,8 @@ textarea.custom-form-control {
 .leader-portrait-canvas {
     position: relative;
     width: 100%;
-    max-width: 220px;
-    height: 210px;
+    max-width: 290px;
+    height: 250px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -5135,12 +5135,12 @@ textarea.custom-form-control {
     top: -10px;
     left: -10px;
     bottom: -10px;
-    width: 120px;
+    width: 210px;
     background: linear-gradient(145deg, #660033 0%, #450022 100%);
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-    border-top-right-radius: 80px;
-    border-bottom-right-radius: 80px;
+    border-top-left-radius: 28px;
+    border-bottom-left-radius: 28px;
+    border-top-right-radius: 110px;
+    border-bottom-right-radius: 110px;
     z-index: 1;
     box-shadow: 0 10px 22px rgba(102, 0, 51, 0.22);
 }
@@ -5148,22 +5148,22 @@ textarea.custom-form-control {
 /* Photo Container */
 .leader-oval-arch-frame {
     position: relative;
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
+    width: 215px;
+    height: 225px;
+    border-radius: 110px;
     overflow: hidden;
     background: linear-gradient(180deg, #FBF6EF 0%, #EFE5D6 100%);
     z-index: 3;
     box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
-    border: 3px solid #D4AF37;
+    border: 3.5px solid #D4AF37;
 }
 
 .leader-portrait-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 5%;
-    transform: scale(1.15);
+    object-position: center 10%;
+    transform: scale(1.02);
     filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15));
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -5673,6 +5673,10 @@ body {
         padding-bottom: 7.5rem !important;
     }
 
+    .hero-dots-grid {
+        top: 7.8rem !important;
+    }
+
     .hero-container {
         width: 100% !important;
         display: flex !important;
@@ -5692,7 +5696,7 @@ body {
     .hero-title {
         font-size: 1.7rem !important;
         line-height: 1.25 !important;
-        margin-top: 2.5rem !important;
+        margin-top: 4.8rem !important;
         margin-bottom: 1.5rem !important;
     }
 
@@ -5771,15 +5775,22 @@ body {
 
     .leader-portrait-canvas {
         width: 100% !important;
-        max-width: 270px !important;
-        height: 240px !important;
+        max-width: 290px !important;
+        height: 250px !important;
         margin-left: 0 !important;
         margin-right: auto !important;
     }
 
     .leader-oval-arch-frame {
-        width: 185px !important;
-        height: 195px !important;
+        width: 210px !important;
+        height: 220px !important;
+        border-radius: 105px !important;
+    }
+
+    .maroon-corner-shape {
+        width: 200px !important;
+        border-top-right-radius: 105px !important;
+        border-bottom-right-radius: 105px !important;
     }
 
     .leader-main-title {
