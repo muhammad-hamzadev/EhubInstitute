@@ -609,63 +609,90 @@ section {
     }
 }
 
-/* --- 2. About Section (Pure White Background) --- */
+/* --- 2. About Section (Enhanced Premium Cards) --- */
 .about-section {
-    background-color: #FFFFFF;
-    padding: 3rem 0;
-    min-height: calc(100vh - 60px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    background: linear-gradient(180deg, #FFFFFF 0%, #FAF8F5 100%);
+    padding: 4rem 0;
     scroll-margin-top: 60px;
 }
 
 .about-pill-cards-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
-    max-width: 900px;
-    margin: 2.25rem auto 0 auto;
+    gap: 1.5rem;
+    max-width: 960px;
+    margin: 2.5rem auto 0 auto;
     align-items: stretch;
 }
 
-/* Add specific style for the About section description to make it smaller */
 .about-section .section-desc {
     font-size: 0.95rem;
     line-height: 1.6;
 }
 
 .about-pill-card {
-    background-color: #FFFFFF;
-    border-radius: 16px;
-    padding: 1.15rem 1.4rem;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    background: #FFFFFF;
+    border-radius: 18px;
+    padding: 1.35rem 1.5rem;
+    box-shadow: 0 10px 25px rgba(114, 28, 36, 0.05);
+    border: 1px solid rgba(114, 28, 36, 0.1);
     display: flex;
     align-items: flex-start;
-    gap: 1.1rem;
+    gap: 1.25rem;
+    position: relative;
+    overflow: hidden;
     height: 100%;
-    transition: var(--transition-smooth);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-pill-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, #721C24 0%, #D4AF37 100%);
+    opacity: 0.8;
+    transition: width 0.3s ease;
 }
 
 .about-pill-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 28px rgba(102, 0, 51, 0.08);
-    border-color: var(--color-secondary);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px rgba(114, 28, 36, 0.12);
+    border-color: rgba(212, 175, 55, 0.4);
+}
+
+.about-pill-card:hover::before {
+    width: 6px;
+}
+
+/* Icon Styling */
+.pill-card-icon-wrapper {
+    position: relative;
+    flex-shrink: 0;
 }
 
 .pill-card-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background-color: #FFF8EB;
-    color: var(--color-primary);
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(114, 28, 36, 0.08) 0%, rgba(212, 175, 55, 0.12) 100%);
+    color: #721C24;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.3rem;
-    flex-shrink: 0;
-    border: 1px solid #F3E2C4;
+    font-size: 1.65rem;
+    border: 1px solid rgba(114, 28, 36, 0.15);
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+}
+
+.about-pill-card:hover .pill-card-icon {
+    background: linear-gradient(135deg, #721C24 0%, #9B2C37 100%);
+    color: #FFD700;
+    border-color: #721C24;
+    box-shadow: 0 6px 16px rgba(114, 28, 36, 0.25);
 }
 
 .pill-card-text {
@@ -673,21 +700,40 @@ section {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: 44px;
+}
+
+.pill-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.35rem;
 }
 
 .pill-card-text h3 {
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     font-weight: 800;
-    color: var(--color-primary);
-    margin-bottom: 0.25rem;
+    color: #721C24;
     line-height: 1.25;
+    margin: 0;
+}
+
+.pill-feature-tag {
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 0.2rem 0.55rem;
+    border-radius: 50px;
+    background: rgba(114, 28, 36, 0.06);
+    color: #721C24;
+    border: 1px solid rgba(114, 28, 36, 0.12);
+    letter-spacing: 0.3px;
+    white-space: nowrap;
 }
 
 .pill-card-text p {
-    font-size: 0.8rem;
-    color: var(--color-text-muted);
-    line-height: 1.45;
+    font-size: 0.84rem;
+    color: #475569;
+    line-height: 1.5;
     margin: 0;
 }
 
@@ -698,7 +744,7 @@ section {
     }
 
     .about-pill-card {
-        padding: 1rem 1.2rem;
+        padding: 1rem 1.15rem;
     }
 }
 

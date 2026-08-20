@@ -1,6 +1,33 @@
 import React from 'react';
 
 const About = () => {
+  const aboutFeatures = [
+    {
+      icon: "ph-duotone ph-sparkle",
+      title: "Practical Learning",
+      tag: "Skill-Focused",
+      desc: "Activity-driven methodology focused on real-world speaking, confidence building, and accent refinement."
+    },
+    {
+      icon: "ph-duotone ph-user-focus",
+      title: "Student-Centered",
+      tag: "Personalized",
+      desc: "Tailored attention designed specifically for students, job seekers, and corporate professionals."
+    },
+    {
+      icon: "ph-duotone ph-globe-hemisphere-west",
+      title: "Global Standards",
+      tag: "Certified Partner",
+      desc: "Official British Council IELTS partner & exclusive iTTi-USA affiliated TEFL/TESOL certification center."
+    },
+    {
+      icon: "ph-duotone ph-trophy",
+      title: "Proven Track Record",
+      tag: "5,000+ Alumni",
+      desc: "Empowered over 5,000+ graduates with top university admissions, high IELTS bands (8.0+), and career success."
+    }
+  ];
+
   return (
     <section className="about-section" id="about">
       <div className="container">
@@ -14,51 +41,24 @@ const About = () => {
           </p>
         </div>
 
-        {/* 4 Small Pill Cards Grid (Matching Mockup Screenshot 1:1) */}
+        {/* 4 Premium Cards Grid */}
         <div className="about-pill-cards-grid">
-          {/* Card 1 */}
-          <div className="about-pill-card">
-            <div className="pill-card-icon">
-              <i className="ph-fill ph-target"></i>
+          {aboutFeatures.map((item, idx) => (
+            <div className="about-pill-card" key={idx}>
+              <div className="pill-card-icon-wrapper">
+                <div className="pill-card-icon">
+                  <i className={item.icon}></i>
+                </div>
+              </div>
+              <div className="pill-card-text">
+                <div className="pill-card-header">
+                  <h3>{item.title}</h3>
+                  <span className="pill-feature-tag">{item.tag}</span>
+                </div>
+                <p>{item.desc}</p>
+              </div>
             </div>
-            <div className="pill-card-text">
-              <h3>Practical Learning</h3>
-              <p>Activity-driven methodology focused on real-world speaking, confidence, and accent refinement.</p>
-            </div>
-          </div>
-
-          {/* Card 2 */}
-          <div className="about-pill-card">
-            <div className="pill-card-icon">
-              <i className="ph-fill ph-users"></i>
-            </div>
-            <div className="pill-card-text">
-              <h3>Student-Centered</h3>
-              <p>Personalized attention designed for students, job seekers, and corporate professionals.</p>
-            </div>
-          </div>
-
-          {/* Card 3 */}
-          <div className="about-pill-card">
-            <div className="pill-card-icon">
-              <i className="ph-fill ph-globe"></i>
-            </div>
-            <div className="pill-card-text">
-              <h3>Global Standards</h3>
-              <p>Official British Council IELTS partner & exclusive iTTi-USA affiliated TEFL/TESOL certification center.</p>
-            </div>
-          </div>
-
-          {/* Card 4 */}
-          <div className="about-pill-card">
-            <div className="pill-card-icon">
-              <i className="ph-fill ph-trophy"></i>
-            </div>
-            <div className="pill-card-text">
-              <h3>Proven Track Record</h3>
-              <p>Empowered over 5,000+ alumni with international university admissions, high IELTS bands (8.0+ Band), and career success.</p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
