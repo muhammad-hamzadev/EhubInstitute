@@ -1650,7 +1650,8 @@ section {
 
 .gallery-carousel {
     display: flex;
-    background: linear-gradient(rgba(114, 28, 36, 0.92), rgba(114, 28, 36, 0.92)), url('/EhubInstitute/assets/images/img_p2_2.png') center/cover;
+    background: linear-gradient(rgba(114, 28, 36, 0.92), rgba(114, 28, 36, 0.92)), url('/assets/images/img_p2_2.png') center/cover;
+    gap: 1.5rem;
     padding: 1rem 2rem 2rem 2rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
