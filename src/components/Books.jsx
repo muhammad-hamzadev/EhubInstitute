@@ -57,6 +57,8 @@ const Books = () => {
                       src={book.frontCover} 
                       alt={`${book.title} Front Cover`} 
                       className="flip-img" 
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
 
@@ -66,6 +68,8 @@ const Books = () => {
                       src={book.backCover} 
                       alt={`${book.title} Back Cover`} 
                       className="flip-img" 
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 </div>

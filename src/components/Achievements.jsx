@@ -118,7 +118,7 @@ const Achievements = () => {
               >
                 {/* Image Header */}
                 <div className="wof-img-wrapper">
-                  <img src={item.image} alt={item.name} />
+                  <img src={item.image} alt={item.name} loading="lazy" decoding="async" />
                 </div>
 
                 {/* Card Content */}

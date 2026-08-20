@@ -94,7 +94,7 @@ const WallOfFame = () => {
               >
                 {/* Single Full Cover Image */}
                 <div className="spotlight-single-banner">
-                  <img src={item.banner} alt={item.name} className="single-banner-img" />
+                  <img src={item.banner} alt={item.name} className="single-banner-img" loading="lazy" decoding="async" />
                 </div>
 
                 {/* Card Main Body */}

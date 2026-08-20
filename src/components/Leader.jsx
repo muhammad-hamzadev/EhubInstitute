@@ -34,6 +34,8 @@ const Leader = () => {
                       src="/assets/user_images/maroof_ceo.png" 
                       alt="Maroof Mehmood - CEO E-Hub Institute" 
                       className="leader-portrait-img"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
 
@@ -103,6 +105,8 @@ const Leader = () => {
                       src="/assets/user_images/ahtesham_khan.svg" 
                       alt="Ahtesham Khan - Campus Manager E-Hub Institute" 
                       className="leader-portrait-img"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
 

@@ -10,6 +10,8 @@ const CEO = () => {
             <img
               src="/assets/user_images/maroof_ceo.png"
               alt="CEO Maroof"
+              loading="lazy"
+              decoding="async"
             />
             <div className="ceo-image-overlay">
               <h3>CEO Maroof</h3>
