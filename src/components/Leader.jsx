@@ -31,7 +31,7 @@ const Leader = () => {
                   {/* Oval Arch Photo Container */}
                   <div className="leader-oval-arch-frame">
                     <img 
-                      src="/EhubInstitute/assets/user_images/maroof_ceo.png" 
+                      src="/assets/user_images/maroof_ceo.png" 
                       alt="Maroof Mehmood - CEO E-Hub Institute" 
                       className="leader-portrait-img"
                     />
@@ -100,7 +100,7 @@ const Leader = () => {
 
                   <div className="leader-oval-arch-frame">
                     <img 
-                      src="/EhubInstitute/assets/user_images/ahtesham_khan.svg" 
+                      src="/assets/user_images/ahtesham_khan.svg" 
                       alt="Ahtesham Khan - Campus Manager E-Hub Institute" 
                       className="leader-portrait-img"
                     />

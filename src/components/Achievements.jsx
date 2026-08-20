@@ -6,42 +6,42 @@ const achieversData = [
     name: 'Career & Job Fair',
     achievement: 'Expanding Students Exposure',
     type: '💼 Career Fair',
-    image: '/EhubInstitute/assets/user_images/ach_job_fair.svg'
+    image: '/assets/user_images/ach_job_fair.svg'
   },
   {
     id: 'ach-2',
     name: 'National Mashal Award',
     achievement: 'Best Educationist Award',
     type: '🏆 Excellence',
-    image: '/EhubInstitute/assets/user_images/ach_national_mashal_award.svg'
+    image: '/assets/user_images/ach_national_mashal_award.svg'
   },
   {
     id: 'ach-3',
     name: 'Free Education for Orphans',
     achievement: 'E-Hub Funds 10 Students/Month',
     type: '💖 Community',
-    image: '/EhubInstitute/assets/user_images/ach_free_education_orphans.svg'
+    image: '/assets/user_images/ach_free_education_orphans.svg'
   },
   {
     id: 'ach-4',
     name: 'Iqra National University',
     achievement: 'MoU Partnership Signed',
     type: '🤝 Academic MoU',
-    image: '/EhubInstitute/assets/user_images/ach_mou_iqra_university.svg'
+    image: '/assets/user_images/ach_mou_iqra_university.svg'
   },
   {
     id: 'ach-5',
     name: 'CECOS University IT & Engg',
     achievement: 'Awarded & Recognized',
     type: '🏆 Recognition',
-    image: '/EhubInstitute/assets/user_images/ach_cecos_university_award.svg'
+    image: '/assets/user_images/ach_cecos_university_award.svg'
   },
   {
     id: 'ach-6',
     name: 'British Council Partner',
     achievement: 'Official Registered Member',
     type: '🇬🇧 British Council',
-    image: '/EhubInstitute/assets/user_images/ach_british_council_member.svg'
+    image: '/assets/user_images/ach_british_council_member.svg'
   }
 ];
 
