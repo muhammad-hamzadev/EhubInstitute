@@ -133,7 +133,9 @@ const AIChatbot = () => {
         ) : (
           <>
             <div className="trigger-pulse"></div>
-            <CuteAIRobotIcon size={32} />
+            <div className="spline-icon-wrapper">
+              <spline-viewer url="https://prod.spline.design/vRdVA40gtbx99rEJ/scene.splinecode"></spline-viewer>
+            </div>
             <span className="trigger-label-pill">E-Hub AI</span>
           </>
         )}
@@ -146,7 +148,9 @@ const AIChatbot = () => {
           <div className="chatbot-header">
             <div className="header-info">
               <div className="ai-mascot-avatar">
-                <CuteAIRobotIcon size={28} />
+                <div className="spline-avatar-wrapper">
+                  <spline-viewer url="https://prod.spline.design/vRdVA40gtbx99rEJ/scene.splinecode"></spline-viewer>
+                </div>
                 <span className="online-dot"></span>
               </div>
               <div>
@@ -165,7 +169,9 @@ const AIChatbot = () => {
               <div key={index} className={`chat-bubble-row ${msg.sender}`}>
                 {msg.sender === 'ai' && (
                   <div className="bubble-mascot">
-                    <CuteAIRobotIcon size={20} />
+                    <div className="spline-bubble-wrapper">
+                      <spline-viewer url="https://prod.spline.design/vRdVA40gtbx99rEJ/scene.splinecode"></spline-viewer>
+                    </div>
                   </div>
                 )}
                 <div className="bubble-content">
@@ -179,7 +185,9 @@ const AIChatbot = () => {
             {isTyping && (
               <div className="chat-bubble-row ai">
                 <div className="bubble-mascot">
-                  <CuteAIRobotIcon size={20} />
+                  <div className="spline-bubble-wrapper">
+                    <spline-viewer url="https://prod.spline.design/vRdVA40gtbx99rEJ/scene.splinecode"></spline-viewer>
+                  </div>
                 </div>
                 <div className="bubble-content typing-indicator">
                   <span></span>
