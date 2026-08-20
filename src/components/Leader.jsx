@@ -59,7 +59,7 @@ const Leader = () => {
                   Maroof Mehmood is the driving force behind E-Hub Institute. With a strong vision for quality education and skill development, he has dedicated his career to empowering students, professionals, and communities through effective communication and practical learning.
                 </p>
 
-                {/* CEO Message Box (Matching Reference 1:1) */}
+                {/* CEO Message Box */}
                 <div className="ceo-message-box">
                   <div className="quote-icon-top">
                     <i className="ph-fill ph-quotes"></i>
@@ -77,27 +77,6 @@ const Leader = () => {
 
                   <div className="quote-icon-bottom">
                     <i className="ph-fill ph-quotes"></i>
-                  </div>
-                </div>
-
-                {/* Bottom Row: Signature & Motto */}
-                <div className="leader-footer-row">
-                  <div className="leader-signature-col">
-                    <span className="leader-cursive-signature">Maroof Mehmood</span>
-                    <span className="leader-sig-role">CEO – E-Hub & MW Foundation</span>
-                    <span className="leader-sig-cert">US Certified Instructor</span>
-                  </div>
-
-                  <div className="leader-divider-vertical"></div>
-
-                  <div className="leader-motto-col">
-                    <div className="motto-laurel-icon">
-                      <i className="ph-fill ph-laurel-wreath"></i>
-                    </div>
-                    <div className="motto-text">
-                      <strong>Empowering Minds,</strong>
-                      <span>Building Futures.</span>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -165,27 +144,6 @@ const Leader = () => {
 
                   <div className="quote-icon-bottom">
                     <i className="ph-fill ph-quotes"></i>
-                  </div>
-                </div>
-
-                {/* Bottom Row: Signature & Motto */}
-                <div className="leader-footer-row">
-                  <div className="leader-signature-col">
-                    <span className="leader-cursive-signature">Ahtesham Khan</span>
-                    <span className="leader-sig-role">Campus Manager – E-Hub Institute</span>
-                    <span className="leader-sig-cert">BBA (Hons.)</span>
-                  </div>
-
-                  <div className="leader-divider-vertical"></div>
-
-                  <div className="leader-motto-col">
-                    <div className="motto-laurel-icon">
-                      <i className="ph-fill ph-laurel-wreath"></i>
-                    </div>
-                    <div className="motto-text">
-                      <strong>Inspiring Growth,</strong>
-                      <span>Achieving Excellence.</span>
-                    </div>
                   </div>
                 </div>
               </div>

@@ -119,13 +119,13 @@ const Achievements = () => {
                 {/* Image Header */}
                 <div className="wof-img-wrapper">
                   <img src={item.image} alt={item.name} />
-                  <span className="wof-badge-top">{item.type}</span>
                 </div>
 
                 {/* Card Content */}
                 <div className="wof-card-body">
+                  <span className="wof-badge-inline">{item.type}</span>
                   <h3 className="wof-name">{item.name}</h3>
-                  <p className="wof-desc text-accent" style={{ fontWeight: '600', marginTop: '10px' }}>{item.achievement}</p>
+                  <p className="wof-desc text-accent" style={{ fontWeight: '600', marginTop: '2px' }}>{item.achievement}</p>
                 </div>
               </div>
             );

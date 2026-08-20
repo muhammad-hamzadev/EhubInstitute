@@ -2258,16 +2258,19 @@ select.form-input option {
 .wof-img-wrapper {
     position: relative;
     width: 100%;
-    height: 180px;
+    height: 195px;
     overflow: hidden;
-    background-color: #f1f5f9;
+    background-color: #5c0033;
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .wof-img-wrapper img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
     transition: transform 0.4s ease;
 }
@@ -2276,23 +2279,20 @@ select.form-input option {
     transform: none;
 }
 
-.wof-badge-top {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: rgba(102, 0, 51, 0.9);
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
-    color: #FFFFFF;
-    font-size: 0.72rem;
+.wof-badge-inline {
+    background-color: rgba(114, 28, 36, 0.08);
+    color: #721C24;
+    font-size: 0.68rem;
     font-weight: 700;
-    padding: 0.2rem 0.65rem;
+    padding: 0.18rem 0.55rem;
     border-radius: 50px;
-    border: 1px solid rgba(212, 175, 55, 0.4);
+    border: 1px solid rgba(114, 28, 36, 0.15);
+    margin-bottom: 0.25rem;
+    display: inline-block;
 }
 
 .wof-card-body {
-    padding: 1rem;
+    padding: 0.45rem 0.75rem;
     background: #FFFFFF;
     position: relative;
     display: flex;
@@ -2301,6 +2301,7 @@ select.form-input option {
     align-items: center;
     text-align: center;
     flex-grow: 1;
+    border-top: 1px solid rgba(114, 28, 36, 0.08);
 }
 
 .wof-name {
@@ -3544,6 +3545,55 @@ select.form-input option {
     gap: 0.6rem;
 }
 
+/* Spline 3D Viewer Custom Sizing */
+.spline-icon-wrapper {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.spline-icon-wrapper spline-viewer {
+    width: 64px;
+    height: 64px;
+    transform: scale(0.85);
+}
+
+.spline-avatar-wrapper {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.spline-avatar-wrapper spline-viewer {
+    width: 44px;
+    height: 44px;
+    transform: scale(0.85);
+}
+
+.spline-bubble-wrapper {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.spline-bubble-wrapper spline-viewer {
+    width: 34px;
+    height: 34px;
+    transform: scale(0.85);
+}
+
 .chat-input {
     flex: 1;
     border: 1px solid #cbd5e1;
@@ -3952,9 +4002,9 @@ select.form-input option {
 /* Single Picture Spotlight Card (1:1 Screenshot Match) */
 .single-pic-spotlight-card {
     position: relative;
-    width: 220px;
-    height: 250px;
-    border-radius: 20px;
+    width: 240px;
+    height: 275px;
+    border-radius: 18px;
     background-color: #FFFFFF;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
     border: 1px solid rgba(0, 0, 0, 0.08);
@@ -3992,16 +4042,21 @@ select.form-input option {
 .spotlight-single-banner {
     position: relative;
     width: 100%;
-    height: 140px;
-    background-color: #f1f5f9;
+    height: 195px;
+    background-color: #5c0033;
     overflow: hidden;
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .single-banner-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    object-position: center;
+    display: block;
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
@@ -4011,21 +4066,23 @@ select.form-input option {
 
 /* Card Body Content (Matching Screenshot 1:1) */
 .spotlight-body {
-    padding: 0.9rem 1.15rem;
+    padding: 0.45rem 0.75rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     flex: 1;
     justify-content: center;
+    background-color: #FFFFFF;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .spotlight-name {
-    font-size: 1.1rem;
+    font-size: 0.98rem;
     font-weight: 800;
     color: #0f172a;
-    margin-bottom: 0.2rem;
-    line-height: 1.25;
+    margin-bottom: 0.1rem;
+    line-height: 1.2;
 }
 
 .spotlight-role {
@@ -4047,10 +4104,11 @@ select.form-input option {
 }
 
 .spotlight-desc {
-    font-size: 0.82rem;
-    color: #64748b;
-    line-height: 1.45;
-    margin-bottom: 0.75rem;
+    font-size: 0.78rem;
+    color: #721C24;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
 }
 
 /* Bottom Metadata Bar */
@@ -4264,15 +4322,15 @@ select.form-input option {
     align-items: center;
     text-align: center;
     width: 100%;
-    max-width: 210px;
+    max-width: 215px;
     height: 100%;
 }
 
 .flip-card {
     background-color: transparent;
     width: 100%;
-    max-width: 210px;
-    height: 285px;
+    max-width: 215px;
+    height: 315px;
     perspective: 1000px;
     font-family: var(--font-body);
     cursor: pointer;
@@ -4304,6 +4362,7 @@ select.form-input option {
     align-items: center;
     width: 100%;
     height: 100%;
+    padding: 0.5rem;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     border: 1.5px solid rgba(114, 28, 36, 0.15);
@@ -4331,7 +4390,8 @@ select.form-input option {
 .flip-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    max-height: 100%;
+    object-fit: contain;
     object-position: center;
     display: block;
     border-radius: calc(0.85rem - 1.5px);
@@ -4680,7 +4740,7 @@ textarea.custom-form-control {
 }
 
 .footer-brand-bio {
-    color: #94A3B8;
+    color: #FFFFFF;
     font-size: 0.88rem;
     line-height: 1.6;
     margin-bottom: 1.5rem;
@@ -4776,7 +4836,7 @@ textarea.custom-form-control {
 }
 
 .footer-v2-links a {
-    color: #94A3B8;
+    color: #FFFFFF;
     text-decoration: none;
     font-size: 0.88rem;
     display: flex;
@@ -4820,14 +4880,14 @@ textarea.custom-form-control {
 }
 
 .footer-contact-item p {
-    color: #94A3B8;
+    color: #FFFFFF;
     font-size: 0.85rem;
     line-height: 1.4;
     margin: 0;
 }
 
 .footer-contact-item a {
-    color: #94A3B8;
+    color: #FFFFFF;
     text-decoration: none;
     transition: color 0.2s ease;
 }
@@ -4852,22 +4912,22 @@ textarea.custom-form-control {
 }
 
 .copyright-text {
-    color: #64748B;
+    color: #FFFFFF;
     font-size: 0.85rem;
     margin: 0;
 }
 
 .copyright-text strong {
-    color: #94A3B8;
+    color: #FFFFFF;
 }
 
 .developer-credit {
-    color: #94A3B8;
+    color: #FFFFFF;
     font-size: 0.88rem;
 }
 
 .credit-brand {
-    color: #FFB703;
+    color: #FFFFFF;
     font-weight: 800;
     letter-spacing: 0.5px;
     text-decoration: none;
@@ -4920,7 +4980,7 @@ textarea.custom-form-control {
     background: #FFFFFF;
     border-radius: 28px;
     box-shadow: 0 20px 50px rgba(102, 0, 51, 0.07), 0 2px 10px rgba(0, 0, 0, 0.03);
-    padding: 1.25rem 1.35rem 1.35rem 1.35rem;
+    padding: 1.1rem 1.25rem 1.1rem 1.25rem;
     border: 1px solid rgba(114, 28, 36, 0.08);
     position: relative;
     width: 100%;
@@ -4995,8 +5055,8 @@ textarea.custom-form-control {
 .leader-portrait-canvas {
     position: relative;
     width: 100%;
-    max-width: 250px;
-    height: 255px;
+    max-width: 220px;
+    height: 210px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -5004,29 +5064,29 @@ textarea.custom-form-control {
 
 .maroon-corner-shape {
     position: absolute;
-    top: -15px;
-    left: -15px;
-    bottom: -15px;
-    width: 140px;
+    top: -10px;
+    left: -10px;
+    bottom: -10px;
+    width: 120px;
     background: linear-gradient(145deg, #660033 0%, #450022 100%);
-    border-top-left-radius: 24px;
-    border-bottom-left-radius: 24px;
-    border-top-right-radius: 95px;
-    border-bottom-right-radius: 95px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 80px;
+    border-bottom-right-radius: 80px;
     z-index: 1;
-    box-shadow: 0 12px 28px rgba(102, 0, 51, 0.22);
+    box-shadow: 0 10px 22px rgba(102, 0, 51, 0.22);
 }
 
 /* Photo Container */
 .leader-oval-arch-frame {
     position: relative;
-    width: 230px;
-    height: 230px;
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
     overflow: hidden;
     background: linear-gradient(180deg, #FBF6EF 0%, #EFE5D6 100%);
     z-index: 3;
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
     border: 3px solid #D4AF37;
 }
 
@@ -5624,12 +5684,12 @@ html, body {
     }
 
     .flip-card {
-        height: 270px !important;
+        height: 310px !important;
     }
 
     .flip-img {
-        height: 270px !important;
-        object-fit: contain;
+        height: 100% !important;
+        object-fit: contain !important;
     }
 
     /* Course & Program Accordion Cards Mobile Compact */
