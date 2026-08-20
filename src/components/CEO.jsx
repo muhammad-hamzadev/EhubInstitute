@@ -8,7 +8,7 @@ const CEO = () => {
         <div className="ceo-image-wrapper">
           <div className="ceo-image-inner">
             <img
-              src="/assets/images/img_p15_0.jpeg"
+              src="/assets/user_images/maroof_ceo.png"
               alt="CEO Maroof"
             />
             <div className="ceo-image-overlay">

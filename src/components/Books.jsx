@@ -5,29 +5,29 @@ const booksData = [
     id: 'book-1',
     title: 'English for Beginners',
     author: 'By Maroof Mehmood',
-    frontCover: '/assets/books/book1_beginners_front.jpg',
-    backCover: '/assets/books/book1_beginners_back.jpg'
+    frontCover: '/assets/books/book1_beginners_front.svg',
+    backCover: '/assets/books/book1_beginners_back.svg'
   },
   {
     id: 'book-2',
     title: 'English for Intermediate',
     author: 'By Maroof Mehmood',
-    frontCover: '/assets/books/book2_intermediate_front.jpg',
-    backCover: '/assets/books/book2_intermediate_back.jpg'
+    frontCover: '/assets/books/book2_intermediate_front.svg',
+    backCover: '/assets/books/book2_intermediate_back.svg'
   },
   {
     id: 'book-3',
     title: 'English for Communication Skill',
     author: 'By Maroof Mehmood',
-    frontCover: '/assets/books/book3_communication_front.jpg',
-    backCover: '/assets/books/book3_communication_back.jpg'
+    frontCover: '/assets/books/book3_communication_front.svg',
+    backCover: '/assets/books/book3_communication_back.svg'
   },
   {
     id: 'book-4',
     title: 'IELTS for 45 Days',
     author: 'By Maroof Mehmood',
-    frontCover: '/assets/books/book4_ielts_front.jpg',
-    backCover: '/assets/books/book4_ielts_back.jpg'
+    frontCover: '/assets/books/book4_ielts_front.svg',
+    backCover: '/assets/books/book4_ielts_back.svg'
   }
 ];
 

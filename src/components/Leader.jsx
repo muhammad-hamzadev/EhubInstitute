@@ -104,12 +104,12 @@ const Leader = () => {
             </div>
           </div>
 
-          {/* Main Executive Card 2: Senior Team Member / Director */}
+          {/* Main Executive Card 2: Campus Manager - Ahtesham Khan */}
           <div className="leader-showcase-card">
             {/* Top Center Tag */}
             <div className="leader-tag-wrapper">
               <span className="leader-diamond-line"></span>
-              <span className="leader-tag-text">ACADEMIC LEADERSHIP</span>
+              <span className="leader-tag-text">CAMPUS MANAGER</span>
               <span className="leader-diamond-line"></span>
             </div>
 
@@ -121,20 +121,20 @@ const Leader = () => {
 
                   <div className="leader-oval-arch-frame">
                     <img 
-                      src="/assets/images/img_p15_0.jpeg" 
-                      alt="Academic Director - E-Hub Institute" 
+                      src="/assets/user_images/ahtesham_khan.svg" 
+                      alt="Ahtesham Khan - Campus Manager E-Hub Institute" 
                       className="leader-portrait-img"
                     />
                   </div>
 
                   <div className="leader-floating-pill-badge">
                     <div className="pill-badge-avatar">
-                      <i className="ph-fill ph-graduation-cap"></i>
+                      <i className="ph-fill ph-user-gear"></i>
                     </div>
                     <div className="pill-badge-text">
-                      <h4 className="pill-badge-name">Director of Academics</h4>
-                      <span className="pill-badge-role">Head of English & Pedagogy</span>
-                      <span className="pill-badge-cert">British Council Certified</span>
+                      <h4 className="pill-badge-name">Ahtesham Khan</h4>
+                      <span className="pill-badge-role">Campus Manager</span>
+                      <span className="pill-badge-cert">BBA (Hons.)</span>
                     </div>
                   </div>
                 </div>
@@ -142,10 +142,10 @@ const Leader = () => {
 
               {/* Right Column: Meet the Team Member Content */}
               <div className="leader-content-col">
-                <h2 className="leader-main-title">Director of Academics</h2>
+                <h2 className="leader-main-title">Ahtesham Khan</h2>
                 
                 <p className="leader-intro-desc">
-                  Dedicated to fostering high-standard pedagogy, curriculum innovation, and student success. Leading our certified faculty to deliver world-class training across IELTS, TEFL/TESOL, and professional English programs.
+                  Ahtesham Khan is the Campus Manager at EHub Institute, where he plays a key role in managing campus operations, coordinating teams, and ensuring smooth academic and administrative activities. He holds a BBA (Hons.) and brings extensive professional experience in management, leadership, and organizational coordination.
                 </p>
 
                 <div className="ceo-message-box">
@@ -153,14 +153,14 @@ const Leader = () => {
                     <i className="ph-fill ph-quotes"></i>
                   </div>
                   
-                  <h4 className="ceo-message-heading">DIRECTOR'S MESSAGE</h4>
+                  <h4 className="ceo-message-heading">CAMPUS MANAGER'S MESSAGE</h4>
                   
                   <p className="ceo-message-body">
-                    Education at E-Hub is designed to be interactive, practical, and globally aligned. Our mission is to transform learners into confident communicators who achieve top international test scores.
+                    Known for his strong management and leadership skills, Ahtesham has been recognized and awarded by We Care and SHED for his outstanding contribution and management capabilities.
                   </p>
 
                   <p className="ceo-message-highlight">
-                    With personalized mentorship, every student can achieve their desired band score.
+                    His dedication, professionalism, and ability to lead teams effectively make him an integral part of EHub Institute’s growth and success.
                   </p>
 
                   <div className="quote-icon-bottom">
@@ -171,9 +171,9 @@ const Leader = () => {
                 {/* Bottom Row: Signature & Motto */}
                 <div className="leader-footer-row">
                   <div className="leader-signature-col">
-                    <span className="leader-cursive-signature">Academic Director</span>
-                    <span className="leader-sig-role">Head of Academics – E-Hub</span>
-                    <span className="leader-sig-cert">British Council Certified</span>
+                    <span className="leader-cursive-signature">Ahtesham Khan</span>
+                    <span className="leader-sig-role">Campus Manager – E-Hub Institute</span>
+                    <span className="leader-sig-cert">BBA (Hons.)</span>
                   </div>
 
                   <div className="leader-divider-vertical"></div>
