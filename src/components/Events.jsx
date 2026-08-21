@@ -4,92 +4,92 @@ const journalPages = [
   {
     id: 'page-1',
     chapter: 'Chapter I • Outdoor Excursions',
-    title: 'Trips & Tours',
+    title: 'Trips & Tours Excursion',
     mainImg: '/assets/event_images/event_trip_and_rour.svg',
-    polaroid1: '/assets/event_images/event_586e433e_2285_4495_a380_0a161511eedc.svg',
-    bubble: 'To refresh our students, we believe in outdoor activities',
+    polaroid1: '/assets/event_images/event_trip&tour.svg',
+    bubble: 'To refresh our students, we believe in outdoor activities & scenic trips!',
     cursiveNote: 'Trips & Tours — Outdoor recreation, team bonding, and refreshing excursions beyond the classroom.',
     tag: '🏕️ Trips & Tours'
   },
   {
     id: 'page-2',
     chapter: 'Chapter II • Evening Discussions',
-    title: 'Ilam Gossip',
+    title: 'Ilam Gossip Evening (Part 1)',
     mainImg: '/assets/event_images/event_gospis_night.svg',
-    polaroid1: '/assets/event_images/event_8069d95b_5827_43ec_b24b_990789803f94.svg',
-    bubble: 'An eve of learning, joy and fun',
+    polaroid1: '/assets/event_images/event_illma-gossip.svg',
+    bubble: 'An eve of learning, gossip, joy, and interactive student discussion!',
     cursiveNote: 'Ilam Gossip — An unforgettable evening of student discussions, interactive learning, and shared joy.',
     tag: '🌙 Ilam Gossip'
   },
   {
     id: 'page-3',
-    chapter: 'Chapter III • National Festivities',
-    title: '14 August Celebration',
-    mainImg: '/assets/event_images/event_14_auguest.svg',
-    polaroid1: '/assets/event_images/event_5abc7d6d_0bbe_4d40_8c8c_03981bc27faf.svg',
-    bubble: 'Celebrating independence, unity, and national pride with green & white spirit!',
-    cursiveNote: '14 August Celebration — Independence Day festivities with speeches, national songs, and student performances.',
-    tag: '🇵🇰 14 August'
+    chapter: 'Chapter III • Evening Discussions',
+    title: 'Ilam Gossip Session (Part 2)',
+    mainImg: '/assets/event_images/event_illma-gossip2.svg',
+    polaroid1: '/assets/event_images/event_illma-gossip3.svg',
+    bubble: 'Engaging student conversations, fun activities, and intellectual exchanges!',
+    cursiveNote: 'Ilam Gossip Night — Fostering student confidence, active communication, and lasting campus memories.',
+    tag: '🌙 Ilam Gossip Night'
   },
   {
     id: 'page-4',
-    chapter: 'Chapter IV • Nature Expeditions',
-    title: 'Exploring Landscape',
-    mainImg: '/assets/event_images/event_12fa6006_e59f_4e1a_ab9b_ec41b5aab9ab.svg',
-    polaroid1: '/assets/event_images/event_794ef032_0e36_4619_bdbb_4b37c3e782f7.svg',
-    bubble: 'Exploring landscapes & breathtaking natural beauty with our E-Hub family!',
-    cursiveNote: 'Exploring Landscape — Discovering scenic mountain vistas and heritage sites during educational field trips.',
-    tag: '🏔️ Exploring Landscape'
+    chapter: 'Chapter IV • National Independence',
+    title: '14 August Celebration (Part 1)',
+    mainImg: '/assets/event_images/event_14_auguest.svg',
+    polaroid1: '/assets/event_images/event_14-august.svg',
+    bubble: 'Celebrating independence, unity, and national pride with green & white spirit!',
+    cursiveNote: '14 August Celebration — Independence Day festivities with flag hoisting, national songs, and speeches.',
+    tag: '🇵🇰 14 August Independence'
   },
   {
     id: 'page-5',
-    chapter: 'Chapter V • Professional Training',
-    title: 'British Council Workshop',
-    mainImg: '/assets/event_images/event_0b06c4f9_aa0f_4ef3_8f9f_223f1c4fe95b.svg',
-    polaroid1: '/assets/event_images/event_5dd6474e_cf96_42e9_8882_fe4f3dbf6c3e.svg',
-    bubble: 'Professional development programme & certified teacher training masterclass',
+    chapter: 'Chapter V • National Independence',
+    title: '14 August Cultural Gala (Part 2)',
+    mainImg: '/assets/event_images/event_14-august1.svg',
+    polaroid1: '/assets/event_images/event_14-august4.svg',
+    bubble: 'Vibrant student performances, patriotic speeches, and national celebrations!',
+    cursiveNote: '14 August Festival — Student performances expressing love, unity, and heritage for Pakistan.',
+    tag: '🇵🇰 14 August Gala'
+  },
+  {
+    id: 'page-6',
+    chapter: 'Chapter VI • Winter Evenings',
+    title: 'Bonfire & Music Night',
+    mainImg: '/assets/event_images/event_bonfire.svg',
+    polaroid1: '/assets/event_images/event_bonfire1.svg',
+    bubble: 'Gathering around the warm bonfire for music, warmth, and unforgettable campus memories!',
+    cursiveNote: 'Bonfire Night — Cozy winter evening celebrating student friendships, acoustic music, and warmth.',
+    tag: '🔥 Bonfire Event'
+  },
+  {
+    id: 'page-7',
+    chapter: 'Chapter VII • Professional Training',
+    title: 'British Council Masterclass',
+    mainImg: '/assets/event_images/event_british-council-workshop.svg',
+    polaroid1: '/assets/event_images/event_workshop.svg',
+    bubble: 'Professional development programme & certified teacher training masterclass.',
     cursiveNote: 'British Council Workshop — Empowering educators with world-class pedagogy and exam preparation strategy.',
     tag: '🎓 British Council'
   },
   {
-    id: 'page-6',
-    chapter: 'Chapter VI • Student Leadership',
-    title: 'Youth Leadership Forum',
-    mainImg: '/assets/event_images/event_8f91c4a1_1e92_4d29_b083_c451ce336fcd.svg',
-    polaroid1: '/assets/event_images/event_7f3d9243_1ec7_4f4d_9402_6b8d31719e08.svg',
-    bubble: 'Fostering confidence, public speaking, and executive poise!',
-    cursiveNote: 'Leadership Seminar — Inspiring students to unlock their full potential and lead with vision.',
-    tag: '⭐ Leadership Forum'
-  },
-  {
-    id: 'page-7',
-    chapter: 'Chapter VII • Classroom Activities',
-    title: 'Interactive Group Discussions',
-    mainImg: '/assets/event_images/event_166f2719_697e_470d_b011_a6b9427282d6.svg',
-    polaroid1: '/assets/event_images/event_b61b6e55_13b0_459d_8a36_ef5144535a78.svg',
-    bubble: 'Interactive group discussions, debate sessions, and practical learning!',
-    cursiveNote: 'Classroom Sessions — Engaging group activities fostering public speaking, debate skills, and active participation.',
-    tag: '🗣️ Group Activity'
-  },
-  {
     id: 'page-8',
-    chapter: 'Chapter VIII • Campus Life',
-    title: 'Student Community & Life',
-    mainImg: '/assets/event_images/event_968a8e0b_709a_4fb2_b5bf_48c7486057c8.svg',
-    polaroid1: '/assets/event_images/event_802ec832_4870_49f4_8915_8999c6816819.svg',
-    bubble: 'Building lifelong friendships and professional networks at E-Hub.',
-    cursiveNote: 'Campus Community — Creating a supportive, vibrant environment of passionate learners in Peshawar.',
-    tag: '🌟 Campus Life'
+    chapter: 'Chapter VIII • Interactive Workshops',
+    title: 'Student Skills & Debate Workshop',
+    mainImg: '/assets/event_images/event_workshop2.svg',
+    polaroid1: '/assets/event_images/event_certificated -cermony.svg',
+    bubble: 'Fostering confidence, public speaking, and interactive debate skills!',
+    cursiveNote: 'Interactive Workshop — Inspiring students to unlock public speaking poise, debate skills, and active participation.',
+    tag: '⭐ Skills Workshop'
   },
   {
     id: 'page-9',
     chapter: 'Chapter IX • Annual Honor Ceremony',
-    title: 'Prize Distribution & Awards',
-    mainImg: '/assets/event_images/event_12943e68_b2ea_437d_8128_bfc29b10e289.svg',
-    polaroid1: '/assets/event_images/event_d1bc3539_74fe_42e2_a50e_2bbf96d4cdf9.svg',
-    bubble: 'Honoring excellence, hard work, and outstanding academic achievements!',
+    title: 'Prize Distribution & Graduation',
+    mainImg: '/assets/event_images/event_award.svg',
+    polaroid1: '/assets/event_images/event_certificated-cermony.svg',
+    bubble: 'Honoring excellence, hard work, and outstanding academic achievements at E-Hub!',
     cursiveNote: 'Prize Distribution — Annual ceremony recognizing top performers, contest winners, and distinction holders.',
-    tag: '🏆 Prize Distribution'
+    tag: '🏆 Annual Awards & Graduation'
   }
 ];
 
@@ -308,7 +308,6 @@ const Events = () => {
               <div 
                 className="book-page page-left" 
                 onClick={handlePrev}
-                title="Click to turn to previous page"
               >
                 <div className="page-texture-overlay"></div>
                 <LeftPageContent
@@ -327,7 +326,6 @@ const Events = () => {
               <div 
                 className="book-page page-right" 
                 onClick={handleNext}
-                title="Click to turn to next page"
               >
                 <div className="page-texture-overlay"></div>
                 <RightPageContent
