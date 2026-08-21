@@ -210,6 +210,14 @@ function sanitizeResponseText(text) {
     .trim();
 }
 
+function getRefusalMessage(text) {
+  const isUrdu = isRomanUrduText(text);
+  if (isUrdu) {
+    return "Main E-Hub Institute Peshawar ka official AI assistant hoon. Main courses (IELTS, English Proficiency, TEFL), admissions, aur timings ke baare mein rehnumai de sakta hoon. Kisi bhi maloomat ke liye 03320565525 par rabta karen.";
+  }
+  return "I am the official AI assistant for E-Hub Institute Peshawar. I can assist you with courses (IELTS, English Proficiency, TEFL), admissions, timings, and campus details. For further inquiries, please contact 03320565525.";
+}
+
 /**
  * Seamless Gemini Fetch with progressive Auto-Wait Retries on 429 rate limit.
  * Keeps connection open and retries up to 4 times (2s, 3.5s, 5s, 6.5s) until answer is ready.
@@ -313,7 +321,7 @@ export default async function handler(req, res) {
   ];
 
   try {
-    const model = process.env.GEMINI_MODEL || 'gemini-2.5-flash-lite';
+    const model = process.env.GEMINI_MODEL || 'gemini-1.5-flash';
     const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
 
     const requestPayload = {
@@ -349,7 +357,12 @@ export default async function handler(req, res) {
       });
     }
 
-    // If Gemini quota is entirely exhausted after retries, return refusal/fallback appropriately
+    if (geminiResponse && !geminiResponse.ok) {
+      const errText = await geminiResponse.text().catch(() => '');
+      console.error(`[Gemini API Error] HTTP ${geminiResponse.status}:`, errText);
+    }
+
+    // If Gemini quota or error, return friendly fallback
     return res.status(200).json({
       reply: getRefusalMessage(trimmedText),
       source: 'fallback'

@@ -178,9 +178,7 @@ const AIChatbot = () => {
           <div className="chatbot-header">
             <div className="header-info">
               <div className="ai-mascot-avatar">
-                <div className="spline-avatar-wrapper">
-                  <spline-viewer url="https://prod.spline.design/vRdVA40gtbx99rEJ/scene.splinecode"></spline-viewer>
-                </div>
+                <CuteAIRobotIcon size={34} />
                 <span className="online-dot"></span>
               </div>
               <div>
@@ -213,9 +211,7 @@ const AIChatbot = () => {
               <div key={index} className={`chat-bubble-row ${msg.sender}`}>
                 {msg.sender === 'ai' && (
                   <div className="bubble-mascot">
-                    <div className="spline-bubble-wrapper">
-                      <spline-viewer url="https://prod.spline.design/vRdVA40gtbx99rEJ/scene.splinecode"></spline-viewer>
-                    </div>
+                    <CuteAIRobotIcon size={24} />
                   </div>
                 )}
                 <div className="bubble-content">
@@ -233,9 +229,7 @@ const AIChatbot = () => {
             {isTyping && (
               <div className="chat-bubble-row ai">
                 <div className="bubble-mascot">
-                  <div className="spline-bubble-wrapper">
-                    <spline-viewer url="https://prod.spline.design/vRdVA40gtbx99rEJ/scene.splinecode"></spline-viewer>
-                  </div>
+                  <CuteAIRobotIcon size={24} />
                 </div>
                 <div className="bubble-content typing-indicator">
                   <span></span>
