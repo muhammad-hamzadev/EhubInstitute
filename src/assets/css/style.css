@@ -3249,6 +3249,105 @@ select.form-input option {
     pointer-events: none;
 }
 
+/* AI Thought Tag / Bubble ("Ehub ai verse") */
+.ai-thought-bubble {
+    position: absolute;
+    right: 110px;
+    top: 22px;
+    background: linear-gradient(135deg, #660033 0%, #3d001e 100%);
+    color: #FFD700;
+    font-size: 0.82rem;
+    font-weight: 700;
+    font-family: var(--font-body);
+    padding: 0.42rem 0.95rem;
+    border-radius: 50px;
+    border: 1.5px solid rgba(212, 175, 55, 0.75);
+    white-space: nowrap;
+    box-shadow: 0 8px 25px rgba(102, 0, 51, 0.35), 0 2px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    z-index: 60;
+    animation: thoughtFloat 3s ease-in-out infinite, thoughtFadeIn 0.35s ease-out;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    user-select: none;
+}
+
+.ai-thought-bubble:hover {
+    transform: scale(1.06) translateY(-2px);
+    box-shadow: 0 12px 30px rgba(102, 0, 51, 0.5), 0 0 15px rgba(212, 175, 55, 0.4);
+    border-color: #FFD700;
+}
+
+.thought-sparkle {
+    font-size: 0.85rem;
+    animation: sparkleSpin 2.5s ease-in-out infinite alternate;
+}
+
+.thought-text {
+    background: linear-gradient(135deg, #FFF1B8 0%, #FFD700 50%, #E6B800 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.02em;
+}
+
+.thought-tail-dot1 {
+    position: absolute;
+    right: -7px;
+    bottom: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #660033;
+    border: 1.5px solid rgba(212, 175, 55, 0.75);
+}
+
+.thought-tail-dot2 {
+    position: absolute;
+    right: -15px;
+    bottom: 3px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #3d001e;
+    border: 1px solid rgba(212, 175, 55, 0.6);
+}
+
+@keyframes thoughtFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes thoughtFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.85) translateX(10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateX(0);
+    }
+}
+
+@keyframes sparkleSpin {
+    0% { transform: rotate(0deg) scale(0.9); }
+    100% { transform: rotate(15deg) scale(1.15); }
+}
+
+@media (max-width: 480px) {
+    .ai-thought-bubble {
+        right: 92px;
+        top: 20px;
+        font-size: 0.72rem;
+        padding: 0.32rem 0.75rem;
+    }
+}
+
 .ai-mascot-avatar {
     position: relative;
     width: 46px;

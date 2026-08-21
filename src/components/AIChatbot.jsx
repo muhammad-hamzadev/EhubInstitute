@@ -115,10 +115,19 @@ const AIChatbot = () => {
         {isOpen ? (
           <i className="ph-bold ph-x"></i>
         ) : (
-          <div className="spline-icon-wrapper" onClick={() => setIsOpen(true)}>
-            <div className="spline-click-overlay"></div>
-            <spline-viewer url="https://prod.spline.design/vRdVA40gtbx99rEJ/scene.splinecode"></spline-viewer>
-          </div>
+          <>
+            <div className="spline-icon-wrapper" onClick={() => setIsOpen(true)}>
+              <div className="spline-click-overlay"></div>
+              <spline-viewer url="https://prod.spline.design/vRdVA40gtbx99rEJ/scene.splinecode"></spline-viewer>
+            </div>
+            {/* Thought Tag ("Ehub ai verse") - Only shown when chat is closed */}
+            <div className="ai-thought-bubble" onClick={(e) => { e.stopPropagation(); setIsOpen(true); }}>
+              <span className="thought-sparkle">✨</span>
+              <span className="thought-text">Ehub ai verse</span>
+              <span className="thought-tail-dot1"></span>
+              <span className="thought-tail-dot2"></span>
+            </div>
+          </>
         )}
       </div>
 
