@@ -1,60 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-// 1:1 Match of User's Cute AI Robot Head Mascot in Royal Maroon (#660033) & Gold (#D4AF37)
-const CuteAIRobotIcon = ({ size = 32, maroonColor = '#660033', goldColor = '#D4AF37' }) => (
-  <svg width={size} height={size} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="maroonRobotGrad" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stopColor="#850043" />
-        <stop offset="100%" stopColor="#520029" />
-      </linearGradient>
-      <linearGradient id="goldStarGrad" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stopColor="#F5D77F" />
-        <stop offset="100%" stopColor="#D4AF37" />
-      </linearGradient>
-    </defs>
-
-    {/* Sparkle Stars */}
-    <path d="M80 18 C80 23, 82 25, 87 25 C82 25, 80 27, 80 32 C80 27, 78 25, 73 25 C78 25, 80 23, 80 18 Z" fill="url(#goldStarGrad)" />
-    <path d="M71 10 C71 13, 72 14, 75 14 C72 14, 71 15, 71 18 C71 15, 70 14, 67 14 C70 14, 71 13, 71 10 Z" fill="url(#goldStarGrad)" />
-
-    {/* Antenna */}
-    <rect x="47.5" y="16" width="5" height="15" rx="2.5" fill="url(#maroonRobotGrad)" />
-    <circle cx="50" cy="14" r="6" fill="url(#goldStarGrad)" stroke="#520029" strokeWidth="1.5" />
-
-    {/* Side Ears */}
-    <circle cx="21" cy="55" r="9" fill="url(#maroonRobotGrad)" />
-    <circle cx="79" cy="55" r="9" fill="url(#maroonRobotGrad)" />
-
-    {/* Helmet */}
-    <path d="M 23 55 C 23 33, 77 33, 77 55 C 77 74, 66 82, 50 82 C 34 82, 23 74, 23 55 Z" fill="url(#maroonRobotGrad)" />
-
-    {/* White Face Cutout */}
-    <path d="M 50 42 L 70 54 C 70 68, 62 74, 50 74 C 38 74, 30 68, 30 54 Z" fill="#FFFFFF" />
-
-    {/* Eyes */}
-    <ellipse cx="42" cy="59" rx="3.5" ry="4.5" fill="#520029" />
-    <ellipse cx="58" cy="59" rx="3.5" ry="4.5" fill="#520029" />
-    <circle cx="43" cy="57.5" r="1.2" fill="#FFFFFF" />
-    <circle cx="59" cy="57.5" r="1.2" fill="#FFFFFF" />
-  </svg>
-);
-
 const initialMessages = [
   {
     sender: 'ai',
     text: "Assalam-o-Alaikum! Welcome to E-Hub Institute Peshawar — 'Success awaits you!' I am Ehub AI Verse, your personal AI assistant. How can I help you today with our IELTS, English proficiency, TEFL/TESOL, or admissions?",
     time: 'Just now'
   }
-];
-
-const quickChips = [
-  '📚 Courses Offered',
-  '⏱️ Quick IELTS (40 Days)',
-  '⏰ Timings & Batches',
-  '📍 Address & Location',
-  '📞 Contact Number',
-  '🎓 TEFL/TESOL (iTTi-USA)'
 ];
 
 const AIChatbot = () => {
@@ -178,7 +129,9 @@ const AIChatbot = () => {
           <div className="chatbot-header">
             <div className="header-info">
               <div className="ai-mascot-avatar">
-                <CuteAIRobotIcon size={34} />
+                <div className="spline-avatar-wrapper">
+                  <spline-viewer url="https://prod.spline.design/vRdVA40gtbx99rEJ/scene.splinecode"></spline-viewer>
+                </div>
                 <span className="online-dot"></span>
               </div>
               <div>
@@ -191,27 +144,15 @@ const AIChatbot = () => {
             </button>
           </div>
 
-          {/* Quick Chips */}
-          <div className="chatbot-quick-chips">
-            {quickChips.map((chip, idx) => (
-              <button
-                key={idx}
-                className="chip-btn"
-                onClick={() => handleSend(chip)}
-                disabled={isTyping}
-              >
-                {chip}
-              </button>
-            ))}
-          </div>
-
           {/* Messages Body */}
           <div className="chatbot-body">
             {messages.map((msg, index) => (
               <div key={index} className={`chat-bubble-row ${msg.sender}`}>
                 {msg.sender === 'ai' && (
                   <div className="bubble-mascot">
-                    <CuteAIRobotIcon size={24} />
+                    <div className="spline-bubble-wrapper">
+                      <spline-viewer url="https://prod.spline.design/vRdVA40gtbx99rEJ/scene.splinecode"></spline-viewer>
+                    </div>
                   </div>
                 )}
                 <div className="bubble-content">
@@ -229,7 +170,9 @@ const AIChatbot = () => {
             {isTyping && (
               <div className="chat-bubble-row ai">
                 <div className="bubble-mascot">
-                  <CuteAIRobotIcon size={24} />
+                  <div className="spline-bubble-wrapper">
+                    <spline-viewer url="https://prod.spline.design/vRdVA40gtbx99rEJ/scene.splinecode"></spline-viewer>
+                  </div>
                 </div>
                 <div className="bubble-content typing-indicator">
                   <span></span>
