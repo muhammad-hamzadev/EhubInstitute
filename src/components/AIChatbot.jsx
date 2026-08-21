@@ -43,25 +43,19 @@ const CuteAIRobotIcon = ({ size = 32, maroonColor = '#660033', goldColor = '#D4A
 const initialMessages = [
   {
     sender: 'ai',
-    text: 'Hello! I am E-Hub AI ✨ How can I help you excel in your English journey today?',
+    text: "Assalam-o-Alaikum! Welcome to E-Hub Institute Peshawar — 'Success awaits you!' I am Ehub AI Verse, your personal AI assistant. How can I help you today with our IELTS, English proficiency, TEFL/TESOL, or admissions?",
     time: 'Just now'
   }
 ];
 
 const quickChips = [
-  '📚 What courses are offered?',
-  '⭐ How to get IELTS Band 8.5?',
-  '🎓 Tell me about iTTi TEFL',
-  '📍 Where is E-Hub located?'
+  '📚 Courses Offered',
+  '⏱️ Quick IELTS (40 Days)',
+  '⏰ Timings & Batches',
+  '📍 Address & Location',
+  '📞 Contact Number',
+  '🎓 TEFL/TESOL (iTTi-USA)'
 ];
-
-const aiKnowledgeBase = {
-  courses: "E-Hub offers specialized courses in Spoken English Mastery, IELTS Band 8.5 Intensive Preparation, iTTi TEFL International Teacher Certification, Business Communication, and Public Speaking!",
-  ielts: "Our IELTS Band 8.5 Masterclass focuses on real British Council exam strategies, mock writing evaluation, accent refinement, and 1-on-1 interview practice!",
-  tefl: "The iTTi TEFL program provides 220 hours of internationally accredited teacher training, equipping you with global pedagogy skills for teaching English worldwide!",
-  location: "E-Hub is located at Campus Building 18 & 20, Main University Road. You can also contact us directly at info@ehub.edu.pk or +92 300 1234567!",
-  default: "Thank you for asking! E-Hub is Pakistan's leading institute for English language excellence, IELTS, and international TEFL certification. Would you like to schedule a free demo session?"
-};
 
 const AIChatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -69,6 +63,9 @@ const AIChatbot = () => {
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const chatBottomRef = useRef(null);
+
+  const getTimeString = () =>
+    new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
   const scrollToBottom = () => {
     chatBottomRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -104,44 +101,54 @@ const AIChatbot = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const handleSend = (textToSend) => {
-    const userText = textToSend || inputValue;
-    if (!userText.trim()) return;
+  const handleSend = async (textToSend) => {
+    const userText = typeof textToSend === 'string' ? textToSend : inputValue;
+    if (!userText.trim() || isTyping) return;
 
-    const newMsg = {
+    const userMsg = {
       sender: 'user',
       text: userText,
-      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      time: getTimeString()
     };
 
-    setMessages((prev) => [...prev, newMsg]);
-    if (!textToSend) setInputValue('');
+    const nextHistory = [...messages, userMsg];
+    setMessages(nextHistory);
+    if (typeof textToSend !== 'string') setInputValue('');
     setIsTyping(true);
 
-    setTimeout(() => {
-      let reply = aiKnowledgeBase.default;
-      const lower = userText.toLowerCase();
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: userText,
+          history: nextHistory.slice(-6).map(m => ({
+            role: m.sender === 'user' ? 'user' : 'assistant',
+            content: m.text
+          }))
+        })
+      });
 
-      if (lower.includes('course') || lower.includes('program') || lower.includes('offer')) {
-        reply = aiKnowledgeBase.courses;
-      } else if (lower.includes('ielts') || lower.includes('band') || lower.includes('exam')) {
-        reply = aiKnowledgeBase.ielts;
-      } else if (lower.includes('tefl') || lower.includes('teacher') || lower.includes('itti')) {
-        reply = aiKnowledgeBase.tefl;
-      } else if (lower.includes('location') || lower.includes('address') || lower.includes('where') || lower.includes('contact')) {
-        reply = aiKnowledgeBase.location;
-      }
+      const data = await res.json();
+      const reply = data.reply || 'Maazrat, jawab abhi dastyab nahi hai.';
 
-      setMessages((prev) => [
+      setMessages(prev => [
+        ...prev,
+        { sender: 'ai', text: reply, time: getTimeString() }
+      ]);
+    } catch (err) {
+      console.error('Chat error:', err);
+      setMessages(prev => [
         ...prev,
         {
           sender: 'ai',
-          text: reply,
-          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+          text: 'Network issue. Please dobara koshish karen ya 03320565525 par rabta karen.',
+          time: getTimeString()
         }
       ]);
+    } finally {
       setIsTyping(false);
-    }, 900);
+    }
   };
 
   return (
@@ -186,6 +193,20 @@ const AIChatbot = () => {
             </button>
           </div>
 
+          {/* Quick Chips */}
+          <div className="chatbot-quick-chips">
+            {quickChips.map((chip, idx) => (
+              <button
+                key={idx}
+                className="chip-btn"
+                onClick={() => handleSend(chip)}
+                disabled={isTyping}
+              >
+                {chip}
+              </button>
+            ))}
+          </div>
+
           {/* Messages Body */}
           <div className="chatbot-body">
             {messages.map((msg, index) => (
@@ -198,7 +219,11 @@ const AIChatbot = () => {
                   </div>
                 )}
                 <div className="bubble-content">
-                  <div className="bubble-text">{msg.text}</div>
+                  <div className="bubble-text">
+                    {msg.text.split('\n').map((line, lIdx) => (
+                      <p key={lIdx}>{line}</p>
+                    ))}
+                  </div>
                   <span className="bubble-time">{msg.time}</span>
                 </div>
               </div>
@@ -230,9 +255,15 @@ const AIChatbot = () => {
               placeholder="Ask E-Hub AI..."
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+              onKeyDown={(e) => e.key === 'Enter' && !isTyping && handleSend()}
+              disabled={isTyping}
+              maxLength={500}
             />
-            <button className="btn-send-chat" onClick={() => handleSend()}>
+            <button
+              className="btn-send-chat"
+              onClick={() => handleSend()}
+              disabled={!inputValue.trim() || isTyping}
+            >
               <i className="ph-bold ph-paper-plane-right"></i>
             </button>
           </div>
