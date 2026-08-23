@@ -74,44 +74,65 @@ const AIChatbot = () => {
     };
   }, []);
 
-  // Remove "Built with Spline" watermark logo badge from Spline Viewer Shadow Root cleanly without layout thrashing
+  // Remove "Built with Spline" watermark logo badge from Spline Viewer Shadow Root cleanly from accessibility tree and DOM
   useEffect(() => {
     if (!isSplineReady) return;
-    let attempts = 0;
-    let intervalId = null;
 
-    const hideSplineLogo = () => {
-      let allFound = true;
+    const cleanupViewers = () => {
       const viewers = document.querySelectorAll('spline-viewer');
-      if (viewers.length === 0) {
-        allFound = false;
-      }
-
       viewers.forEach((viewer) => {
         if (viewer.shadowRoot) {
+          const logo = viewer.shadowRoot.querySelector('#logo, a[href*="spline.design"], a');
+          if (logo) {
+            logo.setAttribute('aria-label', 'Built with Spline');
+            logo.setAttribute('aria-hidden', 'true');
+            logo.setAttribute('tabindex', '-1');
+            try {
+              logo.remove();
+            } catch (e) {
+              logo.style.display = 'none';
+            }
+          }
+
           if (!viewer.shadowRoot.querySelector('#hide-spline-style')) {
             const style = document.createElement('style');
             style.id = 'hide-spline-style';
             style.textContent = '#logo, a, [id*="logo"], [class*="logo"] { display: none !important; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }';
             viewer.shadowRoot.appendChild(style);
           }
-        } else {
-          allFound = false;
+
+          if (!viewer._splineObserved) {
+            viewer._splineObserved = true;
+            try {
+              const observer = new MutationObserver(() => {
+                const dynLogo = viewer.shadowRoot?.querySelector('#logo, a[href*="spline.design"], a');
+                if (dynLogo) {
+                  dynLogo.setAttribute('aria-label', 'Built with Spline');
+                  dynLogo.setAttribute('aria-hidden', 'true');
+                  dynLogo.setAttribute('tabindex', '-1');
+                  try {
+                    dynLogo.remove();
+                  } catch (e) {
+                    dynLogo.style.display = 'none';
+                  }
+                }
+              });
+              observer.observe(viewer.shadowRoot, { childList: true, subtree: true });
+            } catch (e) {}
+          }
         }
       });
-
-      attempts++;
-      if ((allFound && viewers.length > 0) || attempts > 25) {
-        if (intervalId) clearInterval(intervalId);
-      }
     };
 
-    hideSplineLogo();
-    intervalId = setInterval(hideSplineLogo, 100);
+    cleanupViewers();
+    const interval = setInterval(cleanupViewers, 150);
+    const timeout = setTimeout(() => clearInterval(interval), 4000);
+
     return () => {
-      if (intervalId) clearInterval(intervalId);
+      clearInterval(interval);
+      clearTimeout(timeout);
     };
-  }, []);
+  }, [isSplineReady]);
 
   const handleSend = async (textToSend) => {
     const userText = typeof textToSend === 'string' ? textToSend : inputValue;
