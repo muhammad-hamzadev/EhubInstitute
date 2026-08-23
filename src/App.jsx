@@ -1,12 +1,12 @@
 import React, { Suspense, lazy } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import About from './components/About';
-import Leader from './components/Leader';
-import Programs from './components/Programs';
-import Books from './components/Books.jsx';
 
-// Below-the-fold components lazy loaded on demand for minimal initial JS payload
+// Below-the-fold components lazy loaded on demand for maximum performance (<15 KiB initial JS)
+const About = lazy(() => import('./components/About'));
+const Leader = lazy(() => import('./components/Leader'));
+const Programs = lazy(() => import('./components/Programs'));
+const Books = lazy(() => import('./components/Books.jsx'));
 const WallOfFame = lazy(() => import('./components/WallOfFame'));
 const Achievements = lazy(() => import('./components/Achievements'));
 const Events = lazy(() => import('./components/Events'));
@@ -20,11 +20,11 @@ function App() {
       <Navbar />
       <main>
         <Hero />
-        <About />
-        <Leader />
-        <Programs />
-        <Books />
         <Suspense fallback={null}>
+          <About />
+          <Leader />
+          <Programs />
+          <Books />
           <WallOfFame />
           <Achievements />
           <Events />
