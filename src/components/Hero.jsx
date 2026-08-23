@@ -79,9 +79,9 @@ const Hero = () => {
                 <img 
                   src="/assets/user_images/hero-image.svg" 
                   alt="British Council IELTS Annual Partners Meet - E-Hub Institute" 
-                  width="480" 
-                  height="520" 
-                  loading="lazy" 
+                  width="500" 
+                  height="380" 
+                  loading="eager" 
                   decoding="async" 
                 />
               </picture>
