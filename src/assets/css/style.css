@@ -2,6 +2,31 @@
    E-Hub Institute | Premium Landing Page CSS
    ========================================================================== */
 
+/* --- Font Display Swap for Icon Fonts --- */
+@font-face {
+    font-family: 'Phosphor';
+    src: url('https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/Phosphor.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Phosphor-Bold';
+    src: url('https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/Phosphor-Bold.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Phosphor-Fill';
+    src: url('https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/Phosphor-Fill.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 /* --- CSS Variables --- */
 :root {
     /* Colors */
@@ -92,7 +117,15 @@ img {
 }
 
 .text-accent {
-    color: var(--color-secondary);
+    color: #8C5E10; /* Premium High-Contrast Gold (WCAG AA Compliant >= 4.5:1 on light backgrounds) */
+}
+
+/* On dark/maroon backgrounds, maintain bright luminous gold */
+.maroon-bg .text-accent,
+.text-light-heading .text-accent,
+.dark-card .text-accent,
+[class*="maroon"] .text-accent {
+    color: #F5D061;
 }
 
 .text-center {
@@ -2231,28 +2264,32 @@ select.form-input option {
 .coverflow-card.is-prev-1 {
     transform: translateX(-215px) scale(0.9) rotateY(12deg) translateZ(-30px);
     z-index: 5;
-    opacity: 0.85;
+    opacity: 1;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
 }
 
 /* 3. Immediate Right Card */
 .coverflow-card.is-next-1 {
     transform: translateX(215px) scale(0.9) rotateY(-12deg) translateZ(-30px);
     z-index: 5;
-    opacity: 0.85;
+    opacity: 1;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
 }
 
 /* 4. Far Left Card */
 .coverflow-card.is-prev-2 {
     transform: translateX(-380px) scale(0.78) rotateY(20deg) translateZ(-70px);
     z-index: 2;
-    opacity: 0.55;
+    opacity: 1;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* 5. Far Right Card */
 .coverflow-card.is-next-2 {
     transform: translateX(380px) scale(0.78) rotateY(-20deg) translateZ(-70px);
     z-index: 2;
-    opacity: 0.55;
+    opacity: 1;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .wof-img-wrapper {
@@ -2432,23 +2469,39 @@ select.form-input option {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0.6rem;
+    gap: 0.85rem;
     margin-top: 1rem;
+    padding: 0.5rem 0;
 }
 
 .coverflow-dot {
-    width: 10px;
-    height: 10px;
+    position: relative;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     background-color: #CBD5E1;
     border: none;
     cursor: pointer;
     transition: var(--transition-smooth);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Invisible 44x44px touch area for mobile tap accessibility (WCAG compliant) */
+.coverflow-dot::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 44px;
+    min-height: 44px;
 }
 
 .coverflow-dot.active {
     background-color: var(--color-primary);
-    width: 26px;
+    width: 28px;
     border-radius: 20px;
 }
 
@@ -3681,6 +3734,27 @@ select.form-input option {
     pointer-events: none;
 }
 
+.mascot-loading-placeholder {
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    animation: pulseSoft 2s ease-in-out infinite;
+}
+
+.mascot-loading-placeholder img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+}
+
+@keyframes pulseSoft {
+    0%, 100% { transform: scale(1); opacity: 0.95; }
+    50% { transform: scale(1.06); opacity: 1; }
+}
+
 .spline-avatar-wrapper {
     width: 36px;
     height: 36px;
@@ -3689,12 +3763,17 @@ select.form-input option {
     justify-content: center;
     pointer-events: none;
     overflow: hidden;
+    border-radius: 50%;
+    background: #FFF9E6;
+    border: 1.5px solid var(--color-secondary);
 }
 
-.spline-avatar-wrapper spline-viewer {
-    width: 44px;
-    height: 44px;
-    transform: scale(0.85);
+.spline-avatar-wrapper img,
+.spline-avatar-wrapper svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
 }
 
 .spline-bubble-wrapper {
@@ -3705,12 +3784,17 @@ select.form-input option {
     justify-content: center;
     pointer-events: none;
     overflow: hidden;
+    border-radius: 50%;
+    background: #FFF9E6;
+    border: 1px solid var(--color-secondary);
 }
 
-.spline-bubble-wrapper spline-viewer {
-    width: 34px;
-    height: 34px;
-    transform: scale(0.85);
+.spline-bubble-wrapper img,
+.spline-bubble-wrapper svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
 }
 
 .chat-input {

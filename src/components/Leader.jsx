@@ -30,13 +30,18 @@ const Leader = () => {
 
                   {/* Oval Arch Photo Container */}
                   <div className="leader-oval-arch-frame">
-                    <img 
-                      src="/assets/user_images/maroof_ceo.png" 
-                      alt="Maroof Mehmood - CEO E-Hub Institute" 
-                      className="leader-portrait-img"
-                      loading="lazy"
-                      decoding="async"
-                    />
+                    <picture>
+                      <source srcSet="/assets/user_images/maroof_ceo.webp" type="image/webp" />
+                      <img 
+                        src="/assets/user_images/maroof_ceo.png" 
+                        alt="Maroof Mehmood - CEO E-Hub Institute" 
+                        className="leader-portrait-img"
+                        width="209"
+                        height="279"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </picture>
                   </div>
 
                   {/* Floating CEO Glass Badge */}
@@ -45,7 +50,7 @@ const Leader = () => {
                       <i className="ph-fill ph-user"></i>
                     </div>
                     <div className="pill-badge-text">
-                      <h4 className="pill-badge-name">Maroof Mehmood</h4>
+                      <span className="pill-badge-name">Maroof Mehmood</span>
                       <span className="pill-badge-role">CEO – E-Hub & MW Foundation</span>
                       <span className="pill-badge-cert">US Certified Instructor</span>
                     </div>
@@ -55,7 +60,7 @@ const Leader = () => {
 
               {/* Right Column: Meet the CEO Content */}
               <div className="leader-content-col">
-                <h2 className="leader-main-title">Meet the CEO</h2>
+                <h3 className="leader-main-title">Meet the CEO</h3>
                 
                 <p className="leader-intro-desc">
                   Maroof Mehmood is the driving force behind E-Hub Institute. With a strong vision for quality education and skill development, he has dedicated his career to empowering students, professionals, and communities through effective communication and practical learning.
@@ -115,7 +120,7 @@ const Leader = () => {
                       <i className="ph-fill ph-user-gear"></i>
                     </div>
                     <div className="pill-badge-text">
-                      <h4 className="pill-badge-name">Ahtesham Khan</h4>
+                      <span className="pill-badge-name">Ahtesham Khan</span>
                       <span className="pill-badge-role">Campus Manager</span>
                       <span className="pill-badge-cert">BBA (Hons.)</span>
                     </div>
@@ -125,7 +130,7 @@ const Leader = () => {
 
               {/* Right Column: Meet the Team Member Content */}
               <div className="leader-content-col">
-                <h2 className="leader-main-title">Ahtesham Khan</h2>
+                <h3 className="leader-main-title">Ahtesham Khan</h3>
                 
                 <p className="leader-intro-desc">
                   Ahtesham Khan is the Campus Manager at EHub Institute, where he plays a key role in managing campus operations, coordinating teams, and ensuring smooth academic and administrative activities. He holds a BBA (Hons.) and brings extensive professional experience in management, leadership, and organizational coordination.

@@ -62,5 +62,10 @@ export default defineConfig(({ command }) => ({
     // localApiPlugin only runs in dev mode — not bundled in production build
     ...(command === 'serve' ? [localApiPlugin()] : [])
   ],
+  build: {
+    target: 'es2020',
+    cssCodeSplit: true,
+    minify: 'esbuild'
+  },
   base: '/',
 }))

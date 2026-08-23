@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="container footer-v2-container">
         {/* Column 1: Brand & Socials */}
         <div className="footer-v2-brand-col">
-          <a href="#home" className="footer-logo-link">
+          <a href="#home" className="footer-logo-link" aria-label="E-Hub Institute Home">
             <EHubOfficialLogoSVG height={56} className="footer-logo-svg" textColor="#FFD700" />
           </a>
           <p className="footer-brand-bio">

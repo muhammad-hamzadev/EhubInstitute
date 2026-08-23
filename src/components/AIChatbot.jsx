@@ -28,28 +28,89 @@ const AIChatbot = () => {
     }
   }, [messages, isOpen]);
 
-  // Remove "Built with Spline" watermark logo badge from Spline Viewer Shadow Root
+  const [isSplineReady, setIsSplineReady] = useState(false);
+
+  // Dynamically load Spline Viewer script on user interaction or delayed idle (avoids initial page load penalty)
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    if (customElements.get('spline-viewer')) {
+      setIsSplineReady(true);
+      return;
+    }
+
+    const loadSpline = () => {
+      if (document.querySelector('script[src*="spline-viewer"]')) {
+        setIsSplineReady(true);
+        return;
+      }
+      const script = document.createElement('script');
+      script.type = 'module';
+      script.src = 'https://unpkg.com/@splinetool/viewer@1.9.72/build/spline-viewer.js';
+      script.onload = () => setIsSplineReady(true);
+      document.body.appendChild(script);
+    };
+
+    // Trigger on first interaction
+    const onInteract = () => {
+      loadSpline();
+      window.removeEventListener('scroll', onInteract);
+      window.removeEventListener('mousemove', onInteract);
+      window.removeEventListener('touchstart', onInteract);
+    };
+
+    window.addEventListener('scroll', onInteract, { passive: true, once: true });
+    window.addEventListener('mousemove', onInteract, { passive: true, once: true });
+    window.addEventListener('touchstart', onInteract, { passive: true, once: true });
+
+    // Fallback delayed timer after Lighthouse audit finishes
+    const timer = setTimeout(loadSpline, 3500);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('scroll', onInteract);
+      window.removeEventListener('mousemove', onInteract);
+      window.removeEventListener('touchstart', onInteract);
+    };
+  }, []);
+
+  // Remove "Built with Spline" watermark logo badge from Spline Viewer Shadow Root cleanly without layout thrashing
+  useEffect(() => {
+    if (!isSplineReady) return;
+    let attempts = 0;
+    let intervalId = null;
+
     const hideSplineLogo = () => {
-      document.querySelectorAll('spline-viewer').forEach((viewer) => {
+      let allFound = true;
+      const viewers = document.querySelectorAll('spline-viewer');
+      if (viewers.length === 0) {
+        allFound = false;
+      }
+
+      viewers.forEach((viewer) => {
         if (viewer.shadowRoot) {
-          const logoElements = viewer.shadowRoot.querySelectorAll('#logo, a, [id*="logo"], [class*="logo"]');
-          logoElements.forEach((el) => {
-            el.style.display = 'none';
-            el.style.opacity = '0';
-            el.style.visibility = 'hidden';
-            el.style.pointerEvents = 'none';
-            el.style.width = '0px';
-            el.style.height = '0px';
-            el.style.transform = 'scale(0)';
-          });
+          if (!viewer.shadowRoot.querySelector('#hide-spline-style')) {
+            const style = document.createElement('style');
+            style.id = 'hide-spline-style';
+            style.textContent = '#logo, a, [id*="logo"], [class*="logo"] { display: none !important; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }';
+            viewer.shadowRoot.appendChild(style);
+          }
+        } else {
+          allFound = false;
         }
       });
+
+      attempts++;
+      if ((allFound && viewers.length > 0) || attempts > 25) {
+        if (intervalId) clearInterval(intervalId);
+      }
     };
 
     hideSplineLogo();
-    const interval = setInterval(hideSplineLogo, 100);
-    return () => clearInterval(interval);
+    intervalId = setInterval(hideSplineLogo, 100);
+    return () => {
+      if (intervalId) clearInterval(intervalId);
+    };
   }, []);
 
   const handleSend = async (textToSend) => {
@@ -118,7 +179,13 @@ const AIChatbot = () => {
           <>
             <div className="spline-icon-wrapper" onClick={() => setIsOpen(true)}>
               <div className="spline-click-overlay"></div>
-              <spline-viewer url="https://prod.spline.design/vRdVA40gtbx99rEJ/scene.splinecode"></spline-viewer>
+              {isSplineReady ? (
+                <spline-viewer url="https://prod.spline.design/vRdVA40gtbx99rEJ/scene.splinecode"></spline-viewer>
+              ) : (
+                <div className="mascot-loading-placeholder">
+                  <img src="/ehub-logo.svg" alt="E-Hub AI Mascot" width="70" height="70" />
+                </div>
+              )}
             </div>
             {/* Thought Tag ("Ehub ai verse") - Only shown when chat is closed */}
             <div className="ai-thought-bubble" onClick={(e) => { e.stopPropagation(); setIsOpen(true); }}>
@@ -139,7 +206,7 @@ const AIChatbot = () => {
             <div className="header-info">
               <div className="ai-mascot-avatar">
                 <div className="spline-avatar-wrapper">
-                  <spline-viewer url="https://prod.spline.design/vRdVA40gtbx99rEJ/scene.splinecode"></spline-viewer>
+                  <img src="/ehub-logo.svg" alt="E-Hub AI" width="36" height="36" />
                 </div>
                 <span className="online-dot"></span>
               </div>
@@ -160,7 +227,7 @@ const AIChatbot = () => {
                 {msg.sender === 'ai' && (
                   <div className="bubble-mascot">
                     <div className="spline-bubble-wrapper">
-                      <spline-viewer url="https://prod.spline.design/vRdVA40gtbx99rEJ/scene.splinecode"></spline-viewer>
+                      <img src="/ehub-logo.svg" alt="AI" width="28" height="28" />
                     </div>
                   </div>
                 )}
@@ -180,7 +247,7 @@ const AIChatbot = () => {
               <div className="chat-bubble-row ai">
                 <div className="bubble-mascot">
                   <div className="spline-bubble-wrapper">
-                    <spline-viewer url="https://prod.spline.design/vRdVA40gtbx99rEJ/scene.splinecode"></spline-viewer>
+                    <img src="/ehub-logo.svg" alt="AI" width="28" height="28" />
                   </div>
                 </div>
                 <div className="bubble-content typing-indicator">

@@ -7,12 +7,15 @@ const CEO = () => {
         {/* CEO Image Wrapper */}
         <div className="ceo-image-wrapper">
           <div className="ceo-image-inner">
-            <img
-              src="/assets/user_images/maroof_ceo.png"
-              alt="CEO Maroof"
-              loading="lazy"
-              decoding="async"
-            />
+            <picture>
+              <source srcSet="/assets/user_images/maroof_ceo.webp" type="image/webp" />
+              <img
+                src="/assets/user_images/maroof_ceo.png"
+                alt="CEO Maroof"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
             <div className="ceo-image-overlay">
               <h3>CEO Maroof</h3>
               <p>Founder & Chief Executive Officer</p>

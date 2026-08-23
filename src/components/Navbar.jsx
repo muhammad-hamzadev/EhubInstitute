@@ -6,11 +6,18 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
   React.useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 50);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -26,7 +33,7 @@ const Navbar = () => {
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`} id="navbar">
       <div className="container nav-container">
         {/* Official E-Hub Vector SVG Logo */}
-        <a href="#hero" className="logo-svg-anchor" onClick={closeMobileMenu}>
+        <a href="#hero" className="logo-svg-anchor" onClick={closeMobileMenu} aria-label="E-Hub Institute Home">
           <EHubOfficialLogoSVG height={44} className="official-ehub-logo-svg" />
         </a>
 

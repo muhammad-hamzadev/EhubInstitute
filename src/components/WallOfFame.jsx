@@ -99,7 +99,7 @@ const WallOfFame = () => {
 
                 {/* Card Main Body */}
                 <div className="spotlight-body">
-                  <h4 className="spotlight-name">{item.name}</h4>
+                  <h3 className="spotlight-name">{item.name}</h3>
                   <p className="spotlight-desc text-accent" style={{ marginTop: '10px', fontWeight: '500' }}>{item.tag}</p>
                 </div>
               </div>
