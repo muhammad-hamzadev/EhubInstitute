@@ -1,17 +1,17 @@
 import React, { Suspense, lazy } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import About from './components/About';
+import Leader from './components/Leader';
+import Programs from './components/Programs';
+import Books from './components/Books.jsx';
+import Footer from './components/Footer';
 
-// Below-the-fold components lazy loaded on demand for maximum performance (<15 KiB initial JS)
-const About = lazy(() => import('./components/About'));
-const Leader = lazy(() => import('./components/Leader'));
-const Programs = lazy(() => import('./components/Programs'));
-const Books = lazy(() => import('./components/Books.jsx'));
+// Only heavy interactive components (modals, swipers, chatbot) are lazy loaded
 const WallOfFame = lazy(() => import('./components/WallOfFame'));
 const Achievements = lazy(() => import('./components/Achievements'));
 const Events = lazy(() => import('./components/Events'));
 const Contact = lazy(() => import('./components/Contact'));
-const Footer = lazy(() => import('./components/Footer'));
 const AIChatbot = lazy(() => import('./components/AIChatbot'));
 
 function App() {
@@ -20,19 +20,19 @@ function App() {
       <Navbar />
       <main>
         <Hero />
+        <About />
+        <Leader />
+        <Programs />
+        <Books />
         <Suspense fallback={null}>
-          <About />
-          <Leader />
-          <Programs />
-          <Books />
           <WallOfFame />
           <Achievements />
           <Events />
           <Contact />
         </Suspense>
       </main>
+      <Footer />
       <Suspense fallback={null}>
-        <Footer />
         <AIChatbot />
       </Suspense>
     </>
