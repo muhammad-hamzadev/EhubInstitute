@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import Leader from './components/Leader';
 import Programs from './components/Programs';
 import Books from './components/Books.jsx';
-import WallOfFame from './components/WallOfFame';
-import Achievements from './components/Achievements';
-import Events from './components/Events';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
-import AIChatbot from './components/AIChatbot';
+
+// Below-the-fold components lazy loaded on demand for minimal initial JS payload
+const WallOfFame = lazy(() => import('./components/WallOfFame'));
+const Achievements = lazy(() => import('./components/Achievements'));
+const Events = lazy(() => import('./components/Events'));
+const Contact = lazy(() => import('./components/Contact'));
+const Footer = lazy(() => import('./components/Footer'));
+const AIChatbot = lazy(() => import('./components/AIChatbot'));
 
 function App() {
   return (
@@ -22,13 +24,17 @@ function App() {
         <Leader />
         <Programs />
         <Books />
-        <WallOfFame />
-        <Achievements />
-        <Events />
-        <Contact />
+        <Suspense fallback={null}>
+          <WallOfFame />
+          <Achievements />
+          <Events />
+          <Contact />
+        </Suspense>
       </main>
-      <Footer />
-      <AIChatbot />
+      <Suspense fallback={null}>
+        <Footer />
+        <AIChatbot />
+      </Suspense>
     </>
   );
 }

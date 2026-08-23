@@ -78,7 +78,15 @@ export default defineConfig(({ command }) => ({
   build: {
     target: 'es2020',
     cssCodeSplit: true,
-    minify: 'esbuild'
+    minify: 'esbuild',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom'],
+          'vendor-swiper': ['swiper', 'swiper/react'],
+        }
+      }
+    }
   },
   base: '/',
 }))
