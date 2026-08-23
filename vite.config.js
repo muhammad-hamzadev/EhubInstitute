@@ -56,9 +56,22 @@ function localApiPlugin() {
   }
 }
 
+function asyncCssPlugin() {
+  return {
+    name: 'async-css-plugin',
+    transformIndexHtml(html) {
+      return html.replace(
+        /<link rel="stylesheet" crossorigin href="(\/assets\/index-[^"]+\.css)">/g,
+        '<link rel="preload" as="style" href="$1">\n    <link rel="stylesheet" href="$1" media="print" onload="this.media=\'all\'">\n    <noscript><link rel="stylesheet" href="$1"></noscript>'
+      );
+    }
+  };
+}
+
 export default defineConfig(({ command }) => ({
   plugins: [
     react(),
+    asyncCssPlugin(),
     // localApiPlugin only runs in dev mode — not bundled in production build
     ...(command === 'serve' ? [localApiPlugin()] : [])
   ],

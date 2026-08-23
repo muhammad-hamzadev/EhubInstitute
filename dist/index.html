@@ -38,7 +38,13 @@
         <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
         <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
     </noscript>
-    <link rel="stylesheet" crossorigin href="/assets/index-B9CvkIQQ.css">
+
+    <!-- Main Production Bundle CSS (Non-blocking Asynchronous) -->
+    <link rel="preload" as="style" href="/assets/index-B9CvkIQQ.css">
+    <link rel="stylesheet" href="/assets/index-B9CvkIQQ.css" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="/assets/index-B9CvkIQQ.css">
+    </noscript>
 </head>
 
 <body>
