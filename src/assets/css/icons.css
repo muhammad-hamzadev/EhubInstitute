@@ -1,0 +1,66 @@
+/* ==========================================================================
+   E-Hub Institute | Optimized Phosphor Icons Subset (Only Used Glyphs)
+   ========================================================================== */
+
+.ph, [class^="ph-"], [class*=" ph-"] {
+  font-family: "Phosphor" !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.ph-bold, .ph-bold[class^="ph-"], .ph-bold[class*=" ph-"] {
+  font-family: "Phosphor-Bold" !important;
+}
+
+.ph-fill, .ph-fill[class^="ph-"], .ph-fill[class*=" ph-"] {
+  font-family: "Phosphor-Fill" !important;
+}
+
+.ph-caret-left::before { content: "\e138"; }
+.ph-caret-right::before { content: "\e13a"; }
+.ph-caret-down::before { content: "\e136"; }
+.ph-x::before { content: "\e4f6"; }
+.ph-paper-plane-right::before { content: "\e396"; }
+.ph-quotes::before { content: "\e660"; }
+.ph-briefcase::before { content: "\e0ee"; }
+.ph-users-three::before { content: "\e68e"; }
+.ph-target::before { content: "\e47c"; }
+.ph-globe-hemisphere-west::before { content: "\e28c"; }
+.ph-whatsapp-logo::before { content: "\e5d0"; }
+.ph-envelope-simple::before { content: "\e218"; }
+.ph-instagram-logo::before { content: "\e2d0"; }
+.ph-facebook-logo::before { content: "\e226"; }
+.ph-map-pin::before { content: "\e316"; }
+.ph-check-circle::before { content: "\e184"; }
+.ph-user::before { content: "\e4c2"; }
+.ph-phone::before { content: "\e3b8"; }
+.ph-graduation-cap::before { content: "\e62c"; }
+.ph-chat-centered-text::before { content: "\e166"; }
+.ph-arrow-right::before { content: "\e0aa"; }
+.ph-book-bookmark::before { content: "\e0d6"; }
+.ph-book-open::before { content: "\e0dc"; }
+.ph-hand-pointing::before { content: "\e29c"; }
+.ph-sparkle::before { content: "\e67a"; }
+.ph-arrow-counter-clockwise::before { content: "\e09c"; }
+.ph-youtube-logo::before { content: "\e5f2"; }
+.ph-tiktok-logo::before { content: "\e5a0"; }
+.ph-linkedin-logo::before { content: "\e2f6"; }
+.ph-phone-call::before { content: "\e3c0"; }
+.ph-clock::before { content: "\e1a2"; }
+.ph-calendar-blank::before { content: "\e10e"; }
+.ph-desktop::before { content: "\e1fc"; }
+.ph-user-gear::before { content: "\e4c6"; }
+.ph-list::before { content: "\e304"; }
+.ph-chat-teardrop-text::before { content: "\e172"; }
+.ph-exam::before { content: "\e21e"; }
+.ph-smiley::before { content: "\e440"; }
+.ph-books::before { content: "\e0e2"; }
