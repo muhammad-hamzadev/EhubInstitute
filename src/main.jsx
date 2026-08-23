@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './assets/css/style.css'
 import './assets/css/icons.css'
+import './assets/css/fonts.css'
 
 const rootElement = document.getElementById('root');
 if (rootElement.hasChildNodes()) {
