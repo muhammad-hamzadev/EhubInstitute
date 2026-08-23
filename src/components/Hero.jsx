@@ -74,7 +74,14 @@ const Hero = () => {
         <div className="hero-arc-wrapper">
           <div className="hero-arc-outer">
             <div className="hero-arc-image-container">
-              <img src="/assets/user_images/hero-image.svg" alt="British Council IELTS Annual Partners Meet - E-Hub Institute" fetchPriority="high" decoding="async" />
+              <img 
+                src="/assets/user_images/hero-image.svg" 
+                alt="British Council IELTS Annual Partners Meet - E-Hub Institute" 
+                width="480" 
+                height="520" 
+                fetchPriority="high" 
+                decoding="async" 
+              />
             </div>
           </div>
         </div>
