@@ -74,14 +74,17 @@ const Hero = () => {
         <div className="hero-arc-wrapper">
           <div className="hero-arc-outer">
             <div className="hero-arc-image-container">
-              <img 
-                src="/assets/user_images/hero-image.svg" 
-                alt="British Council IELTS Annual Partners Meet - E-Hub Institute" 
-                width="480" 
-                height="520" 
-                fetchPriority="high" 
-                decoding="async" 
-              />
+              <picture>
+                <source srcSet="/assets/user_images/hero-image.webp" type="image/webp" />
+                <img 
+                  src="/assets/user_images/hero-image.svg" 
+                  alt="British Council IELTS Annual Partners Meet - E-Hub Institute" 
+                  width="480" 
+                  height="520" 
+                  loading="lazy" 
+                  decoding="async" 
+                />
+              </picture>
             </div>
           </div>
         </div>
