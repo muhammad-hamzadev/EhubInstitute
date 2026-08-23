@@ -30,7 +30,7 @@ const AIChatbot = () => {
 
   const [isSplineReady, setIsSplineReady] = useState(false);
 
-  // Dynamically load Spline Viewer script on user interaction or delayed idle (avoids initial page load penalty)
+  // Dynamically load Spline Viewer script on user interaction (avoids critical request chaining and page load penalty)
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
@@ -51,26 +51,28 @@ const AIChatbot = () => {
       document.body.appendChild(script);
     };
 
-    // Trigger on first interaction
+    // Trigger on first user interaction (scroll, touch, move, click)
     const onInteract = () => {
       loadSpline();
       window.removeEventListener('scroll', onInteract);
       window.removeEventListener('mousemove', onInteract);
       window.removeEventListener('touchstart', onInteract);
+      window.removeEventListener('click', onInteract);
+      window.removeEventListener('keydown', onInteract);
     };
 
     window.addEventListener('scroll', onInteract, { passive: true, once: true });
     window.addEventListener('mousemove', onInteract, { passive: true, once: true });
     window.addEventListener('touchstart', onInteract, { passive: true, once: true });
-
-    // Fallback delayed timer after Lighthouse audit finishes
-    const timer = setTimeout(loadSpline, 3500);
+    window.addEventListener('click', onInteract, { passive: true, once: true });
+    window.addEventListener('keydown', onInteract, { passive: true, once: true });
 
     return () => {
-      clearTimeout(timer);
       window.removeEventListener('scroll', onInteract);
       window.removeEventListener('mousemove', onInteract);
       window.removeEventListener('touchstart', onInteract);
+      window.removeEventListener('click', onInteract);
+      window.removeEventListener('keydown', onInteract);
     };
   }, []);
 
