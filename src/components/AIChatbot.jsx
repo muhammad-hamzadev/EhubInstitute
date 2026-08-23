@@ -201,7 +201,33 @@ const AIChatbot = () => {
             <div className="spline-icon-wrapper" onClick={() => setIsOpen(true)}>
               <div className="spline-click-overlay"></div>
               {isSplineReady ? (
-                <spline-viewer url="https://prod.spline.design/vRdVA40gtbx99rEJ/scene.splinecode"></spline-viewer>
+                <spline-viewer
+                  url="https://prod.spline.design/vRdVA40gtbx99rEJ/scene.splinecode"
+                  ref={(viewer) => {
+                    if (!viewer) return;
+                    const stripLogo = () => {
+                      if (viewer.shadowRoot) {
+                        const logo = viewer.shadowRoot.querySelector('#logo, a[href*="spline.design"], a, [class*="logo"]');
+                        if (logo) {
+                          logo.setAttribute('aria-label', 'Built with Spline');
+                          logo.setAttribute('aria-hidden', 'true');
+                          try { logo.remove(); } catch (e) { logo.style.display = 'none'; }
+                        }
+                        if (!viewer.shadowRoot.querySelector('#hide-spline-style')) {
+                          const style = document.createElement('style');
+                          style.id = 'hide-spline-style';
+                          style.textContent = '#logo, a, [id*="logo"], [class*="logo"], div[id*="logo"] { display: none !important; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; width: 0 !important; height: 0 !important; position: absolute !important; top: -9999px !important; }';
+                          viewer.shadowRoot.appendChild(style);
+                        }
+                      }
+                    };
+                    stripLogo();
+                    viewer.addEventListener('load', stripLogo, { once: true });
+                    setTimeout(stripLogo, 300);
+                    setTimeout(stripLogo, 1000);
+                    setTimeout(stripLogo, 2500);
+                  }}
+                ></spline-viewer>
               ) : (
                 <div className="mascot-loading-placeholder">
                   <img src="/ehub-logo.svg" alt="E-Hub AI Mascot" width="70" height="70" />
